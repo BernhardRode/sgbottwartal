@@ -1,0 +1,38 @@
+{
+  "author": "Bernhard Rode <mail@bernhardrode.de>",
+  "contributors": [
+    {
+      "name": "Bernhard Rode",
+      "email": "mail@bernhardrode.de"
+    }
+  ],
+  "name": "SGB",
+  "description": "wordpress template",
+  "version": "3.0.0",
+  "codename": "anguis-fragilis",
+  "homepage": "http://sgbottwartal.de",
+  "src": "src",
+  "dist": "/Users/bernhard/Sourcen/WordPress/wp-content/themes/sgbottwartal",
+  "test": "test",
+  "repositories": {
+    "type": "git",
+    "url": "https://github.com/BernhardRode/sgbottwartal.git"
+  },
+  "devDependencies": {
+    "grunt-coffee": "~0.0",
+    "grunt-clean": "~0.3",
+    "grunt-docco": "~0.1.2",
+    "grunt-exec": "~0.1",
+    "grunt-less": "~0.1",
+    "grunt-reload": "~0.2.0",
+    "grunt-overlay": "~0.1",
+    "grunt-contrib-copy": "~0.3.0",
+    "grunt-replace": "~0.3.0",
+    "grunt-testacular": "~0.1.0",
+    "testacular": "~0.4.0"
+  },
+  "engines": {
+    "node": "*"
+  },
+  "dependencies": {}
+}

@@ -6,28 +6,9 @@ module.exports = function (grunt) {
 
     meta: {
       banner: '/*!\n'+
-        'c o r p o r a t e   c o n t e n t   s e r v i c e s   b y :\n'+
-        '\n'+
-        ' ***********     ***********     ***********     ***********   1, 2, 3!\n'+
-        '*************   *************   *************   *************\n'+
-        '***       ***   ***       ***   ***       ***   ***       ***\n'+
-        '***       ***   ***       ***   ***       ***   ***       ***\n'+
-        '***       **    ***       ***   ***       ***   ***       ***\n'+
-        '***             ***       ***   ***       ***   ***       ***\n'+
-        '***             ***       ***   ***       ***   *************\n'+
-        '***             ***       ***   ***       ***   *************\n'+
-        '***             ***       ***   ***       ***   ***\n'+
-        '***       **    ***       ***   *************   ***        **\n'+
-        '***       ***   ***       ***   ************    ***       ***\n'+
-        '***       ***   ***       ***   ***             ***       ***\n'+
-        '*************   *************   ***             *************\n'+
-        ' ***********     ***********    ***              *********** \n'+
-        '\n'+
-        'c o n t e n t   o b j e c t s   p r o c e s s i n g   e n v i r o n m e n t.\n'+
-        '\n\n'+
         '<%= pkg.name %> Version: <%= pkg.version %>-<%= pkg.codename %> '+
         '(<%= grunt.template.today() %>)\n\n'+
-        'Copyright (c) <%= grunt.template.today("yyyy") %> Bechtle AG\n'+
+        'Copyright (c) <%= grunt.template.today("yyyy") %> SG Bottwartal\n'+
       '*/'
     },
     clean: {
@@ -42,15 +23,6 @@ module.exports = function (grunt) {
           preserve_dirs: true,
           base_path: 'src/coffee'
         }
-      // },
-      // test: {
-      //   src: ['<%= pkg.test %>/unit/**/*.coffee'],
-      //   dest: '<%= pkg.dist %>/test',
-      //   options: {
-      //     bare: true,
-      //     preserve_dirs: true,
-      //     base_path: 'test/unit'
-      //   }
       }
     },
     haml: {
@@ -65,7 +37,7 @@ module.exports = function (grunt) {
     concat: {
       js: {
         src: ['<banner>', '<%= pkg.dist %>/js/cope/**/*.js'],
-        dest: '<%= pkg.dist %>/js/CopeApp.js',
+        dest: '<%= pkg.dist %>/js/app.js',
         options: {
           overwrite: true
         }
@@ -74,10 +46,12 @@ module.exports = function (grunt) {
     copy: {
       dist: {
         files: {
-          '<%= pkg.dist %>/':'<%= pkg.src %>/html/**/*.html',
+          '<%= pkg.dist %>/':'<%= pkg.src %>/php/*.php',
           '<%= pkg.dist %>/lib/':'<%= pkg.src %>/lib/**/*.js',
           '<%= pkg.dist %>/img/':'<%= pkg.src %>/img/**/*',
-          '<%= pkg.dist %>/font/':'<%= pkg.src %>/lib/font-awesome/font/*'
+          '<%= pkg.dist %>/font/awesome/':'<%= pkg.src %>/lib/font-awesome/font/*',
+          '<%= pkg.dist %>/font/diavlo/':'<%= pkg.src %>/lib/diavlo/font/*',
+          '<%= pkg.dist %>/languages/':'<%= pkg.src %>/languages/*'
         },
         options: {
           flatten:true
@@ -105,8 +79,8 @@ module.exports = function (grunt) {
     // compile Less to CSS
     less: {
       dist: {
-        src: '<%= pkg.src %>/less/cope.less',
-        dest: '<%= pkg.dist %>/css/cope.css'
+        src: '<%= pkg.src %>/less/app.less',
+        dest: '<%= pkg.dist %>/style.css'
       }
     },
     replace: {
@@ -120,14 +94,14 @@ module.exports = function (grunt) {
           }
         },
         files: {
-          'dist/': ['<%= pkg.src %>/manifest.appcache']
+          '<%= pkg.dist %>/': ['<%= pkg.src %>/manifest.appcache']
         }
       }
     },
     min: {
       prod: {
-        src: ['<banner>', '<%= pkg.dist %>/js/CopeApp.js'],
-        dest: '<%= pkg.dist %>/js/CopeApp.min.js'
+        src: ['<banner>', '<%= pkg.dist %>/js/app.js'],
+        dest: '<%= pkg.dist %>/js/app.min.js'
       }
     },
     testacularServer: {
@@ -160,7 +134,7 @@ module.exports = function (grunt) {
       files: [
         '<%= pkg.src %>/coffee/**/*.coffee',
         '<%= pkg.src %>/less/**/*.less',
-        '<%= pkg.src %>/html/**/*.html',
+        '<%= pkg.src %>/php/**/*.php',
         '<%= pkg.test %>/unit/**/*.coffee',
       ],
       tasks: 'build reload'
@@ -175,9 +149,8 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-replace');
   grunt.loadNpmTasks('grunt-testacular');
   grunt.loadNpmTasks('grunt-docco');
-  //grunt.loadNpmTasks('grunt-haml');
 
-  grunt.registerTask('build', 'clean coffee replace less concat copy');
+  grunt.registerTask('build', 'clean coffee replace less copy');
   grunt.registerTask('default', 'server reload build watch');
   grunt.registerTask('doc', 'docco');  
   grunt.registerTask('prod', 'build min');
