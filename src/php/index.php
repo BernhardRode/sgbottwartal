@@ -30,7 +30,8 @@ get_header(); ?>
         <?php 
           if (  (function_exists('has_post_thumbnail')) && (has_post_thumbnail())  ) {
             $image_id = get_post_thumbnail_id();
-            $url = wp_get_attachment_image_src($image_id,'large', true)[0];
+            $versions = wp_get_attachment_image_src($image_id,'large', true);
+            $url = $version[0];
           } else {
             $url = get_fallback_post_thumbnail();
           } 
