@@ -39,7 +39,7 @@
     </div>    
     <div class="row grayed">
       <div class="offset1 span5">
-        <p>&copy; 2012</p>
+        <p>&copy; 2010-<?php echo date('Y'); ?></p>
       </div>    
       <div class="span6">
         <p><i class="icon-heart"></i> powered by <a href="http://www.wordpress.org">wordpress</a>, <a href="http://twitter.github.com/bootstrap/index.html">bootstrap</a> &amp; <a href="http://fortawesome.github.com">font awesome</a> &middot; created by <a href="http://bernahrdrode.de">@ebbo</a></p>

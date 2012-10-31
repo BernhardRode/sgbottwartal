@@ -11,11 +11,22 @@
 	<header class="entry-header">
 		<h1 class="entry-title"><?php the_title(); ?></h1>
 	</header>
-	<div class="entry-content">
-		<?php the_content(); ?>
-		<?php wp_link_pages( array( 'before' => '<div class="page-links">' . __( 'Pages:', 'sgb' ), 'after' => '</div>' ) ); ?>
+	<div class="row">
+		<div class="span3">
+      <?php 
+        if (  (function_exists('has_post_thumbnail')) && (has_post_thumbnail())  ) {
+          $image_id = get_post_thumbnail_id( $pageChild->ID );
+          $url = wp_get_attachment_image_src($image_id,'large', true)[0];
+        } else {
+          $url = get_fallback_post_thumbnail( $pageChild->ID );
+        } 
+      ?>
+      <a href="<?php echo  get_permalink($pageChild->ID); ?>" rel="bookmark" title="<?php echo $pageChild->post_title; ?>">
+        <img src="<?php echo $url; ?>" alt="<?php echo the_title(); ?>" class="img-polaroid">
+      </a>
+		</div>
+		<div class="entry-content span6">
+			<?php the_content(); ?>
+		</div>
 	</div><!-- .entry-content -->
-	<footer class="entry-meta">
-		<?php edit_post_link( __( 'Edit', 'sgb' ), '<span class="edit-link">', '</span>' ); ?>
-	</footer><!-- .entry-meta -->
 </article><!-- #post -->

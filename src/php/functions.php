@@ -24,7 +24,11 @@ function sgb_setup() {
   // This theme uses post thumbnails
   add_theme_support( 'post-thumbnails' );
   set_post_thumbnail_size( 200, 200, true ); // Normal post thumbnails
-  add_image_size( 'single-post-thumbnail', 400, 9999 ); // Permalink thumbnail size
+  add_image_size( 'featured-thumb', 1024, 9999 ); //300 pixels wide (and unlimited height)
+  add_image_size( 'page-thumb', 220, 9999 ); //300 pixels wide (and unlimited height)
+  add_image_size( 'circle-thumb', 100, 100, true ); //(cropped)
+  //Disable the admin bar
+  //show_admin_bar(false);
 }
 add_action( 'after_setup_theme', 'sgb_setup' );
 
@@ -47,6 +51,9 @@ function sgb_scripts_styles() {
   wp_enqueue_script('bootstrap-typeahead', get_template_directory_uri().'/lib/bootstrap-typeahead.js', array('jquery'), '2.2.0', true);
   wp_enqueue_script('bootstrap-affix', get_template_directory_uri().'/lib/bootstrap-affix.js', array('jquery'), '2.2.0', true);
   wp_enqueue_script('app', get_template_directory_uri().'/js/app.js', array('jquery'), '1.0', true);
+  //wp_enqueue_script('google-plus', 'https://apis.google.com/js/plusone.js', [], '1.0', true);
+  //wp_enqueue_script('facebook', 'http://connect.facebook.net/de_DE/all.js', [], '1.0', true);
+  
   wp_enqueue_style('sgb-style', get_stylesheet_uri() );
 }
 add_action( 'wp_enqueue_scripts', 'sgb_scripts_styles' );
@@ -89,9 +96,76 @@ function sgb_widgets_init() {
 }
 add_action( 'widgets_init', 'sgb_widgets_init' );
 
+/**
+* Change the howdy text in admin bar
+*
+* @since 2013
+*/
+function replace_howdy( $wp_admin_bar ) {
+    $my_account=$wp_admin_bar->get_node('my-account');
+    $newtitle = str_replace( 'Howdy,', '', $my_account->title );            
+    $wp_admin_bar->add_node( array(
+        'id' => 'my-account',
+        'title' => $newtitle,
+    ) );
+}
+add_filter( 'admin_bar_menu', 'replace_howdy',25 );
 
 /**
-* Displays navigation to next/previous pages when applicable.
+* Disable image compression - set jpeg quality to 100%
+*
+* @since 2013
+*/
+add_filter('jpeg_quality', function($arg){return 100;});
+
+/**
+* Select the first imageas featured image, if no image has been selected.
+*
+* @since 2013
+*/
+function autoset_featured_image() {
+  global $post;
+  $already_has_thumb = has_post_thumbnail($post->ID);
+  if (!$already_has_thumb)  {
+    $attached_image = get_children( "post_parent=$post->ID&post_type=attachment&post_mime_type=image&numberposts=1" );
+    if ($attached_image) {
+      foreach ($attached_image as $attachment_id => $attachment) {
+        set_post_thumbnail($post->ID, $attachment_id);
+      }
+    }
+  }
+}
+add_action('the_post', 'autoset_featured_image');
+add_action('save_post', 'autoset_featured_image');
+add_action('draft_to_publish', 'autoset_featured_image');
+add_action('new_to_publish', 'autoset_featured_image');
+add_action('pending_to_publish', 'autoset_featured_image');
+add_action('future_to_publish', 'autoset_featured_image');
+
+/**
+* Configure Wordpress basics.
+*
+* @since 2013
+*/
+function admin_bar_remove_logo() {
+        global $wp_admin_bar;
+
+        /* Remove their stuff */
+        $wp_admin_bar->remove_menu('wp-logo');
+}
+add_action('wp_before_admin_bar_render', 'admin_bar_remove_logo', 0);
+
+function change_admin_logo() {
+  echo '&lt;style type=&quot;text/css&quot;&gt; #header-logo { background-image: url('.get_bloginfo('template_directory').'/images/admin_logo.png) !important; } &lt;/style&gt;';
+}
+add_action('admin_head', 'custom_admin_logo');
+
+function wp_admin_logo_change_target_url($url) {
+  return 'http://sgbottwartal.de';
+}
+add_filter( 'login_headerurl', 'wp_admin_logo_change_target_url' );
+/**
+* Configure the excerpt.
 *
 * @since 2013
 */
@@ -99,6 +173,11 @@ function excerpt_ellipse($text) {
   return str_replace('[...]', ' ...', $text); 
 }
 add_filter('the_excerpt', 'excerpt_ellipse');
+
+function custom_excerpt_length( $length ) {
+  return 30;
+}
+add_filter( 'excerpt_length', 'custom_excerpt_length', 999 );
 
 if ( ! function_exists( 'sgb_content_nav' ) ) :
 /**
@@ -145,7 +224,7 @@ if ( ! function_exists( 'sgb_comment' ) ) :
             <header class="comment-meta comment-author vcard">
               <img src="http://0.gravatar.com/avatar/68769f5cda1d84cfb4aea5cbb4e4a023?s=38&d=http%3A%2F%2F0.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D38&r=G" class="img-circle">
               <cite class="fn"><?php echo get_comment_author(); ?></cite>
-              <time pubdate datetime="" class="pull-right">vor drei Tagen</time>
+              <time pubdate datetime="" class="pull-right"><?php sgb_human_time_comment(); ?></time>
             </header>
             <section class="comment-content comment well well-small">
               <span class="reply pull-right btn">
@@ -309,6 +388,8 @@ function the_slug($id=false, $echo=false){
 
 //function to call first uploaded image in functions file
 function get_fallback_post_thumbnail( $id=false, $echo=false ) {
+  //$imgsrc = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), "Full");
+
   $url = '';
   $files = get_children('post_parent='.get_the_ID().'&post_type=attachment&post_mime_type=image&order=desc');
   if($files) :
@@ -348,6 +429,22 @@ function get_fallback_post_thumbnail( $id=false, $echo=false ) {
   return $url;
 }
 
+function sgb_human_time_content() {
+  $time_difference = current_time('timestamp') - get_the_time('U');
+  if($time_difference < 86400) {
+    echo human_time_diff(get_the_time('U'), current_time('timestamp')) . ' ago';
+  } else {
+    the_time();
+  };
+}
+function sgb_human_time_comment() {
+  $time_difference = current_time('timestamp') - get_the_time('U');
+  if($time_difference < 86400) {
+    echo human_time_diff(get_comment_time('U'), current_time('timestamp')) . ' ago'; 
+  } else {
+    the_time();
+  };
+}
 
 /*
 function sgb_get_sponsoren($count = 12, $echo = false) {
