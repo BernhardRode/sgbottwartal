@@ -13,7 +13,7 @@ get_header(); ?>
 <?php
   $child_pages = $wpdb->get_results("SELECT * FROM $wpdb->posts WHERE post_parent = ".$post->ID." AND post_type = 'page' ORDER BY menu_order", 'OBJECT');    
 ?>
-<div class="container">
+<div class="container site-content">
   <div class="row">
     <div class="span3">
       <ul class="nav nav-list sidenav affix">
@@ -32,7 +32,6 @@ get_header(); ?>
           <div class="page-header">
             <h1><?php echo $pageChild->post_title; ?></h1>
           </div>
-          <!--<a href="<?php echo  get_permalink($pageChild->ID); ?>" rel="bookmark" title="<?php echo $pageChild->post_title; ?>">-->
           <p class="lead">
             <?php echo get_the_post_thumbnail($pageChild->ID, 'single-post-thumbnail'); ?>
             <?php echo the_content(); ?>

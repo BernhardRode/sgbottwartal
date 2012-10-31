@@ -46,7 +46,7 @@ function sgb_scripts_styles() {
   wp_enqueue_script('bootstrap-carousel', get_template_directory_uri().'/lib/bootstrap-carousel.js', array('jquery'), '2.2.0', true);
   wp_enqueue_script('bootstrap-typeahead', get_template_directory_uri().'/lib/bootstrap-typeahead.js', array('jquery'), '2.2.0', true);
   wp_enqueue_script('bootstrap-affix', get_template_directory_uri().'/lib/bootstrap-affix.js', array('jquery'), '2.2.0', true);
-  wp_enqueue_script('app', get_template_directory_uri().'/js/sgb/sgb.js', array('jquery'), '1.0', true);
+  wp_enqueue_script('app', get_template_directory_uri().'/js/app.js', array('jquery'), '1.0', true);
   wp_enqueue_style('sgb-style', get_stylesheet_uri() );
 }
 add_action( 'wp_enqueue_scripts', 'sgb_scripts_styles' );
@@ -322,8 +322,18 @@ function set_featured_image_for_posts() {
   }
 }
 
+function the_slug($id=false, $echo=false){
+  $slug = basename(get_permalink($id));
+  do_action('before_slug', $slug);
+  $slug = apply_filters('slug_filter', $slug);
+  if( $echo ) echo $slug;
+  do_action('after_slug', $slug);
+  return $slug;
+}
+
+
 //function to call first uploaded image in functions file
-function get_fallback_post_thumbnail() {
+function get_fallback_post_thumbnail( $id=false, $echo=false ) {
   $url = '';
   $files = get_children('post_parent='.get_the_ID().'&post_type=attachment&post_mime_type=image&order=desc');
   if($files) :
@@ -336,19 +346,29 @@ function get_fallback_post_thumbnail() {
     $url=wp_get_attachment_url($num);
   endif;
 
-  if($url == '') :
+  if ( $url == '' ) :
     $category = get_the_category();
-    $url = '/wp-content/themes/sgbottwartal/img/'.$category[0]->slug.'.png';
+    if ( $category[0]->slug) :
+      $url = '/wp-content/themes/sgbottwartal/img/bg.'.$category[0]->slug.'.jpg';
+    endif;
   endif;
 
-  if($url == '') :
-    $category = get_the_category();
-    $url = '/wp-content/themes/sgbottwartal/img/logo.png';
+  if ( $url == '' && $id ) :
+    $slug = the_slug( $id );
+    if ( $slug ) :
+      $url = '/wp-content/hd/'.$slug.'.jpg';
+    endif;
   endif;
 
-  //echo '<pre>';
-  //print_r( $category[0]->slug );
-  //echo '</pre>';
+  if ( $url == '' ) :
+    $url = 'bg.publikum.jpg';
+  endif;
+
+  if ( $echo ) : 
+    echo '<pre>';
+    print_r( $id );
+    echo '</pre>';
+  endif;
 
   return $url;
 }

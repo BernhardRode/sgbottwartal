@@ -36,13 +36,12 @@ get_header(); ?>
           } 
         ?> 
         <div class="item <?php echo $class; ?>">
-          <img src="<?php echo $url; ?>" alt="<?php echo the_title(); ?>" class="carousel-background">
+          <img src="<?php echo $url; ?>" alt="<?php echo the_title(); ?>" class="carousel-background overlay">
           <div class="container">
             <div class="carousel-caption ">
               <h1><?php echo the_title(); ?>.</h1>
               <p class="lead">
                 <?php echo the_excerpt(); ?>
-                <?php echo $url; ?>
               </p>
               <a class="btn btn-large btn-primary" href="<?php echo the_permalink(); ?>">Weiter...</a>
             </div>
@@ -54,102 +53,67 @@ get_header(); ?>
   <a class="left carousel-control" href="#myCarousel" data-slide="prev">&lsaquo;</a>
   <a class="right carousel-control" href="#myCarousel" data-slide="next">&rsaquo;</a>
 </div><!-- /.carousel -->
-<?php
-  $articles = query_posts($query_string . '&cat=7');
-?>
-<div id="primary" class="site-content container">
-  <div id="content" role="main">
-  <?php if ( have_posts() ) : ?>
 
-    <?php /* Start the Loop */ ?>
-    <?php while ( have_posts() ) : the_post(); ?>
-      <?php get_template_part( 'content', get_post_format() ); ?>
-    <?php endwhile; ?>
 
-    <?php sgb_content_nav( 'nav-below' ); ?>
+<div class="container">
+  <div class="row">
+    <div class="span9">
+      <div class="row">
+        <div class="span4">
+                      <?php
+                        $articles = query_posts($query_string . '&cat=7');
+                      ?>
+                      <?php if ( have_posts() ) : ?>
 
-  <?php else : ?>
+                        <?php /* Start the Loop */ ?>
+                        <?php while ( have_posts() ) : the_post(); ?>
+                          <?php get_template_part( 'content', get_post_format() ); ?>
+                        <?php endwhile; ?>
 
-    <article id="post-0" class="post no-results not-found">
+                        <?php sgb_content_nav( 'nav-below' ); ?>
 
-    <?php if ( current_user_can( 'edit_posts' ) ) :
-      // Show a different message to a logged-in user who can add posts.
-    ?>
-      <header class="entry-header">
-        <h1 class="entry-title"><?php _e( 'No posts to display', 'sgb' ); ?></h1>
-      </header>
+                      <?php else : ?>
 
-      <div class="entry-content">
-        <p><?php printf( __( 'Ready to publish your first post? <a href="%s">Get started here</a>.', 'sgb' ), admin_url( 'post-new.php' ) ); ?></p>
-      </div><!-- .entry-content -->
+                        <article id="post-0" class="post no-results not-found">
 
-    <?php else :
-      // Show the default message to everyone else.
-    ?>
-      <header class="entry-header">
-        <h1 class="entry-title"><?php _e( 'Nothing Found', 'sgb' ); ?></h1>
-      </header>
+                        <?php if ( current_user_can( 'edit_posts' ) ) :
+                          // Show a different message to a logged-in user who can add posts.
+                        ?>
+                          <header class="entry-header">
+                            <h1 class="entry-title"><?php _e( 'No posts to display', 'sgb' ); ?></h1>
+                          </header>
 
-      <div class="entry-content">
-        <p><?php _e( 'Apologies, but no results were found. Perhaps searching will help find a related post.', 'sgb' ); ?></p>
-        <?php get_search_form(); ?>
-      </div><!-- .entry-content -->
-    <?php endif; // end current_user_can() check ?>
+                          <div class="entry-content">
+                            <p><?php printf( __( 'Ready to publish your first post? <a href="%s">Get started here</a>.', 'sgb' ), admin_url( 'post-new.php' ) ); ?></p>
+                          </div><!-- .entry-content -->
 
-    </article><!-- #post-0 -->
+                        <?php else :
+                          // Show the default message to everyone else.
+                        ?>
+                          <header class="entry-header">
+                            <h1 class="entry-title"><?php _e( 'Nothing Found', 'sgb' ); ?></h1>
+                          </header>
 
-  <?php endif; // end have_posts() check ?>
+                          <div class="entry-content">
+                            <p><?php _e( 'Apologies, but no results were found. Perhaps searching will help find a related post.', 'sgb' ); ?></p>
+                            <?php get_search_form(); ?>
+                          </div><!-- .entry-content -->
+                        <?php endif; // end current_user_can() check ?>
 
-  </div><!-- #content -->
-</div><!-- #primary -->
-<?php
-  $news = query_posts($query_string . '&cat=3');
-?>
-<div id="primary" class="site-content">
-  <div id="content" role="main">
-  <?php if ( have_posts() ) : ?>
+                        </article><!-- #post-0 -->
+                      <?php endif; // end have_posts() check ?>
+        </div>
+        <div class="offset1 span4">
 
-    <?php /* Start the Loop */ ?>
-    <?php while ( have_posts() ) : the_post(); ?>
-      <?php get_template_part( 'content', get_post_format() ); ?>
-    <?php endwhile; ?>
-
-    <?php sgb_content_nav( 'nav-below' ); ?>
-
-  <?php else : ?>
-
-    <article id="post-0" class="post no-results not-found">
-
-    <?php if ( current_user_can( 'edit_posts' ) ) :
-      // Show a different message to a logged-in user who can add posts.
-    ?>
-      <header class="entry-header">
-        <h1 class="entry-title"><?php _e( 'No posts to display', 'sgb' ); ?></h1>
-      </header>
-
-      <div class="entry-content">
-        <p><?php printf( __( 'Ready to publish your first post? <a href="%s">Get started here</a>.', 'sgb' ), admin_url( 'post-new.php' ) ); ?></p>
-      </div><!-- .entry-content -->
-
-    <?php else :
-      // Show the default message to everyone else.
-    ?>
-      <header class="entry-header">
-        <h1 class="entry-title"><?php _e( 'Nothing Found', 'sgb' ); ?></h1>
-      </header>
-
-      <div class="entry-content">
-        <p><?php _e( 'Apologies, but no results were found. Perhaps searching will help find a related post.', 'sgb' ); ?></p>
-        <?php get_search_form(); ?>
-      </div><!-- .entry-content -->
-    <?php endif; // end current_user_can() check ?>
-
-    </article><!-- #post-0 -->
-
-  <?php endif; // end have_posts() check ?>
-
-  </div><!-- #content -->
-</div><!-- #primary -->
-
-<?php get_sidebar(); ?>
+                      <?php
+                        $news = query_posts($query_string . '&cat=3');
+                      ?>
+        </div>
+      </div>
+    </div>
+    <div class="span3">
+      <?php get_sidebar(); ?>
+    </div>
+  </div>
+</div>
 <?php get_footer(); ?>
