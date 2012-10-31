@@ -120,67 +120,48 @@ function sgb_content_nav( $nav_id ) {
 endif;
 
 if ( ! function_exists( 'sgb_comment' ) ) :
-/**
-* Template for comments and pingbacks.
-*
-* To override this walker in a child theme without modifying the comments template
-* simply create your own sgb_comment(), and that function will be used instead.
-*
-* Used as a callback by wp_list_comments() for displaying the comments.
-*
-* @since 2013
-**/
-function sgb_comment( $comment, $args, $depth ) {
-  $GLOBALS['comment'] = $comment;
-  switch ( $comment->comment_type ) :
-    case 'pingback' :
-    case 'trackback' :
-    // Display trackbacks differently than normal comments.
-  ?>
-  <li <?php comment_class(); ?> id="comment-<?php comment_ID(); ?>">
-    <p><?php _e( 'Pingback:', 'sgb' ); ?> <?php comment_author_link(); ?> <?php edit_comment_link( __( '(Edit)', 'sgb' ), '<span class="edit-link">', '</span>' ); ?></p>
-  <?php
-      break;
-    default :
-    // Proceed with normal comments.
-    global $post;
-  ?>
-  <li <?php comment_class(); ?> id="li-comment-<?php comment_ID(); ?>">
-    <article id="comment-<?php comment_ID(); ?>" class="comment">
-      <header class="comment-meta comment-author vcard">
-        <?php
-          echo get_avatar( $comment, 44 );
-          printf( '<cite class="fn">%1$s %2$s</cite>',
-            get_comment_author_link(),
-            // If current post author is also comment author, make it known visually.
-            ( $comment->user_id === $post->post_author ) ? '<span> ' . __( 'Post author', 'sgb' ) . '</span>' : ''
-          );
-          printf( '<a href="%1$s"><time pubdate datetime="%2$s">%3$s</time></a>',
-            esc_url( get_comment_link( $comment->comment_ID ) ),
-            get_comment_time( 'c' ),
-            /* translators: 1: date, 2: time */
-            sprintf( __( '%1$s at %2$s', 'sgb' ), get_comment_date(), get_comment_time() )
-          );
+  /**
+  * Template for comments and pingbacks.
+  *
+  * To override this walker in a child theme without modifying the comments template
+  * simply create your own sgb_comment(), and that function will be used instead.
+  *
+  * Used as a callback by wp_list_comments() for displaying the comments.
+  *
+  * @since 2013
+  **/
+  function sgb_comment( $comment, $args, $depth ) {
+    $GLOBALS['comment'] = $comment;
+    switch ( $comment->comment_type ) :
+      case 'pingback' :
+        break;
+      case 'trackback' :
+        break;
+      default :
+        global $post;
         ?>
-      </header><!-- .comment-meta -->
-
-      <?php if ( '0' == $comment->comment_approved ) : ?>
-        <p class="comment-awaiting-moderation"><?php _e( 'Your comment is awaiting moderation.', 'sgb' ); ?></p>
-      <?php endif; ?>
-
-      <section class="comment-content comment">
-        <?php comment_text(); ?>
-        <?php edit_comment_link( __( 'Edit', 'sgb' ), '<p class="edit-link">', '</p>' ); ?>
-      </section><!-- .comment-content -->
-
-      <div class="reply">
-        <?php comment_reply_link( array_merge( $args, array( 'reply_text' => __( 'Reply <span>&darr;</span>', 'sgb' ), 'depth' => $depth, 'max_depth' => $args['max_depth'] ) ) ); ?>
-      </div><!-- .reply -->
-    </article><!-- #comment-## -->
-  <?php
-    break;
-  endswitch; // end comment_type check
-}
+        <li <?php comment_class(); ?> id="li-comment-<?php comment_ID(); ?>">
+          <article id="comment-<?php comment_ID(); ?>" class="comment">
+            <header class="comment-meta comment-author vcard">
+              <img src="http://0.gravatar.com/avatar/68769f5cda1d84cfb4aea5cbb4e4a023?s=38&d=http%3A%2F%2F0.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D38&r=G" class="img-circle">
+              <cite class="fn"><?php echo get_comment_author(); ?></cite>
+              <time pubdate datetime="" class="pull-right">vor drei Tagen</time>
+            </header>
+            <section class="comment-content comment well well-small">
+              <span class="reply pull-right btn">
+                  <?php comment_reply_link( array_merge( $args, array( 'reply_text' => __( '<span class="hidden-phone">Antworten</span> <i class="icon-comments-alt"></i>', 'sgb' ), 'depth' => $depth, 'max_depth' => $args['max_depth'] ) ) ); ?>
+              </span>
+              <?php if ( '0' == $comment->comment_approved ) : ?>
+                <p class="comment-awaiting-moderation"><?php _e( 'Ihr Kommentar wartet auf seine Freischaltung.', 'sgb' ); ?></p>
+              <?php endif; ?>
+              <?php comment_text(); ?>
+            </section>
+            <footer>
+          </article>
+        </li>
+        <?php
+    endswitch;
+  }
 endif;
 
 if ( ! function_exists( 'sgb_entry_meta' ) ) :
@@ -206,18 +187,12 @@ function sgb_entry_meta() {
 
   $author = sprintf( '<span class="author vcard"><a class="url fn n" href="%1$s" title="%2$s" rel="author">%3$s</a></span>',
     esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ),
-    esc_attr( sprintf( __( 'View all posts by %s', 'sgb' ), get_the_author() ) ),
+    esc_attr( sprintf( __( 'Alle Einträge von %s', 'sgb' ), get_the_author() ) ),
     get_the_author()
   );
 
   // Translators: 1 is category, 2 is tag, 3 is the date and 4 is the author's name.
-  if ( $tag_list ) {
-    $utility_text = __( 'This entry was posted in %1$s and tagged %2$s on %3$s<span class="by-author"> by %4$s</span>.', 'sgb' );
-  } elseif ( $categories_list ) {
-    $utility_text = __( 'This entry was posted in %1$s on %3$s<span class="by-author"> by %4$s</span>.', 'sgb' );
-  } else {
-    $utility_text = __( 'This entry was posted on %3$s<span class="by-author"> by %4$s</span>.', 'sgb' );
-  }
+  $utility_text = __( '%3$s <span class="by-author"> von %4$s</span>.', 'sgb' );
 
   printf(
     $utility_text,
@@ -373,4 +348,37 @@ function get_fallback_post_thumbnail( $id=false, $echo=false ) {
   return $url;
 }
 
+
+/*
+function sgb_get_sponsoren($count = 12, $echo = false) {
+
+}
+
+function sgb_custom_post_types() {
+  register_post_type( 'event',
+    array(
+      'labels' => array(
+      'name' => __( 'Termine' ),
+      'singular_name' => __( 'Termin' )),
+      'public' => true,
+      'has_archive' => false,
+      'rewrite' => array('slug' => 'termine'),
+      'supports' => array('title', 'editor')
+    )
+  );
+  register_post_type( 'team',
+    array(
+      'labels' => array(
+      'name' => __( 'Mannschaften' ),
+      'singular_name' => __( 'Mannschaft' )),
+      'public' => true,
+      'has_archive' => false,
+      'rewrite' => array( 'slug' => 'mannschaften' ),
+      'supports' => array( 'title', 'editor', 'thumbnail' )
+    )
+  );
+}
+add_action( 'init', 'sgb_custom_post_types' );
+
+*/
 ?>

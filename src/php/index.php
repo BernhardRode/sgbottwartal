@@ -13,7 +13,7 @@ get_header(); ?>
 ?>
 <!-- Carousel
 ================================================== -->
-<div id="myCarousel" class="carousel slide">
+<div id="myCarousel" class="carousel slide" data-interval="1750">
   <div class="carousel-inner">
     <?php if ( have_posts() ) : ?>
     <?php /* Start the Loop */ ?>
@@ -57,62 +57,53 @@ get_header(); ?>
 
 <div class="container">
   <div class="row">
-    <div class="span9">
-      <div class="row">
-        <div class="span4">
-                      <?php
-                        $articles = query_posts($query_string . '&cat=7');
-                      ?>
-                      <?php if ( have_posts() ) : ?>
-
-                        <?php /* Start the Loop */ ?>
-                        <?php while ( have_posts() ) : the_post(); ?>
-                          <?php get_template_part( 'content', get_post_format() ); ?>
-                        <?php endwhile; ?>
-
-                        <?php sgb_content_nav( 'nav-below' ); ?>
-
-                      <?php else : ?>
-
-                        <article id="post-0" class="post no-results not-found">
-
-                        <?php if ( current_user_can( 'edit_posts' ) ) :
-                          // Show a different message to a logged-in user who can add posts.
-                        ?>
-                          <header class="entry-header">
-                            <h1 class="entry-title"><?php _e( 'No posts to display', 'sgb' ); ?></h1>
-                          </header>
-
-                          <div class="entry-content">
-                            <p><?php printf( __( 'Ready to publish your first post? <a href="%s">Get started here</a>.', 'sgb' ), admin_url( 'post-new.php' ) ); ?></p>
-                          </div><!-- .entry-content -->
-
-                        <?php else :
-                          // Show the default message to everyone else.
-                        ?>
-                          <header class="entry-header">
-                            <h1 class="entry-title"><?php _e( 'Nothing Found', 'sgb' ); ?></h1>
-                          </header>
-
-                          <div class="entry-content">
-                            <p><?php _e( 'Apologies, but no results were found. Perhaps searching will help find a related post.', 'sgb' ); ?></p>
-                            <?php get_search_form(); ?>
-                          </div><!-- .entry-content -->
-                        <?php endif; // end current_user_can() check ?>
-
-                        </article><!-- #post-0 -->
-                      <?php endif; // end have_posts() check ?>
-        </div>
-        <div class="offset1 span4">
-
-                      <?php
-                        $news = query_posts($query_string . '&cat=3');
-                      ?>
-        </div>
-      </div>
+    <div class="span4">
+      <h2>Berichte</h2>
+      <ul class="ul-articles">
+        <?php
+          $news = query_posts($query_string . '&cat=3');
+        ?>
+        <?php if ( have_posts() ) : ?>
+          <?php /* Start the Loop */ ?>
+          <?php while ( have_posts() ) : the_post(); ?>
+            <li>
+              <?php get_template_part( 'preview', get_post_format() ); ?>
+            </li>
+          <?php endwhile; ?>
+        <?php endif; // end have_posts() check ?>
+      </ul>
     </div>
-    <div class="span3">
-      <?php get_sidebar(); ?>
+    <div class="span4">
+      <h2>Neuigkeiten</h2>
+      <ul class="ul-articles">
+        <?php
+          $articles = query_posts($query_string . '&cat=7');
+        ?>
+        <?php if ( have_posts() ) : ?>
+          <?php /* Start the Loop */ ?>
+          <?php while ( have_posts() ) : the_post(); ?>
+            <li>
+              <?php get_template_part( 'preview', get_post_format() ); ?>
+            </li>
+          <?php endwhile; ?>
+        <?php endif; // end have_posts() check ?>
+      </ul>
+    </div>
+    <div class="span4">
+      <h2>Termine</h2>
+      <ul class="ul-articles">
+        <?php
+          $articles = query_posts($query_string . '&cat=7');
+        ?>
+        <?php if ( have_posts() ) : ?>
+          <?php /* Start the Loop */ ?>
+          <?php while ( have_posts() ) : the_post(); ?>
+            <li>
+              <?php get_template_part( 'preview', get_post_format() ); ?>
+            </li>
+          <?php endwhile; ?>
+        <?php endif; // end have_posts() check ?>
+      </ul>
     </div>
   </div>
 </div>
