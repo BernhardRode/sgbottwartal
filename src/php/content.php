@@ -41,11 +41,10 @@
           $url = get_fallback_post_thumbnail( $pageChild->ID );
         } 
       ?>
-      <a href="<?php echo  get_permalink($pageChild->ID); ?>" rel="bookmark" title="<?php echo $pageChild->post_title; ?>">
-        <img src="<?php echo $url; ?>" alt="<?php echo the_title(); ?>" class="img-polaroid">
-      </a>
+      <img src="<?php echo $url; ?>" alt="<?php echo the_title(); ?>" class="img-polaroid">
+      
       <?php sgb_entry_meta(); ?> 
-      <?php edit_post_link( __( 'Bearbeiten', 'sgb' ), '<span class="edit-link">', '</span>' ); ?>
+      <?php edit_post_link( __( '<i class="icon-edit"></i> Bearbeiten', 'sgb' ), '<br/><span class="edit-link">', '</span>' ); ?>
     </div>
     <div class="entry-content span6">
       <?php the_content( __( 'Continue reading <span class="meta-nav">&rarr;</span>', 'sgb' ) ); ?>

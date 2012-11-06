@@ -17,8 +17,10 @@
 * @since 2013
 **/
 get_header(); ?>
-	<section id="primary" class="site-content">
+	<div id="primary" class="site-content container">
 		<div id="content" role="main">
+			<div class="row">
+				<div class="span9">
 		<?php if ( have_posts() ) : ?>
 			<header class="archive-header">
 				<h1 class="archive-title"><?php
@@ -49,5 +51,10 @@ get_header(); ?>
 		<?php endif; ?>
 		</div><!-- #content -->
 	</section><!-- #primary -->
-<?php get_sidebar(); ?>
+				</div>
+				<div class="span3">
+					<?php get_sidebar(); ?>
+				</div>
+		</div><!-- #content -->
+	</div><!-- #primary -->
 <?php get_footer(); ?>

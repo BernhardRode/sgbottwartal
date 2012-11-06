@@ -30,20 +30,20 @@ get_header(); ?>
         <?php 
           if (  (function_exists('has_post_thumbnail')) && (has_post_thumbnail())  ) {
             $image_id = get_post_thumbnail_id();
-            $versions = wp_get_attachment_image_src($image_id,'large', true);
+            $versions = wp_get_attachment_image_src($image_id,'featured-thumb', true);
             $url = $version[0];
           } else {
             $url = get_fallback_post_thumbnail();
           } 
         ?> 
         <div class="item <?php echo $class; ?>">
-          <img src="<?php echo $url; ?>" alt="<?php echo the_title(); ?>" class="carousel-background overlay">
+          <img src="<?php echo $url; ?>" alt="<?php echo the_title(); ?>" class="overlay">
           <div class="container">
             <div class="carousel-caption ">
               <h1><?php echo the_title(); ?>.</h1>
-              <p class="lead">
+              <div class="lead hidden-phone">
                 <?php echo the_excerpt(); ?>
-              </p>
+              </div>
               <a class="btn btn-large btn-primary" href="<?php echo the_permalink(); ?>">Weiter...</a>
             </div>
           </div>
@@ -57,54 +57,50 @@ get_header(); ?>
 
 
 <div class="container">
+
+  <hr class="hidden-phone">
   <div class="row">
-    <div class="span4">
-      <h2>Berichte</h2>
-      <ul class="ul-articles">
-        <?php
-          $news = query_posts($query_string . '&cat=3');
-        ?>
-        <?php if ( have_posts() ) : ?>
-          <?php /* Start the Loop */ ?>
-          <?php while ( have_posts() ) : the_post(); ?>
-            <li>
-              <?php get_template_part( 'preview', get_post_format() ); ?>
-            </li>
-          <?php endwhile; ?>
-        <?php endif; // end have_posts() check ?>
-      </ul>
+    <div class="span12">
+      <?php echo do_shortcode( '[sponsoren count="8"]' ); ?>
     </div>
-    <div class="span4">
-      <h2>Neuigkeiten</h2>
-      <ul class="ul-articles">
+  </div>  
+  <hr class="hidden-phone">
+  <div class="row">
+    <div class="span8">
+      <!--<h1><i class="icon-trophy"></i> Spielerichte</h1>-->
+      <div class="row">
         <?php
-          $articles = query_posts($query_string . '&cat=7');
+          $news = query_posts($query_string . '');
         ?>
         <?php if ( have_posts() ) : ?>
           <?php /* Start the Loop */ ?>
           <?php while ( have_posts() ) : the_post(); ?>
-            <li>
-              <?php get_template_part( 'preview', get_post_format() ); ?>
-            </li>
+        <div class="span8 media">
+          <a class="pull-left" href="#">        
+        <?php 
+          $size="circle-thumb";
+          if (  (function_exists('has_post_thumbnail')) && (has_post_thumbnail())  ) {
+            $image_id = get_post_thumbnail_id();
+            $versions = wp_get_attachment_image_src($image_id,$class, true);
+            $url = $version[0];
+          } else {
+            $url = get_fallback_post_thumbnail($size);
+          } 
+        ?> 
+            <img class="media-object img-circle" src="<?php echo $url; ?>">
+          </a>
+          <div class="media-body">
+            <h4 class="media-heading"><?php the_title(); ?></h4>
+            <?php the_excerpt(); ?>
+          </div>
+          <hr>
+        </div>
           <?php endwhile; ?>
         <?php endif; // end have_posts() check ?>
-      </ul>
+      </div>
     </div>
-    <div class="span4">
-      <h2>Termine</h2>
-      <ul class="ul-articles">
-        <?php
-          $articles = query_posts($query_string . '&cat=7');
-        ?>
-        <?php if ( have_posts() ) : ?>
-          <?php /* Start the Loop */ ?>
-          <?php while ( have_posts() ) : the_post(); ?>
-            <li>
-              <?php get_template_part( 'preview', get_post_format() ); ?>
-            </li>
-          <?php endwhile; ?>
-        <?php endif; // end have_posts() check ?>
-      </ul>
+    <div class="span3">
+      <?php get_sidebar(); ?>
     </div>
   </div>
 </div>

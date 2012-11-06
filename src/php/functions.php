@@ -65,7 +65,7 @@ add_action( 'wp_enqueue_scripts', 'sgb_scripts_styles' );
 */
 function sgb_widgets_init() {
   register_sidebar( array(
-    'name' => __( 'Main Sidebar', 'sgb' ),
+    'name' => __( 'Sidebar', 'sgb' ),
     'id' => 'sidebar-1',
     'description' => __( 'Appears on posts and pages except the optional Front Page template, which has its own widgets', 'sgb' ),
     'before_widget' => '<aside id="%1$s" class="widget %2$s">',
@@ -75,18 +75,8 @@ function sgb_widgets_init() {
   ) );
 
   register_sidebar( array(
-    'name' => __( 'First Front Page Widget Area', 'sgb' ),
-    'id' => 'sidebar-2',
-    'description' => __( 'Appears when using the optional Front Page template with a page set as Static Front Page', 'sgb' ),
-    'before_widget' => '<aside id="%1$s" class="widget %2$s">',
-    'after_widget' => '</aside>',
-    'before_title' => '<h3 class="widget-title">',
-    'after_title' => '</h3>',
-  ) );
-
-  register_sidebar( array(
-    'name' => __( 'Second Front Page Widget Area', 'sgb' ),
-    'id' => 'sidebar-3',
+    'name' => __( 'Footerbar', 'sgb' ),
+    'id' => 'footerbar-1',
     'description' => __( 'Appears when using the optional Front Page template with a page set as Static Front Page', 'sgb' ),
     'before_widget' => '<aside id="%1$s" class="widget %2$s">',
     'after_widget' => '</aside>',
@@ -156,9 +146,9 @@ function admin_bar_remove_logo() {
 add_action('wp_before_admin_bar_render', 'admin_bar_remove_logo', 0);
 
 function change_admin_logo() {
-  echo '&lt;style type=&quot;text/css&quot;&gt; #header-logo { background-image: url('.get_bloginfo('template_directory').'/images/admin_logo.png) !important; } &lt;/style&gt;';
+  echo '<style type="text/css"> #header-logo { background-image: url('.get_bloginfo('template_directory').'/images/admin_logo.png) !important; } </style>';
 }
-add_action('admin_head', 'custom_admin_logo');
+add_action('admin_head', 'change_admin_logo');
 
 function wp_admin_logo_change_target_url($url) {
   return 'http://sgbottwartal.de';
@@ -198,6 +188,12 @@ function sgb_content_nav( $nav_id ) {
 }
 endif;
 
+add_filter('get_avatar','change_avatar_css');
+
+function change_avatar_css($class) {
+  return str_replace("class='avatar", "class='author_gravatar alignright_icon img-circle", $class) ;
+}
+
 if ( ! function_exists( 'sgb_comment' ) ) :
   /**
   * Template for comments and pingbacks.
@@ -222,7 +218,13 @@ if ( ! function_exists( 'sgb_comment' ) ) :
         <li <?php comment_class(); ?> id="li-comment-<?php comment_ID(); ?>">
           <article id="comment-<?php comment_ID(); ?>" class="comment">
             <header class="comment-meta comment-author vcard">
-              <img src="http://0.gravatar.com/avatar/68769f5cda1d84cfb4aea5cbb4e4a023?s=38&d=http%3A%2F%2F0.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D38&r=G" class="img-circle">
+              <?
+                $avatar_size = 54;
+                if ( '0' != $comment->comment_parent ) {
+                  $avatar_size = 27;
+                }
+                echo get_avatar( $comment, $avatar_size);
+              ?>
               <cite class="fn"><?php echo get_comment_author(); ?></cite>
               <time pubdate datetime="" class="pull-right"><?php sgb_human_time_comment(); ?></time>
             </header>
@@ -264,7 +266,7 @@ function sgb_entry_meta() {
     esc_html( get_the_date() )
   );
 
-  $author = sprintf( '<span class="author vcard"><a class="url fn n" href="%1$s" title="%2$s" rel="author">%3$s</a></span>',
+  $author = sprintf( '<span class="author vcard">%3$s</span>',
     esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ),
     esc_attr( sprintf( __( 'Alle Einträge von %s', 'sgb' ), get_the_author() ) ),
     get_the_author()
@@ -282,65 +284,6 @@ function sgb_entry_meta() {
   );
 }
 endif;
-
-/**
-* Extends the default WordPress body class to denote:
-* 1. Using a full-width layout, when no active widgets in the sidebar
-*    or full-width template.
-* 2. Front Page template: thumbnail in use and number of sidebars for
-*    widget areas.
-* 3. White or empty background color to change the layout and spacing.
-* 4. Custom fonts enabled.
-* 5. Single or multiple authors.
-*
-* @since 2013
-*
-* @param array Existing class values.
-* @return array Filtered class values.
-**/
-function sgb_body_class( $classes ) {
-  $background_color = get_background_color();
-
-  if ( ! is_active_sidebar( 'sidebar-1' ) || is_page_template( 'page-templates/full-width.php' ) )
-    $classesarray() = 'full-width';
-
-  if ( is_page_template( 'page-templates/front-page.php' ) ) {
-    $classesarray() = 'template-front-page';
-    if ( has_post_thumbnail() )
-      $classesarray() = 'has-post-thumbnail';
-    if ( is_active_sidebar( 'sidebar-2' ) && is_active_sidebar( 'sidebar-3' ) )
-      $classesarray() = 'two-sidebars';
-  }
-
-  if ( empty( $background_color ) )
-    $classesarray() = 'custom-background-empty';
-  elseif ( in_array( $background_color, array( 'fff', 'ffffff' ) ) )
-    $classesarray() = 'custom-background-white';
-
-  // Enable custom font class only if the font CSS is queued to load.
-  if ( wp_style_is( 'sgb-fonts', 'queue' ) )
-    $classesarray() = 'custom-font-enabled';
-
-  if ( ! is_multi_author() )
-    $classesarray() = 'single-author';
-
-  return $classes;
-}
-add_filter( 'body_class', 'sgb_body_class' );
-
-/**
-* Adjusts content_width value for full-width and single image attachment
-* templates, and when there are no active widgets in the sidebar.
-*
-* @since 2013
-*/
-function sgb_content_width() {
-  if ( is_page_template( 'page-templates/full-width.php' ) || is_attachment() || ! is_active_sidebar( 'sidebar-1' ) ) {
-    global $content_width;
-    $content_width = 960;
-  }
-}
-add_action( 'template_redirect', 'sgb_content_width' );
 
 /**
  * sets the featured image automatically
@@ -385,18 +328,26 @@ function the_slug($id=false, $echo=false){
   return $slug;
 }
 
+function get_the_post_thumbnail_by_slug($page_slug, $size='large') {
+  $page = get_page_by_path( $page_slug );
+  if ($page) :
+    return wp_get_attachment_image_src( get_post_thumbnail_id( $page->ID ), $size);
+  else :
+    return null;
+  endif;
+}
+
 
 //function to call first uploaded image in functions file
-function get_fallback_post_thumbnail( $id=false, $echo=false ) {
+function get_fallback_post_thumbnail( $size='large' ) {
   //$imgsrc = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), "Full");
-
   $url = '';
   $files = get_children('post_parent='.get_the_ID().'&post_type=attachment&post_mime_type=image&order=desc');
   if($files) :
     $keys = array_reverse(array_keys($files));
     $j=0;
     $num = $keys[$j];
-    $image=wp_get_attachment_image($num, 'thumb', true);
+    $image=wp_get_attachment_image($num, $size, true);
     $imagepieces = explode('"', $image);
     $imagepath = $imagepieces[1];
     $url=wp_get_attachment_url($num);
@@ -404,26 +355,32 @@ function get_fallback_post_thumbnail( $id=false, $echo=false ) {
 
   if ( $url == '' ) :
     $category = get_the_category();
-    if ( $category[0]->slug) :
-      $url = '/wp-content/themes/sgbottwartal/img/bg.'.$category[0]->slug.'.jpg';
+    if ( $category[0]->slug == 'berichte') :
+      list($first, $title) = explode( ':', get_the_title(), 2 );
+      $lc = strtolower( $first );
+      if ( preg_match('/herren/',$lc) || preg_match('/damen/',$lc) ) :
+        $prefix = '/aktive/';
+        $lc =substr_replace($lc,'-', strlen($lc)-1, 0);
+      elseif ( preg_match('/jugend/',$lc) || preg_match('/minis/',$lc) || preg_match('/ballschule/',$lc) || preg_match('/technik-athletik/',$lc) ) :
+        $prefix = '/jugend/';
+      else:
+        $prefix = '/';
+      endif;
+      
+      $url = get_the_post_thumbnail_by_slug($prefix.$lc,$size);    
+      $url = $url[0];
     endif;
   endif;
 
   if ( $url == '' && $id ) :
     $slug = the_slug( $id );
     if ( $slug ) :
-      $url = '/wp-content/hd/'.$slug.'.jpg';
+    $url = '/wp-content/themes/sgbottwartal/img/logo.sg.'.$slug.'.png';
     endif;
   endif;
 
   if ( $url == '' ) :
-    $url = 'bg.publikum.jpg';
-  endif;
-
-  if ( $echo ) : 
-    echo '<pre>';
-    print_r( $id );
-    echo '</pre>';
+    $url = '/wp-content/themes/sgbottwartal/img/logo.sg.'.$size.'.png';
   endif;
 
   return $url;
@@ -446,36 +403,276 @@ function sgb_human_time_comment() {
   };
 }
 
-/*
-function sgb_get_sponsoren($count = 12, $echo = false) {
+function sgb_sponsoren( $args ) {
+  if(empty($args['count'])) $args['count'] = 1;
+  $args = array( 'post_type' => 'sponsoren', 'posts_per_page' => $args['count'], 'orderby' => 'rand' );
+  $loop = new WP_Query( $args );
+  $output = '<ul class="unstyled sponsoren hidden-phone">';
+  while ( $loop->have_posts() ) : $loop->the_post();
+    $url_image = wp_get_attachment_url( get_post_thumbnail_id( get_the_ID() ) );
+    $url_external = get_post_meta( get_the_ID(), meta, TRUE );
+    if(empty($url_external['url'])) $url_external['url'] = '';
+    $output .= '<li class="span2">';
+    if( $url_external ) $output .= '<a href="'.$url_external.'" target="_blank">';
+    $output .= '<img src="'.$url_image.'" class="img-polaroid">';
+    if( $url_external ) $output .= '</a>';
+    $output .= '</li>';
+  endwhile;
+  $output .= '</ul>';
 
+  return $output;  
+}  
+add_shortcode('sponsoren', 'sgb_sponsoren'); 
+
+
+/**
+* Custom Meta Boxes
+**/
+function sgb_meta_boxes() {
+  add_meta_box(
+    'jobs_meta',
+    __( 'Webseite', 'sgb' ),
+    'url_meta_box',
+    'jobs',
+    'side',
+    'core'
+  );
+  add_meta_box(
+    'sponsoren_meta',
+    __( 'Webseite', 'sgb' ),
+    'url_meta_box',
+    'sponsoren',
+    'side',
+    'core'
+  );
+  add_meta_box(
+    'event_meta_address',
+    __( 'Adresse', 'sgb' ),
+    'address_meta_box',
+    'event',
+    'side',
+    'core'
+  );
+  add_meta_box(
+    'event_meta_date',
+    __( 'Datum', 'sgb' ),
+    'date_meta_box',
+    'event',
+    'side',
+    'core'
+  );
+  add_meta_box(
+    'event_meta_url',
+    __( 'Webseite', 'sgb' ),
+    'url_meta_box',
+    'event',
+    'side',
+    'core'
+  );
+}
+add_action( 'add_meta_boxes', 'sgb_meta_boxes' );
+add_action( 'save_post', 'meta_box_save_postdata' );
+
+function url_meta_box( $post ) {
+  global $post;
+  $meta = get_post_meta($post->ID,'meta',TRUE);
+
+  wp_nonce_field( plugin_basename( __FILE__ ), 'sgb_noncename' );
+  echo '<label for="meta[url]">';
+  _e("URL", 'sgb' );
+  echo '</label> ';
+  echo '<input id="meta[url]" type="url" name="meta[url]" value="';
+  if(!empty($meta['url'])) echo $meta['url'];
+  echo '" size="25"/>';
 }
 
+function address_meta_box( $post ) {
+  global $post;
+  $meta = get_post_meta($post->ID,'meta',TRUE);
+
+  wp_nonce_field( plugin_basename( __FILE__ ), 'sgb_noncename' );
+  echo '<label for="meta[street]">';
+  _e("Strasse", 'sgb' );
+  echo '</label> ';
+  echo '<input id="meta[street]" type="text" name="meta[street]" value="';
+  if(!empty($meta['street'])) echo $meta['street'];
+  echo '" size="25" />';
+  echo '<label for="meta[city]">';
+  _e("PLZ/Ort", 'sgb' );
+  echo '</label> ';
+  echo '<input id="meta[city]" type="text" name="meta[city]" value="';
+  if(!empty($meta['city'])) echo $meta['city'];
+  echo '" size="25" />';
+}
+
+function date_meta_box( $post ) {
+  global $post;
+  $meta = get_post_meta($post->ID,'meta',TRUE);
+
+  wp_nonce_field( plugin_basename( __FILE__ ), 'sgb_noncename' );
+  echo '<label for="meta[begin]">';
+  _e("Beginn (TT.MM.JJJJ HH:MM)", 'sgb' );
+  echo '</label> ';
+  echo '<input id="meta[begin]" type="datetime" name="meta[begin]" value="';
+  if(!empty($meta['begin'])) echo $meta['begin'];
+  echo '" size="25"/>';
+  echo '<label for="meta[end]">';
+  _e("Ende (TT.MM.JJJJ HH:MM)", 'sgb' );
+  echo '</label> ';
+  echo '<input id="meta[end]" type="datetime" name="meta[end]" value="';
+  if(!empty($meta['end'])) echo $meta['end'];
+  echo '" size="25" />';
+}
+
+function meta_box_save_postdata( $post_id ) {
+  if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE )
+    return;
+  if ( !wp_verify_nonce( $_POST['sgb_noncename'], plugin_basename( __FILE__ ) ) )
+  if ( 'page' == $_POST['post_type'] )
+  if ( !current_user_can( 'edit_page', $post_id ) ) {
+    return;
+  } else {
+    if ( !current_user_can( 'edit_post', $post_id ) ) { return; }
+  }
+
+  $current_data = get_post_meta($post_id, 'meta', TRUE);
+  $new_data = $_POST['meta'];
+  sgb_meta_clean($new_data);
+
+  if ($current_data) {
+    if (is_null($new_data)) delete_post_meta($post_id,'meta');
+    else update_post_meta($post_id,'meta',$new_data);
+  } elseif (!is_null($new_data)) {
+    add_post_meta($post_id,'meta',$new_data,TRUE);
+  }
+  return $post_id;
+}
+
+function sgb_meta_clean(&$arr) {
+    if (is_array($arr)) {
+        foreach ($arr as $i => $v) {
+            if (is_array($arr[$i])) {
+                sgb_meta_clean($arr[$i]);
+                if (!count($arr[$i])) { unset($arr[$i]); }
+            } else {
+                if (trim($arr[$i]) == '') { unset($arr[$i]); }
+            }
+        }
+        if (!count($arr)) { $arr = NULL; }
+    }
+}
+
+/**
+* Custom Taxonomies
+**/
+function sgb_taxonomy() {
+  register_taxonomy(
+    'sponsoren_kategorie',
+    'sponsoren',
+    array(
+     'hierarchical' => false,
+     'label' => 'Sponsoren Kategorie',
+     'query_var' => true,
+     'rewrite' => array('slug' => 'sponsoren-kategorie')
+    )
+  );
+  register_taxonomy(
+    'termin_kategorie',
+    'termine',
+    array(
+     'hierarchical' => false,
+     'label' => 'Termin Kategorie',
+     'query_var' => true,
+     'rewrite' => array('slug' => 'termin-kategorie')
+    )
+  );
+}
+add_action( 'init', 'sgb_taxonomy' );
+
+/**
+* Custom Post Types
+**/
 function sgb_custom_post_types() {
+  /**
+  * Sponsoren
+  **/
+  $labels = array(
+    'name' => _x('Sponsoren', 'post type general name'),
+    'singular_name' => _x('Sponsor', 'post type singular name'),
+    'add_new' => _x('Hinzufügen', 'Event'),
+    'add_new_item' => __('Sponsor hinzufügen'),
+    'edit_item' => __('Sponsor bearbeiten'),
+    'new_item' => __('Neuer Sponsor'),
+    'view_item' => __('Sponsor anzeigen'),
+    'search_items' => __('Search Events'),
+    'not_found' =>  __('Keine Sponsoren gefunden'),
+    'not_found_in_trash' => __('Keine Sponsoren im Papierkorb'),
+    'parent_item_colon' => ''
+  );
+  $supports = array('title', 'thumbnail');
+
+  register_post_type( 'sponsoren',
+    array(
+      'labels' => $labels,
+      'public' => true,
+      'supports' => $supports
+    )
+  );
+  register_taxonomy_for_object_type('sponsoren_kategorie', 'sponsoren');
+
+  /**
+  * Jobangebote
+  **/
+  $labels = array(
+    'name' => _x('Jobbörse', 'post type general name'),
+    'singular_name' => _x('Stellen', 'post type singular name'),
+    'add_new' => _x('Hinzufügen', 'Event'),
+    'add_new_item' => __('Stelle hinzufügen'),
+    'edit_item' => __('Stelle bearbeiten'),
+    'new_item' => __('Neue Stelle'),
+    'view_item' => __('Stelle anzeigen'),
+    'search_items' => __('Stellen suchen'),
+    'not_found' =>  __('Keine Stellen gefunden'),
+    'not_found_in_trash' => __('Keine Stellen im Papierkorb'),
+    'parent_item_colon' => ''
+  );
+  $supports = array('title', 'editor', 'thumbnail');
+
+  register_post_type( 'jobs',
+    array(
+      'labels' => $labels,
+      'public' => true,
+      'supports' => $supports
+    )
+  );
+
+  /**
+  * Events
+  **/
+  $labels = array(
+    'name' => _x('Termine', 'post type general name'),
+    'singular_name' => _x('Termin', 'post type singular name'),
+    'add_new' => _x('Hinzufügen', 'Event'),
+    'add_new_item' => __('Termin hinzufügen'),
+    'edit_item' => __('Termin bearbeiten'),
+    'new_item' => __('Neuer Termin'),
+    'view_item' => __('Termin anzeigen'),
+    'search_items' => __('Termin suchen'),
+    'not_found' =>  __('Keine Termine gefunden'),
+    'not_found_in_trash' => __('Keine Termine im Papierkorb'),
+    'parent_item_colon' => ''
+  );
+  $supports = array('title', 'excerpt');
+
   register_post_type( 'event',
     array(
-      'labels' => array(
-      'name' => __( 'Termine' ),
-      'singular_name' => __( 'Termin' )),
+      'labels' => $labels,
       'public' => true,
-      'has_archive' => false,
-      'rewrite' => array('slug' => 'termine'),
-      'supports' => array('title', 'editor')
+      'supports' => $supports
     )
-  );
-  register_post_type( 'team',
-    array(
-      'labels' => array(
-      'name' => __( 'Mannschaften' ),
-      'singular_name' => __( 'Mannschaft' )),
-      'public' => true,
-      'has_archive' => false,
-      'rewrite' => array( 'slug' => 'mannschaften' ),
-      'supports' => array( 'title', 'editor', 'thumbnail' )
-    )
-  );
+  );  
+  register_taxonomy_for_object_type('termin_kategorie', 'event');
 }
 add_action( 'init', 'sgb_custom_post_types' );
 
-*/
 ?>

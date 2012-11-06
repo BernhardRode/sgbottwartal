@@ -8,8 +8,11 @@
 **/
 
 get_header(); ?>
-  <div id="primary" class="site-content">
+  <div id="primary" class="site-content container">
     <div id="content" role="main">
+      <div class="row">
+        <div class="span9">
+
       <article id="post-0" class="post error404 no-results not-found">
         <header class="entry-header">
           <h1 class="entry-title"><?php _e( 'Das ist jetzt aber peinlich, nicht wahr?', 'sgb' ); ?></h1>
@@ -21,6 +24,10 @@ get_header(); ?>
         </div><!-- .entry-content -->
       </article><!-- #post-0 -->
 
+        </div>
+        <div class="span3">
+          <?php get_sidebar(); ?>
+        </div>
     </div><!-- #content -->
   </div><!-- #primary -->
 <?php get_footer(); ?>

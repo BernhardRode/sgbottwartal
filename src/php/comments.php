@@ -30,22 +30,25 @@
 		<ol class="commentlist">
 			<?php wp_list_comments( array( 'callback' => 'sgb_comment', 'style' => 'ul' ) ); ?>
 		</ol><!-- .commentlist -->
+</div><!-- #comments .comments-area -->
 
-		<?php if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) : // are there comments to navigate through ?>
-		<nav id="comment-nav-below" class="navigation" role="navigation">
-			<h1 class="assistive-text section-heading"><?php _e( 'Navigation', 'sgb' ); ?></h1>
-			<div class="nav-previous"><?php previous_comments_link( __( '&larr; &Auml;ltere Kommentare', 'sgb' ) ); ?></div>
-			<div class="nav-next"><?php next_comments_link( __( 'Neuere Kommentare &rarr;', 'sgb' ) ); ?></div>
-		</nav>
-		<?php endif; // check for comment navigation ?>
+	<?php if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) : // are there comments to navigate through ?>
+	<!--
+	<nav id="comment-nav-below" class="navigation" role="navigation">
+		<div class="nav-previous pull-left"><?php previous_comments_link( __( '&larr; &Auml;ltere Kommentare', 'sgb' ) ); ?></div>
+		<div class="nav-next btn pull-right"><?php next_comments_link( __( 'Neuere Kommentare &rarr;', 'sgb' ) ); ?></div>
+	</nav>
+	-->
+	<?php endif; // check for comment navigation ?>
 
 	<?php // If comments are closed and there are comments, let's leave a little note.
 		elseif ( ! comments_open() && '0' != get_comments_number() && post_type_supports( get_post_type(), 'comments' ) ) :
 	?>
 		<p class="nocomments"><?php _e( 'Kommentare sind auf dieser Seite nicht gestattet.', 'sgb' ); ?></p>
 	<?php endif; ?>
-</div><!-- #comments .comments-area -->
+
 <?php
+	echo '<a name="comment-form"></a>';
 	$fields = array(
 		'author' => '<div class="comment-form-author"><label for="author">Name</label><input id="author" name="author" type="text" value="' . esc_attr( $commenter['comment_author'] ) . '" aria-required="true" /></div>',
 		'email'  => '<div class="comment-form-email"><label for="email">E-Mail</label><input id="email" name="email" type="text" value="' . esc_attr(  $commenter['comment_author_email'] ) .'"  aria-required="true" /></div>',
@@ -65,4 +68,4 @@
 		'id_submit'=>'submitComment'
 	);
 	comment_form($args,$fields); 
-?>
+?>	

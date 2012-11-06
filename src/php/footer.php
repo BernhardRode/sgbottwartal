@@ -7,12 +7,22 @@
 ?>
   </div><!-- #main .wrapper -->
 </div><!-- /.container -->
+<div class="bg-sg hidden-phone"></div>
 <!-- FOOTER -->
+<div class="container">
+  <div class="row">
+    <div class="span12">
+      <?php 
+      echo 'helo';
+      get_sidebar('footerbar-1'); ?>
+    </div>
+  </div>
+</div>
 <footer class="site-footer">
   <div class="container">
     <div class="row">
       <div class="span1">
-        <img src="/wp-content/themes/sgbottwartal/img/sg.logo.svg" width="100">
+        <embed src="/wp-content/themes/sgbottwartal/img/sg.logo.svg" type="image/svg+xml"  width="100" height="110" />
       </div>
       <div class="span5">
         <ul>
@@ -29,7 +39,7 @@
       </div>
       <div class="span2">
         <ul>
-          <li><a href="https://www.facebook.com/SG.Bottwartal"><i class="icon-google-plus"></i> Google+</a></li>
+          <li><a href="https://www.facebook.com/SG.Bottwartal"><i class="icon-google-plus"></i><span class="hidden-phone"> Google+</span></a></li>
           <li><a href="http://www.youtube.com/user/SGBottwartal"><i class="icon-facetime-video"></i> Youtube</a></li>
         </ul>
       </div>

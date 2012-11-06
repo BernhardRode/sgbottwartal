@@ -13,12 +13,13 @@
 
 get_header(); ?>
 
-	<section id="primary" class="site-content">
+	<section id="primary" class="site-content container">
 		<div id="content" role="main">
-
+			<div class="row">
+				<div class="span9">
 		<?php if ( have_posts() ) : ?>
 			<header class="archive-header">
-				<h1 class="archive-title"><?php printf( __( 'Category Archives: %s', 'sgb' ), '<span>' . single_cat_title( '', false ) . '</span>' ); ?></h1>
+				<h1 class="archive-title"><?php printf( __( 'Kategorie: %s', 'sgb' ), '<span>' . single_cat_title( '', false ) . '</span>' ); ?></h1>
 
 			<?php if ( category_description() ) : // Show an optional category description ?>
 				<div class="archive-meta"><?php echo category_description(); ?></div>
@@ -44,8 +45,12 @@ get_header(); ?>
 			<?php get_template_part( 'content', 'none' ); ?>
 		<?php endif; ?>
 
+				</div>
+				<div class="span3">
+					<?php get_sidebar(); ?>
+				</div>
+		</div><!-- #content -->
 		</div><!-- #content -->
 	</section><!-- #primary -->
-
-<?php get_sidebar(); ?>
+	</div><!-- #primary -->
 <?php get_footer(); ?>

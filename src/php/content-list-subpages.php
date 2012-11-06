@@ -11,7 +11,7 @@ Template Name: Unterseiten einbetten
 **/
 get_header(); ?>
 <?php
-  $child_pages = $wpdb->get_results("SELECT * FROM $wpdb->posts WHERE post_parent = ".$post->ID." AND post_type = 'page' ORDER BY menu_order", 'OBJECT');    
+  $child_pages = $wpdb->get_results("SELECT * FROM $wpdb->posts WHERE post_parent = ".$post->ID." AND post_status = 'publish' AND post_type = 'page' ORDER BY menu_order", 'OBJECT');    
 ?>
 <div class="container site-content">
   <div class="row">
@@ -25,12 +25,12 @@ get_header(); ?>
     <div class="span9">
       <section class="hero">
         <h1><? echo $post->post_title; ?></h1>
-        <p><? echo the_content(); ?></p>
+        <p><? echo $post->post_content; ?></p>
       </section>
       <?php if ( $child_pages ) : foreach ( $child_pages as $pageChild ) : setup_postdata( $pageChild ); ?>
         <section id="section-<?php echo $pageChild->ID; ?>">
           <div class="page-header">
-            <h1><?php echo $pageChild->post_title; ?></h1>
+            <h2><?php echo $pageChild->post_title; ?></h2>
           </div>
           <p class="lead">
             <?php echo get_the_post_thumbnail($pageChild->ID, 'single-post-thumbnail'); ?>
