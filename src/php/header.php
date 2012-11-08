@@ -17,8 +17,8 @@
 <!--<![endif]-->
 <head>
   <meta charset="<?php bloginfo( 'charset' ); ?>" />
-  <meta name="viewport" content="width=device-width" />
-  <title><?php wp_title( '|', true, 'right' ); ?></title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><?php wp_title( '', true, 'right' ); ?></title>
   <link rel="profile" href="http://gmpg.org/xfn/11" />
   <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>" />
   <?php wp_head(); ?>
@@ -50,4 +50,21 @@
     </div><!-- /.navbar-inner -->
   </div><!-- /.navbar -->
 </div><!-- /.container -->
+<div class="container hidden-phone header">
+  <div class="row">
+    <div class="span9">
+        <h3 class="muted"><?php is_home() ? bloginfo('description') : wp_title(''); ?></h3>
+    </div>
+    <div class="span3">
+      <h3 class="pull-right">
+        <a href="mailto:info@sg-bottwartal.de" class="muted" rel="tooltip" data-placement="bottom" data-original-title="E-Mail"><i class="icon-envelope-alt"></i></a> 
+        <a href="/gemeinschaft/gastebuch" class="muted" rel="tooltip" data-placement="bottom" data-original-title="Gästebuch"><i class="icon-comments"></i></a> 
+        <a href="http://www.twitter.com/sgbottwartal" class="muted" target="_blank" rel="tooltip" data-placement="bottom" data-original-title="Twitter"><i class="icon-twitter"></i></a>
+        <a href="https://www.facebook.com/SG.Bottwartal" class="muted" target="_blank" rel="tooltip" data-placement="bottom" data-original-title="Facebook"><i class="icon-facebook"></i></a>
+        <a href="https://plus.google.com/115598032861617067767" class="muted" target="_blank" rel="tooltip" data-placement="bottom" data-original-title="Google+"><i class="icon-google-plus"></i></a>
+        <a href="http://www.youtube.com/user/SGBottwartal" class="muted" target="_blank" rel="tooltip" data-placement="bottom" data-original-title="Youtube"><i class="icon-facetime-video"></i></a>
+      </h3>
+    </div>
+  </div>
+</div>
 <!-- Wrap the .navbar in .container to center it on the page and provide easy way to target it with .navbar-wrapper. -->

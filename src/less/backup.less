@@ -1,0 +1,208 @@
+
+
+// Corporate ID Colors
+@sg-weiss: #FFFFFF;
+@sg-weiss-gradient: #F2F2F2;
+@sg-grau: #4B4D3B;
+@sg-grau-hell: #4f4f4f;
+@sg-schwarz: #000000;
+@sg-rot: #BB0000;
+@sg-dunkel-rot: #4B0000;
+@sg-orange: #FFAC0C;
+
+// Scaffolding and links
+@bodyBackground:@sg-weiss;
+@textColor:@sg-schwarz;
+@linkColor:@sg-rot;
+@linkColorHover:@sg-schwarz;
+@navbarLinkColorHover:@sg-rot;
+
+body {
+  font-weight:normal;
+  font-style:normal;
+  //padding-bottom: 40px;
+  //background:@sg-weiss url('img/brillant.png');
+  background:@sg-rot;
+  font-family:@sansFontFamily;
+  line-height: 25px;  
+}
+
+.container {
+  background: @sg-weiss;
+}
+
+a:hover {
+  text-decoration:none;
+}
+
+.brand {
+  color:@sg-grau;
+  text-shadow:none;
+  //font-weight:bold;
+  span {
+    color:@sg-rot;
+  }
+}
+
+section {
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+.bg-sg {
+  background:url('img/bg.logo.sg.png') no-repeat;
+  position: fixed;
+  bottom:-100px;
+  right:30px;
+  z-index: -1;
+  width:640px;
+  height:691px;
+}
+
+.navbar-wrapper {
+  position: relative;
+  z-index: 10;
+  margin-top: 20px;
+  margin-bottom: -90px; /* Negative margin to pull up carousel. 90px is roughly margins and height of navbar. */
+}
+
+.site-content {
+  padding-top:80px;
+}
+
+.front-content {
+  padding-top:0px;
+}
+
+.divider {
+  margin: 30px 0;
+}
+
+.entry-title {
+  text-transform:uppercase;
+}
+
+.subtitle {
+  color:#ddd;
+  text-transform:uppercase;
+  padding-left:10px;
+}
+
+.fotos {
+  .fotos-slides {
+    width:100%;
+    height:600px;
+    overflow:hidden;
+  }
+  .fotos-menu {
+    height:45px;
+  }
+  ul {
+    margin:0;
+    padding:0;
+  }
+  li {
+    width:60px;
+    display:inline-block;
+    list-style:none;
+    height:45px;
+    overflow:hidden;
+  }
+}
+
+.site-footer {
+  //background-color: @grayLighter;
+  //border-top:1px solid @grayLight;
+  padding-top:40px;
+  padding-bottom:20px;
+  opacity:0.8;
+  ul {
+    list-style-type:none;
+    margin-left:0;
+  }
+  li {
+  }
+  .grayed {
+    color:@grayLight;
+  }
+  &:hover {
+    opacity:1.0;
+  }
+}
+
+.ul-articles {
+  list-style-type:none;
+  margin-left:0;
+}
+
+
+/* SPECIALS
+-------------------------------------------------- */
+
+
+/* CUSTOMIZE THE NAVBAR
+-------------------------------------------------- */
+
+/* Special class on .container surrounding .navbar, used for positioning it into place. */
+.navbar-wrapper {
+  position: relative;
+  z-index: 10;
+  margin-bottom: -90px; /* Negative margin to pull up carousel. 90px is roughly margins and height of navbar. */
+}
+
+/* Remove border and change up box shadow for more contrast */
+.navbar .navbar-inner {
+  border: 0;
+  -webkit-box-shadow: 0 2px 10px rgba(0,0,0,.25);
+     -moz-box-shadow: 0 2px 10px rgba(0,0,0,.25);
+          box-shadow: 0 2px 10px rgba(0,0,0,.25);
+}
+
+/* Downsize the brand/project name a bit */
+.navbar .brand {
+  padding: 14px 20px 16px; /* Increase vertical padding to match navbar links */
+  font-size: 16px;
+  font-weight: bold;
+}
+
+/* Navbar links: increase padding for taller navbar */
+.navbar .nav > li > a {
+  padding: 15px 20px;
+}
+
+/* Offset the responsive button for proper vertical alignment */
+.navbar .btn-navbar {
+  margin-top: 10px;
+}
+
+
+/* Featurettes
+------------------------- */
+
+.featurette-divider {
+  margin: 80px 0; /* Space out the Bootstrap <hr> more */
+}
+.featurette {
+  padding-top: 120px; /* Vertically center images part 1: add padding above and below text. */
+  overflow: hidden; /* Vertically center images part 2: clear their floats. */
+}
+.featurette-image {
+  margin-top: -120px; /* Vertically center images part 3: negative margin up the image the same amount of the padding to center it. */
+}
+
+/* Give some space on the sides of the floated elements so text doesn't run right into it. */
+.featurette-image.pull-left {
+  margin-right: 40px;
+}
+.featurette-image.pull-right {
+  margin-left: 40px;
+}
+
+/* Thin out the marketing headings */
+.featurette-heading {
+  font-size: 50px;
+  font-weight: 300;
+  line-height: 1;
+  letter-spacing: -1px;
+}
+

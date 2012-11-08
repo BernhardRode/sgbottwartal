@@ -1,0 +1,57 @@
+/* Border & Vignette Setup */
+	 
+    figure{
+      position:               relative;
+      display:                block;
+      line-height:            0;
+      -webkit-box-shadow:     0 .1em .3em rgba(0,0,0,.25);
+      -moz-box-shadow:        0 .1em .3em rgba(0,0,0,.25);
+      margin:0;
+      padding:0;
+      border:none;
+      z-index:-1;
+    }
+
+    figure.vignette img{
+      z-index:                1;
+      position:               relative;
+      display:                block;
+      width:                  100%;
+      top:-25px;
+    }
+    
+/* Overlay Method */
+
+    figure.overlay::after{
+      position:               absolute;
+      top:                    0;
+      bottom:                 0;
+      left:                   0;
+      right:                  0;
+      content:                "";
+      z-index:                2;
+      
+      pointer-events:         none; /* "all" disables mouse access to image */
+
+    /* Mozilla Setting */
+      background-image:       -moz-linear-gradient( center, circle contain, rgba(0,0,0,0) 125px, rgba(0,0,0,.5) 250px );
+
+    /* Webkit Setting */
+      background-image:       -webkit-gradient( linear, 50% 50%, 125, 50% 50%, 250, from(rgba(0,0,0,0)), to(rgba(0,0,0,.5)) );
+    }
+    
+/* Overlay & Inset Method */
+
+    figure.overlay.inset::after{
+      .box-shadow( inset 0 0 150px rgba(0,0,0,.75) );
+    }
+
+/* Mask Method */
+    
+    figure.mask{
+      background-color:       #000;
+    }
+
+    figure.mask img{
+      -webkit-mask-box-image: -webkit-gradient( linear, 50% 50%, 125, 50% 50%, 250, from(#fff), to(rgba(0,0,0,.33)) );
+    }

@@ -27,6 +27,7 @@ function sgb_setup() {
   add_image_size( 'featured-thumb', 1024, 9999 ); //300 pixels wide (and unlimited height)
   add_image_size( 'page-thumb', 220, 9999 ); //300 pixels wide (and unlimited height)
   add_image_size( 'circle-thumb', 100, 100, true ); //(cropped)
+  add_image_size( 'circle-mini', 30, 30, true ); //(cropped)
   //Disable the admin bar
   //show_admin_bar(false);
 }
@@ -35,21 +36,23 @@ add_action( 'after_setup_theme', 'sgb_setup' );
 function sgb_scripts_styles() { 
   //wp_enqueue_script('head', get_template_directory_uri().'/lib/head.load.min.js', array(), '1.0', true);
   //wp_enqueue_script('sgb', get_template_directory_uri().'/js/app.js', array(), '1.0', true);
+  wp_enqueue_script('jquery', get_template_directory_uri().'/lib/modernizr.custom.70639.js', array(), '70639', false);
   wp_enqueue_script('jquery', get_template_directory_uri().'/lib/jquery.js', array(), '1.8.2', true);
   wp_enqueue_script('moment', get_template_directory_uri().'/lib/moment.js', array(), '1.0', true);
-  wp_enqueue_script('bootstrap-transition', get_template_directory_uri().'/lib/bootstrap-transition.js', array('jquery'), '2.2.0', true);
-  wp_enqueue_script('bootstrap-alert', get_template_directory_uri().'/lib/bootstrap-alert.js', array('jquery'), '2.2.0', true);
-  wp_enqueue_script('bootstrap-modal', get_template_directory_uri().'/lib/bootstrap-modal.js', array('jquery'), '2.2.0', true);
-  wp_enqueue_script('bootstrap-dropdown', get_template_directory_uri().'/lib/bootstrap-dropdown.js', array('jquery'), '2.2.0', true);
-  wp_enqueue_script('bootstrap-scrollspy', get_template_directory_uri().'/lib/bootstrap-scrollspy.js', array('jquery'), '2.2.0', true);
-  wp_enqueue_script('bootstrap-tab', get_template_directory_uri().'/lib/bootstrap-tab.js', array('jquery'), '2.2.0', true);
-  wp_enqueue_script('bootstrap-tooltip', get_template_directory_uri().'/lib/bootstrap-tooltip.js', array('jquery'), '2.2.0', true);
-  wp_enqueue_script('bootstrap-popover', get_template_directory_uri().'/lib/bootstrap-popover.js', array('jquery'), '2.2.0', true);
-  wp_enqueue_script('bootstrap-button', get_template_directory_uri().'/lib/bootstrap-button.js', array('jquery'), '2.2.0', true);
-  wp_enqueue_script('bootstrap-collapse', get_template_directory_uri().'/lib/bootstrap-collapse.js', array('jquery'), '2.2.0', true);
-  wp_enqueue_script('bootstrap-carousel', get_template_directory_uri().'/lib/bootstrap-carousel.js', array('jquery'), '2.2.0', true);
-  wp_enqueue_script('bootstrap-typeahead', get_template_directory_uri().'/lib/bootstrap-typeahead.js', array('jquery'), '2.2.0', true);
-  wp_enqueue_script('bootstrap-affix', get_template_directory_uri().'/lib/bootstrap-affix.js', array('jquery'), '2.2.0', true);
+  wp_enqueue_script('bootstrap-transition', get_template_directory_uri().'/lib/bootstrap-transition.js', array('jquery'), '2.2.1', true);
+  wp_enqueue_script('bootstrap-alert', get_template_directory_uri().'/lib/bootstrap-alert.js', array('jquery'), '2.2.1', true);
+  wp_enqueue_script('bootstrap-modal', get_template_directory_uri().'/lib/bootstrap-modal.js', array('jquery'), '2.2.1', true);
+  wp_enqueue_script('bootstrap-dropdown', get_template_directory_uri().'/lib/bootstrap-dropdown.js', array('jquery'), '2.2.1', true);
+  wp_enqueue_script('bootstrap-scrollspy', get_template_directory_uri().'/lib/bootstrap-scrollspy.js', array('jquery'), '2.2.1', true);
+  wp_enqueue_script('bootstrap-tab', get_template_directory_uri().'/lib/bootstrap-tab.js', array('jquery'), '2.2.1', true);
+  wp_enqueue_script('bootstrap-tooltip', get_template_directory_uri().'/lib/bootstrap-tooltip.js', array('jquery'), '2.2.1', true);
+  wp_enqueue_script('bootstrap-popover', get_template_directory_uri().'/lib/bootstrap-popover.js', array('jquery'), '2.2.1', true);
+  wp_enqueue_script('bootstrap-button', get_template_directory_uri().'/lib/bootstrap-button.js', array('jquery'), '2.2.1', true);
+  wp_enqueue_script('bootstrap-collapse', get_template_directory_uri().'/lib/bootstrap-collapse.js', array('jquery'), '2.2.1', true);
+  wp_enqueue_script('bootstrap-carousel', get_template_directory_uri().'/lib/bootstrap-carousel.js', array('jquery'), '2.2.1', true);
+  wp_enqueue_script('bootstrap-typeahead', get_template_directory_uri().'/lib/bootstrap-typeahead.js', array('jquery'), '2.2.1', true);
+  wp_enqueue_script('bootstrap-affix', get_template_directory_uri().'/lib/bootstrap-affix.js', array('jquery'), '2.2.1', true);
+  wp_enqueue_script('bootstrap-affix', get_template_directory_uri().'/lib/bootstrap-image-gallery.js', array('jquery'), '2.8.1', true);
   wp_enqueue_script('app', get_template_directory_uri().'/js/app.js', array('jquery'), '1.0', true);
   //wp_enqueue_script('google-plus', 'https://apis.google.com/js/plusone.js', array(), '1.0', true);
   //wp_enqueue_script('facebook', 'http://connect.facebook.net/de_DE/all.js', array(), '1.0', true);
@@ -57,6 +60,12 @@ function sgb_scripts_styles() {
   wp_enqueue_style('sgb-style', get_stylesheet_uri() );
 }
 add_action( 'wp_enqueue_scripts', 'sgb_scripts_styles' );
+
+function remove_images( $content ) {
+   $postOutput = preg_replace('/<img[^>]+./','', $content);
+   return $postOutput;
+}
+add_filter( 'the_content', 'remove_images', 100 );
 
 /**
 * Registers our main widget area and the front page widget areas.
@@ -160,12 +169,12 @@ add_filter( 'login_headerurl', 'wp_admin_logo_change_target_url' );
 * @since 2013
 */
 function excerpt_ellipse($text) {
-  return str_replace('[...]', ' ...', $text); 
+  return str_replace('[...]', ' ... &raquo;', $text); 
 }
 add_filter('the_excerpt', 'excerpt_ellipse');
 
 function custom_excerpt_length( $length ) {
-  return 30;
+  return 28;
 }
 add_filter( 'excerpt_length', 'custom_excerpt_length', 999 );
 
@@ -259,17 +268,16 @@ function sgb_entry_meta() {
   // Translators: used between list items, there is a space after the comma.
   $tag_list = get_the_tag_list( '', __( ', ', 'sgb' ) );
 
-  $date = sprintf( '<a href="%1$s" title="%2$s" rel="bookmark"><time class="entry-date" datetime="%3$s" pubdate>%4$s</time></a>',
+  $date = sprintf( 'Veröffentlicht am <time class="entry-date" datetime="%3$s" pubdate>%4$s um %2$s Uhr</time>',
     esc_url( get_permalink() ),
     esc_attr( get_the_time() ),
     esc_attr( get_the_date( 'c' ) ),
     esc_html( get_the_date() )
   );
 
-  $author = sprintf( '<span class="author vcard">%3$s</span>',
-    esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ),
-    esc_attr( sprintf( __( 'Alle Einträge von %s', 'sgb' ), get_the_author() ) ),
-    get_the_author()
+  $author = sprintf( '<span class="author vcard">%1$s %2$s</span>',
+    get_the_author_meta( 'first_name' ),
+    get_the_author_meta( 'last_name' )
   );
 
   // Translators: 1 is category, 2 is tag, 3 is the date and 4 is the author's name.
@@ -337,32 +345,33 @@ function get_the_post_thumbnail_by_slug($page_slug, $size='large') {
   endif;
 }
 
+function sgb_thumbnail( $size='large', $id = 0 ) {
+  if ($id == 0) $id = $page->ID;
+  $url = wp_get_attachment_image_src( get_post_thumbnail_id( $id ), $size );
+  if (!empty($url[0])) $url = $url[0];
+
+  if (!$url) {
+    return get_fallback_post_thumbnail($size,$id);
+  } else {
+    return $url;
+  }
+}
+
 
 //function to call first uploaded image in functions file
-function get_fallback_post_thumbnail( $size='large' ) {
-  //$imgsrc = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), "Full");
-  $url = '';
-  $files = get_children('post_parent='.get_the_ID().'&post_type=attachment&post_mime_type=image&order=desc');
-  if($files) :
-    $keys = array_reverse(array_keys($files));
-    $j=0;
-    $num = $keys[$j];
-    $image=wp_get_attachment_image($num, $size, true);
-    $imagepieces = explode('"', $image);
-    $imagepath = $imagepieces[1];
-    $url=wp_get_attachment_url($num);
-  endif;
-
+function get_fallback_post_thumbnail( $size='large', $id = 0 ) {
+  if ($id == 0) $id = get_the_ID();
+  
   if ( $url == '' ) :
     $category = get_the_category();
     if ( $category[0]->slug == 'berichte') :
       list($first, $title) = explode( ':', get_the_title(), 2 );
       $lc = strtolower( $first );
       if ( preg_match('/herren/',$lc) || preg_match('/damen/',$lc) ) :
-        $prefix = '/aktive/';
+        $prefix = '/mannschaften/aktive/';
         $lc =substr_replace($lc,'-', strlen($lc)-1, 0);
       elseif ( preg_match('/jugend/',$lc) || preg_match('/minis/',$lc) || preg_match('/ballschule/',$lc) || preg_match('/technik-athletik/',$lc) ) :
-        $prefix = '/jugend/';
+        $prefix = '/mannschaften/jugend/';
       else:
         $prefix = '/';
       endif;
@@ -371,59 +380,160 @@ function get_fallback_post_thumbnail( $size='large' ) {
       $url = $url[0];
     endif;
   endif;
-
+  
+  /*
   if ( $url == '' && $id ) :
     $slug = the_slug( $id );
     if ( $slug ) :
     $url = '/wp-content/themes/sgbottwartal/img/logo.sg.'.$slug.'.png';
     endif;
   endif;
-
+  */
   if ( $url == '' ) :
-    $url = '/wp-content/themes/sgbottwartal/img/logo.sg.'.$size.'.png';
+    $url = '/wp-content/themes/sgbottwartal/img/sg.quadrat.svg';
   endif;
-
   return $url;
 }
 
-function sgb_human_time_content() {
+function sgb_human_time( $id ) {
   $time_difference = current_time('timestamp') - get_the_time('U');
   if($time_difference < 86400) {
-    echo human_time_diff(get_the_time('U'), current_time('timestamp')) . ' ago';
+    echo 'vor ' . human_time_diff(get_the_time('U',$post), current_time('timestamp'));
   } else {
-    the_time();
-  };
-}
-function sgb_human_time_comment() {
-  $time_difference = current_time('timestamp') - get_the_time('U');
-  if($time_difference < 86400) {
-    echo human_time_diff(get_comment_time('U'), current_time('timestamp')) . ' ago'; 
-  } else {
-    the_time();
+    echo get_the_time('H:i',$id) . ' Uhr';
   };
 }
 
 function sgb_sponsoren( $args ) {
   if(empty($args['count'])) $args['count'] = 1;
-  $args = array( 'post_type' => 'sponsoren', 'posts_per_page' => $args['count'], 'orderby' => 'rand' );
-  $loop = new WP_Query( $args );
-  $output = '<ul class="unstyled sponsoren hidden-phone">';
-  while ( $loop->have_posts() ) : $loop->the_post();
-    $url_image = wp_get_attachment_url( get_post_thumbnail_id( get_the_ID() ) );
-    $url_external = get_post_meta( get_the_ID(), meta, TRUE );
+  $query = array( 'post_type' => 'sponsoren', 'posts_per_page' => $args['count'], 'orderby' => 'rand' );
+  $sponsoren = get_posts( $query );
+  $output = '<div class="row">';
+  foreach($sponsoren as $sponsor) :
+    $url_image = wp_get_attachment_url( get_post_thumbnail_id( $sponsor->ID ) );
+    $url_external = get_post_meta( $sponsor->ID, meta, TRUE );
     if(empty($url_external['url'])) $url_external['url'] = '';
-    $output .= '<li class="span2">';
+    $output .= '<div class="span'.$args['span'].'">';
     if( $url_external ) $output .= '<a href="'.$url_external.'" target="_blank">';
-    $output .= '<img src="'.$url_image.'" class="img-polaroid">';
+    $output .= '<img src="'.$url_image.'" class="img-polaroid img-grayscale">';
     if( $url_external ) $output .= '</a>';
-    $output .= '</li>';
-  endwhile;
-  $output .= '</ul>';
+    $output .= '</div>';
+  endforeach;
+  $output .= '</div>';
+  echo $output;  
+}  
 
+function sgb_kommentare( $args ) {
+  if(empty($args['count'])) $args['count'] = 5;
+  $query = array( 'number' => $args['count'] );
+  $comments = get_comments( $query );
+  echo '<ul class="unstyled">';
+  foreach($comments as $comment) :
+    $avatar_size = 30;
+    list($short) = explode("\n",wordwrap($comment->comment_content ,60));
+    echo '<li><a href="'.get_comment_link().'">';
+    echo get_avatar( $comment, $avatar_size ).' <strong>'.$comment->comment_author . ':</strong></a><span class="pull-right muted">'.sgb_nice_time($comment->comment_date).'</span>';
+    echo '<blockquote>'.$short.'...</blockquote>';
+    echo '</li>';
+  endforeach;
+  echo '</ul>';
+
+  //echo $output;  
+}  
+
+function sgb_neuigkeiten( $args ) {
+  if(empty($args['count'])) $args['count'] = 5;
+  $query = array( 'numberposts' => $args['count'], 'category' => 8 );
+  $neuigkeiten = get_posts( $query );
+  echo '<ul class="unstyled">';
+  foreach($neuigkeiten as $neuigkeit) :
+    list($short) = explode("\n",wordwrap($neuigkeit->post_title ,100));
+    echo '<li>';
+    echo '<img src="' . sgb_thumbnail( 'circle-mini', $neuigkeit->ID ) . '" class="img-circle img-svg-30">';
+    echo '<span class="pull-right muted">'.sgb_nice_time($neuigkeit->post_date).'</span>';
+    echo '<blockquote><a href="'.get_permalink($neuigkeit->ID).'">'.$neuigkeit->post_title.'</a></blockquote>';
+    echo '</li>';
+  endforeach;
+  echo '</ul>';
+}  
+
+function sgb_berichte( $args ) {
+  if(empty($args['count'])) $args['count'] = 5;
+  $query = array( 'numberposts' => $args['count'], 'category' => 4 );
+  $berichte = get_posts( $query );
+  echo '<ul class="unstyled">';
+  foreach($berichte as $bericht) :
+    list($short) = explode("\n",wordwrap($bericht->post_title ,100));
+    echo '<li>';
+    echo '<img src="' . sgb_thumbnail( 'circle-mini', $bericht->ID ) . '" class="img-circle img-svg-30">';
+    echo '<span class="pull-right muted">'.sgb_nice_time($bericht->post_date).'</span>';
+    echo '';
+    echo '<blockquote><a href="'.get_permalink($bericht->ID).'">'.$bericht->post_title.'</a></blockquote>';
+    echo '</li>';
+  endforeach;
+  echo '</ul>';
+}  
+
+function sgb_fotos( $args ) {
+  global $post;
+  $args = array(
+    'post_type' => 'attachment',
+    'numberposts' => -1,
+    'post_status' => null,
+    'post_parent' => $post->ID
+  );
+  $attachments = get_posts( $args );
+  ?>
+<div id="main">
+  <div class="fotos">
+    <div class="fotos-slides">
+  <?php
+  if ( $attachments ) {
+    foreach ( $attachments as $attachment ) {
+      #print_r($attachment);
+      $thumb = wp_get_attachment_image_src( $attachment->ID, 'thumbnail' );
+      $large = wp_get_attachment_image_src( $attachment->ID, 'large' );
+      $title = $attachment->post_title;
+      if (!empty($thumb[0])) $thumb = $thumb[0];
+      if (!empty($large[0])) $large = $large[0];
+      echo '<div class="slide"><img src="'.$large.'" width="920" height="300" /></div>';
+    }
+  }
+  ?>      
+    </div>
+    <div class="fotos-menu">
+      <ul>
+        <li class="fbar">&nbsp;</li>
+        
+  <?php
+  if ( $attachments ) {
+    foreach ( $attachments as $attachment ) {
+      #print_r($attachment);
+      $thumb = wp_get_attachment_image_src( $attachment->ID, 'thumbnail' );
+      $large = wp_get_attachment_image_src( $attachment->ID, 'large' );
+      $title = $attachment->post_title;
+      if (!empty($thumb[0])) $thumb = $thumb[0];
+      if (!empty($large[0])) $large = $large[0];
+      echo '<li class="item"><a href=""><img src="'.$thumb.'" /></a></li>';
+    }
+  }
+  ?>        
+      </ul>
+    </div>
+  </div>
+</div>
+  <?php
   return $output;  
 }  
-add_shortcode('sponsoren', 'sgb_sponsoren'); 
 
+function register_shortcodes(){
+  add_shortcode('sponsoren', 'sgb_sponsoren'); 
+  add_shortcode('fotos', 'sgb_fotos'); 
+  add_shortcode('neuigkeiten', 'sgb_neuigkeiten'); 
+  add_shortcode('berichte', 'sgb_berichte'); 
+  add_shortcode('kommentare', 'sgb_kommentare'); 
+}
+add_action( 'init', 'register_shortcodes');
 
 /**
 * Custom Meta Boxes
@@ -674,5 +784,67 @@ function sgb_custom_post_types() {
   register_taxonomy_for_object_type('termin_kategorie', 'event');
 }
 add_action( 'init', 'sgb_custom_post_types' );
+// Add action to wp_head
+add_action('wp_head','move_admin_bar_bottom');
 
+
+// Move admin bar to bottom of page
+function move_admin_bar_bottom() {
+  if(is_user_logged_in()) { 
+    echo "
+    <style type='text/css'>
+      * html body { margin-top: 0 !important; }
+      body.admin-bar { margin-top: -28px; padding-bottom: 28px; }
+      body.wp-admin #footer { padding-bottom: 28px; }
+      #wpadminbar { top: auto !important; bottom: 0; }
+      #wpadminbar .quicklinks .ab-sub-wrapper { bottom: 28px; }
+      #wpadminbar .quicklinks .ab-sub-wrapper ul .ab-sub-wrapper { bottom: -7px; }
+    </style>
+    ";
+  }
+}
+
+if ( ! function_exists( 'sgbottwartal_nicetime' ) ) :
+
+/**
+ * Return a nice Time Value
+ *
+ * @since 3.0.0
+ */
+function sgb_nice_time($date) {
+  if(empty($date)) {
+    return "Kein Datum angegeben";
+  }
+   
+  $periods = array("Sekunde", "Minute", "Stunde", "Tage", "Woche", "Monate", "Jahre", "Dekade");
+  $lengths = array("60","60","24","7","4.35","12","10");
+   
+  $now = time()+7200; // Hack um Zeitproblem auszugleichen
+  $unix_date = strtotime($date);
+   
+  if(empty($unix_date)) {
+    return "Fehlerhaftes Datum (".$date.")";
+  }
+   
+  if($now > $unix_date) {
+    $difference = $now - $unix_date;
+    $tense = "vor";
+  } else {
+    $difference = $unix_date - $now;
+    $tense = "in";
+  }
+   
+  for($j = 0; $difference >= $lengths[$j] && $j < count($lengths)-1; $j++) {
+    $difference /= $lengths[$j];
+  }
+   
+  $difference = round($difference);
+   
+  if($difference != 1) {
+    $periods[$j].= "n";
+  }
+   
+  return "{$tense} $difference $periods[$j]";
+}
+endif;
 ?>

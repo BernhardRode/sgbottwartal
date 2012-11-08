@@ -8,11 +8,10 @@
 **/
 
 get_header(); ?>
-
 	<div id="primary" class="site-content container">
 		<div id="content" role="main">
 			<div class="row">
-				<div class="span9">
+				<div class="span12">
 					<?php while ( have_posts() ) : the_post(); ?>
 
 						<?php get_template_part( 'content', get_post_format() ); ?>
@@ -23,9 +22,6 @@ get_header(); ?>
 								comments_template( '', true );
 						?>
 					<?php endwhile; // end of the loop. ?>
-				</div>
-				<div class="span3">
-					<?php get_sidebar(); ?>
 				</div>
 		</div><!-- #content -->
 	</div><!-- #primary -->
