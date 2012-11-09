@@ -36,13 +36,21 @@ Tags:
 body {
   font-weight:normal;
   font-style:normal;
-  background:@sg-weiss url('img/brillant.png');
+  //background:@sg-weiss url('img/brillant.png');
   font-family:@sansFontFamily;
   line-height: 25px;  
+  padding-top:10px;
 }
 
-.site-content{
-  background:url('img/bg.logo.sg.small.png') bottom right no-repeat;
+.bg {
+  background:url('img/sg.logo.svg') bottom right no-repeat;
+  opacity:0.05;
+  .grayscale(1);
+  width:200px;
+  height:200px;
+  position:fixed;
+  top:0;
+  z-index:10000;
 }
 
 .site-footer {

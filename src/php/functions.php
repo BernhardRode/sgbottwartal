@@ -357,42 +357,27 @@ function sgb_thumbnail( $size='large', $id = 0 ) {
   }
 }
 
-
 //function to call first uploaded image in functions file
 function get_fallback_post_thumbnail( $size='large', $id = 0 ) {
   if ($id == 0) $id = get_the_ID();
-  
+
   if ( $url == '' ) :
     $category = get_the_category();
-    if ( $category[0]->slug == 'berichte') :
+    if ( 'berichte' == $category[0]->slug ) :
       list($first, $title) = explode( ':', get_the_title(), 2 );
       $lc = strtolower( $first );
-      if ( preg_match('/herren/',$lc) || preg_match('/damen/',$lc) ) :
-        $prefix = '/mannschaften/aktive/';
-        $lc =substr_replace($lc,'-', strlen($lc)-1, 0);
-      elseif ( preg_match('/jugend/',$lc) || preg_match('/minis/',$lc) || preg_match('/ballschule/',$lc) || preg_match('/technik-athletik/',$lc) ) :
-        $prefix = '/mannschaften/jugend/';
-      else:
-        $prefix = '/';
-      endif;
-      
-      $url = get_the_post_thumbnail_by_slug($prefix.$lc,$size);    
-      $url = $url[0];
+      $lc = rtrim($lc);
+      $lc = str_replace(' ', '', $lc);
+      global $wpdb;
+      $id = $wpdb->get_var( $wpdb->prepare( "SELECT ID FROM $wpdb->posts WHERE post_name = %s AND post_type= 'page'", $lc ) );
+      if ($id)
+        $thumb = wp_get_attachment_image_src( get_post_thumbnail_id( $id ), $size );
+        if ($thumb[0])
+          return $thumb[0];
     endif;
   endif;
-  
-  /*
-  if ( $url == '' && $id ) :
-    $slug = the_slug( $id );
-    if ( $slug ) :
-    $url = '/wp-content/themes/sgbottwartal/img/logo.sg.'.$slug.'.png';
-    endif;
-  endif;
-  */
-  if ( $url == '' ) :
-    $url = '/wp-content/themes/sgbottwartal/img/sg.quadrat.svg';
-  endif;
-  return $url;
+
+  return '/wp-content/themes/sgbottwartal/img/sg.logo.quadrat.svg';
 }
 
 function sgb_human_time( $id ) {

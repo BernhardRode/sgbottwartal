@@ -67,4 +67,5 @@
     </div>
   </div>
 </div>
+<div class="bg"></div>
 <!-- Wrap the .navbar in .container to center it on the page and provide easy way to target it with .navbar-wrapper. -->
