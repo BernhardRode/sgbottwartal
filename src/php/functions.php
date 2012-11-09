@@ -235,7 +235,7 @@ if ( ! function_exists( 'sgb_comment' ) ) :
                 echo get_avatar( $comment, $avatar_size);
               ?>
               <cite class="fn"><?php echo get_comment_author(); ?></cite>
-              <time pubdate datetime="" class="pull-right"><?php sgb_human_time_comment(); ?></time>
+              <time pubdate datetime="" class="pull-right"><?php sgb_human_time($comment->ID); ?></time>
             </header>
             <section class="comment-content comment well well-small">
               <span class="reply pull-right btn">
