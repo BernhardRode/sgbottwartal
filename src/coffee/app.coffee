@@ -1,5 +1,4 @@
 $ = jQuery
 $ ->
-	$("a[rel=tooltip]").tooltip()
+	$('a[rel=tooltip]').tooltip()
 	$('#carousel').carousel()
-	console.log 'asd'

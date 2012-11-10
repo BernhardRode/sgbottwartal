@@ -12,11 +12,11 @@
   <div class="row">
     <div class="span4">
         <h3 class="muted">Neuigkeiten</h3>
-        <?php do_shortcode( '[neuigkeiten count="5"]' ); ?>
+        <?php do_shortcode( '[neuigkeiten count="10"]' ); ?>
     </div>
     <div class="span4">
         <h3 class="muted">Spielberichte</h3>
-        <?php do_shortcode( '[berichte count="5"]' ); ?>
+        <?php do_shortcode( '[berichte count="10"]' ); ?>
     </div>
     <div class="span4">
         <h3 class="muted">Kommentare</h3>
@@ -36,15 +36,15 @@
   <div class="container">
   <hr>
     <div class="row">
-      <div class="span2 hidden-phone hidden-tablet">
-        <embed src="/wp-content/themes/sgbottwartal/img/sg.svg" type="image/svg+xml"  width="100" height="110" />
+      <div class="span2">
+        <img src="/wp-content/themes/sgbottwartal/img/sg.logo.svg" class="sgb-footer-logo" />
       </div>
       <div class="span4">
         <ul class="unstyled">
           <li><h1><a class="brand" href="/">sg<span>bottwartal</span></a></h1></li>
           <li><h4 class="muted">mehr als ein Sportverein</h4></li>
           <li><a href="mailto:info@sg-bottwartal.de"><i class="icon-envelope"></i> info@sg-bottwartal.de</a></li>
-          <li><a href="https://maps.google.com/maps?q=Albert+Einstein+Strasse+20,+71717+Beilstein"><i class="icon-map-marker"></i>Albert-Einstein-Straße 20, 71717 Beilstein‎</a></li>
+          <li><a href="https://maps.google.com/maps?q=Albert+Einstein+Strasse+20,+71717+Beilstein"><i class="icon-map-marker"></i>Albert-Einstein-Straße 20 // 71717 Beilstein‎</a></li>
         </ul>
       </div>
       <div class="span2 hidden-phone">
@@ -76,29 +76,12 @@
         <p class="muted">&copy; 2010-<?php echo date('Y'); ?></p>
       </div>    
       <div class="span6">
-        <p class="muted"><i class="icon-heart"></i> powered by <a href="http://www.wordpress.org">wordpress</a>, <a href="http://twitter.github.com/bootstrap/index.html">bootstrap</a> &amp; <a href="http://fortawesome.github.com">font awesome</a> &middot; created by <a href="http://bernahrdrode.de">@ebbo</a></p>
-      </div>    
-    </div>
-    <div class="row">
-      <div class="span12 class="muted"">
-        <?php wp_footer(); ?>
+        <p class="muted">powered by <a href="http://www.wordpress.org">wordpress</a>, <a href="http://twitter.github.com/bootstrap/index.html">bootstrap</a> &amp; <a href="http://fortawesome.github.com">font awesome</a> with <i class="icon-heart"></i> by <a href="http://bernahrdrode.de">@ebbo</a></p>
       </div>    
     </div>
   </div>
 </footer>
-<div id="modal-gallery" class="modal modal-gallery hide fade" tabindex="-1">
-    <div class="modal-header">
-        <a class="close" data-dismiss="modal">&times;</a>
-        <h3 class="modal-title"></h3>
-    </div>
-    <div class="modal-body"><div class="modal-image"></div></div>
-    <div class="modal-footer">
-        <a class="btn btn-primary modal-next">Next <i class="icon-arrow-right icon-white"></i></a>
-        <a class="btn btn-info modal-prev"><i class="icon-arrow-left icon-white"></i> Previous</a>
-        <a class="btn btn-success modal-play modal-slideshow" data-slideshow="5000"><i class="icon-play icon-white"></i> Slideshow</a>
-        <a class="btn modal-download" target="_blank"><i class="icon-download"></i> Download</a>
-    </div>
-</div>
+<?php wp_footer(); ?>
 <script type="text/javascript">
 
   var _gaq = _gaq || [];

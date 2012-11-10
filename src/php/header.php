@@ -23,7 +23,7 @@
   <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>" />
   <?php wp_head(); ?>
   <!-- Fav and touch icons -->
-  <link rel="shortcut icon" href="/wp-content/themes/sgbottwartal/favicon.ico">
+  <link rel="shortcut icon" href="/wp-content/themes/sgbottwartal/img/sg.logo.quadrat.svg">
   <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/wp-content/themes/sgbottwartal/apple-touch-icon-144-precomposed.png">
   <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/wp-content/themes/sgbottwartal/apple-touch-icon-114-precomposed.png">
   <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/wp-content/themes/sgbottwartal/apple-touch-icon-72-precomposed.png">

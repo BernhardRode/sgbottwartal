@@ -73,7 +73,7 @@ get_header(); ?>
           <?php while ( have_posts() ) : the_post(); ?>
         <div class="span8 media">        
           <?php 
-            $url = sgb_thumbnail('circle-thumb',$post->ID);
+            $url = sgb_thumbnail('post-thumbnail',$post->ID);
           ?> 
           <a class="span2 pull-left" href="<?php the_permalink(); ?>">
             <img class="media-object img-circle img-shadow img-svg-120" src="<?php echo $url; ?>">
