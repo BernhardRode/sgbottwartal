@@ -1,5 +1,5 @@
 <?php
-include '_phpquery.php';
+include('hvwtab.php');
 
 function pretty_json($json) {
   $result      = '';
@@ -318,6 +318,7 @@ function hvw_weekly_overview() {
 	  'hvwsubmit' => 'dw',
 	  'nm' => 0
 	);
+	include 'phpQuery-onefile.php';
 	$html = get_page_as_string($url,$fields);
 	//output_string_to_file($html,$file);
 	//$content = file_get_contents($file);
@@ -388,7 +389,8 @@ date_default_timezone_set( 'Europe/Berlin' );
 $data = hvw_weekly_overview();
 output_json_to_file($data,'../../data/overview.json');
 $data = hvw_csv_load();
-output_json_to_file($data,'../../data/spielplan.json');
+output_json_to_file($data,'../../data/calendar.json');
 $calendar = create_calendar('SG Bottwartal',$data);
-output_string_to_file($calendar,'../../data/spielplan.ics');
+output_string_to_file($calendar,'../../data/calendar.ics');
+
 ?>
