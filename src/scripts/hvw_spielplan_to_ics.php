@@ -250,7 +250,7 @@ function create_calendar( $name, $data ) {
 		$url = 'http://sg-bottwartal.de';
 
 		//Create Events
-		$date = new DateTime( $event['datetime']['date'] );
+		$date = $event['datetime'];
 		$dtstart = $date;
 		$dtend = $date;
 		$dtend = $date->modify('+2 hours');
@@ -285,7 +285,7 @@ function clean_umlauts($string) {
 }
 
 
-function hvw_csv_to_ics() {
+function hvw_csv_load() {
 	//set POST variables
 	$calendar_name = 'SG Bottwartal';
 	$file = 'spielplan.json';
@@ -301,12 +301,7 @@ function hvw_csv_to_ics() {
 		'hvwsubmit' => 'dw',
 		'nm' => 0
 	);
-
-	$data = get_hvw_data($url, $fields);
-	output_json_to_file($data,$file);
-	$data = read_json_from_file($file);
-	$calendar = create_calendar($calendar_name,$data);
-	output_string_to_file($calendar,$ics_file);
+	return get_hvw_data($url, $fields);
 }
 
 
@@ -324,9 +319,9 @@ function hvw_weekly_overview() {
 	  'nm' => 0
 	);
 	include 'phpQuery-onefile.php';
-	//$html = get_page_as_string($url,$fields);
+	$html = get_page_as_string($url,$fields);
 	//output_string_to_file($html,$file);
-	$content = file_get_contents($file);
+	//$content = file_get_contents($file);
 	phpQuery::newDocument($content);
 	$tr = array();
 	//$gametable = pq('.gametable > tr > td');
@@ -392,6 +387,10 @@ function hvw_weekly_overview() {
 
 date_default_timezone_set( 'Europe/Berlin' );
 $data = hvw_weekly_overview();
-output_json_to_file($data,'games.json');
-//print_r($data);
+output_json_to_file($data,'../../data/overview.json');
+$data = hvw_csv_load();
+output_json_to_file($data,'../../data/calendar.json');
+$calendar = create_calendar('SG Bottwartal',$data);
+output_string_to_file($calendar,'../../data/calendar.ics');
+
 ?>
