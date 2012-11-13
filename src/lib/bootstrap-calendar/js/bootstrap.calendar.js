@@ -33,24 +33,26 @@
 
         defaults = {
             weekStart: 1,
-            msg_days: ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"],
-            msg_months: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
-            msg_today: 'Today',
-            msg_events_header: 'Events Today',
+            msg_days: ["So", "Mo", "Di", "Mi", "Do", "Fr", "Sa"],
+            msg_months: ["Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember"],
+            msg_today: 'Heute',
+            msg_events_header: 'Termine:',
             events: null
         },
 
         template =  ''+
+                        '<div class="well">'+
                         '<h1 class="year"></h1>'+
-                        '<h3 class="month"></h3>'+
-                        '<table class="calendar" id="calendar">'+
+                        '<h2 class="month pull-right"></h2>'+
+                        '</div>'+
+                        '<table class="calendar table" id="calendar">'+
+                            '<thead class="calendar-navigation">'+
+                                '<th colspan="3" class="sel" id="last"><div class="arrow btn btn-large"><i class="icon-arrow-left"></i></div></th>'+
+                                '<th colspan="2" class="sel"></th>'+
+                                '<th colspan="2" class="sel" id="next"><div class="arrow btn btn-large"><i class="icon-arrow-right"></i></div></th>'+
+                            '</thead>'+
                             '<thead class="calendar-header"></thead>'+
                             '<tbody class="calendar-body"></tbody>'+
-                            '<tfoot>'+
-                                '<th colspan="2" class="sel" id="last"><div class="arrow"><i class="icon-arrow-left"></i></div></th>'+
-                                '<th colspan="3" class="sel" id="current">' +defaults.msg_today+ '</th>'+
-                                '<th colspan="2" class="sel" id="next"><div class="arrow"><i class="icon-arrow-right"></i></div></th>'+
-                            '</tfoot>'+
                         '</table>'+
                     '',
 
@@ -112,6 +114,7 @@
     };
 
     Plugin.prototype.renderEvents = function (events, elem) {
+        console.log(this);
         var live_date = this.live_date;
         var msg_evnts_hdr = this.msg_events_hdr;
         for(var i=1; i<=daysInMonth[live_date.getMonth()]; i++){

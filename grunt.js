@@ -132,6 +132,8 @@ module.exports = function (grunt) {
     },
     watch: {
       files: [
+        '<%= pkg.src %>/lib/**/*.js',
+        '<%= pkg.src %>/lib/**/*.less',
         '<%= pkg.src %>/coffee/**/*.coffee',
         '<%= pkg.src %>/less/**/*.less',
         '<%= pkg.src %>/php/**/*.php',

@@ -466,7 +466,7 @@ function sgb_fotos( $args ) {
   );
   $attachments = get_posts( $args );
   ?>
-<div id="main">
+<div id="main" style="display:none;">
   <div class="fotos">
     <div class="fotos-slides">
   <?php
@@ -506,7 +506,12 @@ function sgb_fotos( $args ) {
 </div>
   <?php
   return $output;  
-}  
+}
+
+function sgb_kalender( $args ) {
+  $output = '<div id="calendar" class="calendar"></div>';
+  return $output;
+} 
 
 function register_shortcodes(){
   add_shortcode('sponsoren', 'sgb_sponsoren'); 
@@ -514,6 +519,7 @@ function register_shortcodes(){
   add_shortcode('neuigkeiten', 'sgb_neuigkeiten'); 
   add_shortcode('berichte', 'sgb_berichte'); 
   add_shortcode('kommentare', 'sgb_kommentare'); 
+  add_shortcode('kalender', 'sgb_kalender'); 
 }
 add_action( 'init', 'register_shortcodes');
 
