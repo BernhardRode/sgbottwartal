@@ -44,7 +44,7 @@ module.exports = function (grunt) {
       }
     },
     copy: {
-      dist: {
+      application: {
         files: {
           '<%= pkg.dist %>/':'<%= pkg.src %>/php/*.php',
           '<%= pkg.dist %>/lib/':'<%= pkg.src %>/lib/**/*.js',
@@ -56,7 +56,15 @@ module.exports = function (grunt) {
         options: {
           flatten:true
         }
-      }
+      },
+      plugins: {
+        files: {
+          '<%= pkg.dist %>/../../plugins/json-api/':'<%= pkg.src %>/plugins/json-api/**',
+        },
+        options: {
+          flatten:false
+        }
+      }      
     },
     jshint: {
       options: {
@@ -137,6 +145,7 @@ module.exports = function (grunt) {
         '<%= pkg.src %>/coffee/**/*.coffee',
         '<%= pkg.src %>/less/**/*.less',
         '<%= pkg.src %>/php/**/*.php',
+        '<%= pkg.src %>/plugins/**/*',
         '<%= pkg.test %>/unit/**/*.coffee',
       ],
       tasks: 'build reload'
