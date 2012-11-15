@@ -31,16 +31,13 @@ get_header(); ?>
               <?php $counter = 0; ?>
               <?php if ( $child_child_pages ) : foreach ( $child_child_pages as $child_child_page ) : setup_postdata( $child_child_page ); ?>
                 <?php $counter++; ?>
-                <div class="span3 <?php if ($counter == 2) echo 'offset1'; ?>">
+                <div class="span4 <?php if ($counter == 2) echo 'offset1'; ?>">
                   <?php $url = sgb_thumbnail('page-thumb',$child_child_page->ID); ?>
-                  <a class="" href="#">
+                  <a class="" href="<?php echo get_permalink( $child_child_page->ID ); ?>">
                     <img class="img-polaroid img-max-height-200" src="<?php echo $url; ?>">
                   </a>
-                </div>
-                <div class="span1">
-                  <div class="media-body">
-                    <h5 class="media-heading"><?php echo $child_child_page->post_title; ?></h5>
-                  </div>
+                  <h3 class="muted"><?php echo $child_child_page->post_title; ?></h3>
+                  <!--<h3 class="muted"><?php echo $child_child_page->post_title; ?></h3>-->
                 </div>
                 <?php 
                   if($counter == 2) {
@@ -50,8 +47,9 @@ get_header(); ?>
                 ?>
               <?php endforeach; endif; ?>
               </div>
-            </div>  
-          </div>
+            </div> 
+          </div> 
+          <br/>
         </section>
       <?php endforeach; endif; ?>  
     </div>
