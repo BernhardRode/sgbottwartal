@@ -48,6 +48,7 @@
               #$lat = $result["results"][0]["geometry"]["location"]["lat"];
               #$lng = <?php echo $result["results"][0]["geometry"]["location"]["lng"];
               ?>
+                <hr/>
                 <div id="map" class="well" data-address="<?php echo urlencode($address); ?>" style="display:none;"></div>
                 <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&language=de"></script>            
               <?php
