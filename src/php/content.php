@@ -12,11 +12,8 @@
       <div class="span3">
         <?php 
           $thumb = sgb_thumbnail('page-thumb');
-          $large = sgb_thumbnail('large');
         ?>
-        <!--<a href="<?php echo $large; ?>">-->
-          <img src="<?php echo $thumb; ?>" alt="<?php echo the_title(); ?>" class="img-polaroid">
-        <!--</a>-->
+        <img src="<?php echo $thumb; ?>" alt="<?php echo the_title(); ?>" class="img-polaroid">
         <div class="hidden-phone">
           <br/>
           <?php do_shortcode( '[sponsoren count="3" span="1"]' ); ?>
