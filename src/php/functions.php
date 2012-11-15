@@ -431,7 +431,7 @@ function sgb_kommentare( $args ) {
 
 function sgb_neuigkeiten( $args ) {
   if(empty($args['count'])) $args['count'] = 5;
-  $query = array( 'numberposts' => $args['count'], 'category' => 8 );
+  $query = array( 'numberposts' => $args['count'], 'category' => 3 );
   $neuigkeiten = get_posts( $query );
   echo '<ul class="unstyled sgb-ul-style">';
   foreach($neuigkeiten as $neuigkeit) :
@@ -445,7 +445,7 @@ function sgb_neuigkeiten( $args ) {
 
 function sgb_berichte( $args ) {
   if(empty($args['count'])) $args['count'] = 5;
-  $query = array( 'numberposts' => $args['count'], 'category' => 4 );
+  $query = array( 'numberposts' => $args['count'], 'category' => 1 );
   $berichte = get_posts( $query );
   echo '<ul class="unstyled sgb-ul-style">';
   foreach($berichte as $bericht) :
