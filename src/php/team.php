@@ -32,7 +32,7 @@ get_header(); ?>
 				<div class="span8">
           <?php $url = sgb_thumbnail('large',$child_child_page->ID); ?>
           <img class="img-polaroid" src="<?php echo $url; ?>">
-					<hr/>
+					<hr>
 	        <?php do_shortcode( '[sponsoren count="4" span="2"]' ); ?>
 				</div>
 			<?php endwhile; // end of the loop. ?>
