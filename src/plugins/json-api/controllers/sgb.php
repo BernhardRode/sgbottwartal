@@ -353,8 +353,8 @@ class JSON_API_SGB_Controller {
   }
 
   public function update_events() {
-    $data = hvw_weekly_overview();
-
+    $data = hvw_csv_load();
+    $calendar = create_calendar('SG Bottwartal',$data);
 
     return $data;
   }
