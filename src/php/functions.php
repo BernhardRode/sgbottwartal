@@ -238,7 +238,7 @@ if ( ! function_exists( 'sgb_comment' ) ) :
                 echo get_avatar( $comment, $avatar_size);
               ?>
               <cite class="fn"><?php echo get_comment_author(); ?></cite>
-              <time pubdate datetime="" class="pull-right"><?php sgb_human_time($comment->ID); ?></time>
+              <time pubdate datetime="" class="pull-right"><?php comment_time('d,M h:i'); ?> Uhr</time>
             </header>
             <section class="comment-content comment well well-small">
               <span class="reply pull-right btn">
@@ -390,6 +390,7 @@ function sgb_human_time( $id ) {
   } else {
     echo get_the_time('H:i',$id) . ' Uhr';
   };
+  //echo get_the_time('H:i',$id) . ' Uhr';
 }
 
 function sgb_sponsoren( $args ) {
@@ -403,7 +404,7 @@ function sgb_sponsoren( $args ) {
     if(empty($url_external['url'])) $url_external['url'] = '';
     $output .= '<div class="span'.$args['span'].'">';
     if( $url_external ) $output .= '<a href="'.$url_external.'" target="_blank">';
-    $output .= '<img src="'.$url_image.'" class="img-polaroid img-grayscale">';
+    $output .= '<img src="'.$url_image.'" class="img-polaroid img-grayscale" title="'.$sponsor->post_title.'">';
     if( $url_external ) $output .= '</a>';
     $output .= '</div>';
   endforeach;
