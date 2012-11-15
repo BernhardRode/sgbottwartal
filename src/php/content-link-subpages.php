@@ -32,9 +32,9 @@ get_header(); ?>
               <?php if ( $child_child_pages ) : foreach ( $child_child_pages as $child_child_page ) : setup_postdata( $child_child_page ); ?>
                 <?php $counter++; ?>
                 <div class="span3">
-                  <?php $url = sgb_thumbnail('circle-thumb',$child_child_page->ID); ?>
+                  <?php $url = sgb_thumbnail('page-thumb',$child_child_page->ID); ?>
                   <a class="" href="#">
-                    <img class="media-object img-max-height-200" src="<?php echo $url; ?>">
+                    <img class="img-polaroid img-max-height-200" src="<?php echo $url; ?>">
                   </a>
                 </div>
                 <div class="span1">
