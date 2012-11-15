@@ -353,10 +353,10 @@ class JSON_API_SGB_Controller {
   }
 
   public function update_events() {
+    $data = hvw_weekly_overview();
 
 
-
-    return true;
+    return $data;
   }
 }
 
