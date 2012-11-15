@@ -31,7 +31,7 @@ get_header(); ?>
               <?php $counter = 0; ?>
               <?php if ( $child_child_pages ) : foreach ( $child_child_pages as $child_child_page ) : setup_postdata( $child_child_page ); ?>
                 <?php $counter++; ?>
-                <div class="span3">
+                <div class="span3 <?php if ($counter == 2) echo 'offset1'; ?>">
                   <?php $url = sgb_thumbnail('page-thumb',$child_child_page->ID); ?>
                   <a class="" href="#">
                     <img class="img-polaroid img-max-height-200" src="<?php echo $url; ?>">
@@ -44,7 +44,7 @@ get_header(); ?>
                 </div>
                 <?php 
                   if($counter == 2) {
-                    echo '</div><div class="row">';
+                    echo '</div><br/><div class="row">';
                     $counter = 0;
                   }
                 ?>
