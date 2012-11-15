@@ -20,7 +20,7 @@ get_header(); ?>
 	<div id="content" role="main">
 		<div class="row">
 			<?php while ( have_posts() ) : the_post(); ?>
-				<div class="span3">
+				<div class="span4">
 					<?php the_content(); ?>
 	        <div class="hidden-phone">
 	          <br/>
@@ -35,7 +35,7 @@ get_header(); ?>
 	          <?php edit_post_link( __( '<i class="icon-edit"></i> Bearbeiten', 'sgb' ), '<br/><span class="edit-link">', '</span>' ); ?>
 	        </div>
 				</div>
-				<div class="span9">
+				<div class="span8">
           <?php $url = sgb_thumbnail('large',$child_child_page->ID); ?>
           <img class="img-polaroid" src="<?php echo $url; ?>">
 				</div>
