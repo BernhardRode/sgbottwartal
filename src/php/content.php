@@ -13,7 +13,7 @@
         <?php 
           $thumb = sgb_thumbnail('page-thumb');
         ?>
-        <img src="<?php echo $thumb; ?>" alt="<?php echo the_title(); ?>" class="img-polaroid">
+        <img src="<?php echo $thumb; ?>" alt="<?php echo the_title(); ?>" class="img-polaroid img-max-height-200">
         <div class="hidden-phone">
           <br/>
           <?php do_shortcode( '[sponsoren count="3" span="1"]' ); ?>
