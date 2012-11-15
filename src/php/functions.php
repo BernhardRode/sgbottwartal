@@ -400,13 +400,8 @@ function sgb_sponsoren( $args ) {
   $output = '<div class="row">';
   foreach($sponsoren as $sponsor) :
     $url_image = wp_get_attachment_url( get_post_thumbnail_id( $sponsor->ID ) );
-    $url_external = get_post_meta( $sponsor->ID, meta, TRUE );
-    if(empty($url_external['url'])) $url_external['url'] = '';
-    $output .= '<div class="span'.$args['span'].'">';
-    if( $url_external ) $output .= '<a href="'.$url_external.'" target="_blank">';
-    $output .= '<img src="'.$url_image.'" class="img-polaroid img-grayscale" title="'.$sponsor->post_title.'">';
-    if( $url_external ) $output .= '</a>';
-    $output .= '</div>';
+    $url = get_permalink($sponsor->ID);
+    $output .= '<div class="span'.$args['span'].'"><a href="'.$url.'" target="_blank"><img src="'.$url_image.'" class="img-polaroid img-grayscale" title="'.$sponsor->post_title.'"></a></div>';
   endforeach;
   $output .= '</div>';
   echo $output;  
@@ -539,9 +534,33 @@ function sgb_meta_boxes() {
     'core'
   );
   add_meta_box(
-    'sponsoren_meta',
+    'sponsoren_meta_url',
     __( 'Webseite', 'sgb' ),
     'url_meta_box',
+    'sponsoren',
+    'side',
+    'core'
+  );
+  add_meta_box(
+    'sponsoren_meta_adresse',
+    __( 'Adresse', 'sgb' ),
+    'address_meta_box',
+    'sponsoren',
+    'side',
+    'core'
+  );
+  add_meta_box(
+    'sponsoren_meta_email',
+    __( 'E-Mail', 'sgb' ),
+    'email_meta_box',
+    'sponsoren',
+    'side',
+    'core'
+  );
+  add_meta_box(
+    'sponsoren_meta_telefon',
+    __( 'Telefon', 'sgb' ),
+    'phone_meta_box',
     'sponsoren',
     'side',
     'core'
@@ -584,6 +603,32 @@ function url_meta_box( $post ) {
   echo '</label> ';
   echo '<input id="meta[url]" type="url" name="meta[url]" value="';
   if(!empty($meta['url'])) echo $meta['url'];
+  echo '" size="25"/>';
+}
+
+function phone_meta_box( $post ) {
+  global $post;
+  $meta = get_post_meta($post->ID,'meta',TRUE);
+
+  wp_nonce_field( plugin_basename( __FILE__ ), 'sgb_noncename' );
+  echo '<label for="meta[phone]">';
+  _e("Telefon", 'sgb' );
+  echo '</label> ';
+  echo '<input id="meta[phone]" type="phone" name="meta[phone]" value="';
+  if(!empty($meta['phone'])) echo $meta['phone'];
+  echo '" size="25"/>';
+}
+
+function email_meta_box( $post ) {
+  global $post;
+  $meta = get_post_meta($post->ID,'meta',TRUE);
+
+  wp_nonce_field( plugin_basename( __FILE__ ), 'sgb_noncename' );
+  echo '<label for="meta[email]">';
+  _e("E-Mail", 'sgb' );
+  echo '</label> ';
+  echo '<input id="meta[email]" type="email" name="meta[email]" value="';
+  if(!empty($meta['email'])) echo $meta['email'];
   echo '" size="25"/>';
 }
 
@@ -710,7 +755,7 @@ function sgb_custom_post_types() {
     'not_found_in_trash' => __('Keine Sponsoren im Papierkorb'),
     'parent_item_colon' => ''
   );
-  $supports = array('title', 'thumbnail');
+  $supports = array('title', 'thumbnail', 'excerpt');
 
   register_post_type( 'sponsoren',
     array(
