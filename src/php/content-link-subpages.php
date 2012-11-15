@@ -31,16 +31,15 @@ get_header(); ?>
               <?php $counter = 0; ?>
               <?php if ( $child_child_pages ) : foreach ( $child_child_pages as $child_child_page ) : setup_postdata( $child_child_page ); ?>
                 <?php $counter++; ?>
-                <div class="span2">
+                <div class="span3">
                   <?php $url = sgb_thumbnail('circle-thumb',$child_child_page->ID); ?>
                   <a class="" href="#">
                     <img class="media-object img-max-height-200" src="<?php echo $url; ?>">
                   </a>
                 </div>
-                <div class="span2">
+                <div class="span1">
                   <div class="media-body">
-                    <h4 class="media-heading"><?php echo $child_child_page->post_title; ?></h4>
-                    <p>Lorem ipsum</p>
+                    <h5 class="media-heading"><?php echo $child_child_page->post_title; ?></h5>
                   </div>
                 </div>
                 <?php 
