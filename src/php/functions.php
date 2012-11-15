@@ -415,8 +415,7 @@ function sgb_kommentare( $args ) {
   foreach($comments as $comment) :
     $avatar_size = 30;
     list($short) = explode("\n",wordwrap($comment->comment_content ,60));
-    echo '<li><a href="'.get_comment_link().'">';
-    echo $comment->post_ID;
+    echo '<li><a href="'.get_permalink( $comment->comment_post_ID ).'">';
     echo get_avatar( $comment, $avatar_size ).' <strong>'.$comment->comment_author . ':</strong></a><span class="pull-right muted">'.sgb_nice_time($comment->comment_date).'</span>';
     echo '<blockquote>'.$short.'...</blockquote>';
     echo '</li>';
