@@ -24,12 +24,6 @@ get_header(); ?>
 					<?php the_content(); ?>
 	        <div class="hidden-phone">
 	          <br/>
-	          <?php do_shortcode( '[sponsoren count="3" span="1"]' ); ?>
-	          <br/>
-	          <?php do_shortcode( '[sponsoren count="3" span="1"]' ); ?>
-	          <br/>
-	          <?php do_shortcode( '[sponsoren count="3" span="1"]' ); ?>
-	          <br/>
 	          <?php sgb_entry_meta(); ?> 
 	          <br/>
 	          <?php edit_post_link( __( '<i class="icon-edit"></i> Bearbeiten', 'sgb' ), '<br/><span class="edit-link">', '</span>' ); ?>
@@ -38,6 +32,8 @@ get_header(); ?>
 				<div class="span8">
           <?php $url = sgb_thumbnail('large',$child_child_page->ID); ?>
           <img class="img-polaroid" src="<?php echo $url; ?>">
+					<br/>
+	        <?php do_shortcode( '[sponsoren count="4" span="2"]' ); ?>
 				</div>
 			<?php endwhile; // end of the loop. ?>
 		</div>
