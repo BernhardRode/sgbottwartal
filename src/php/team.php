@@ -22,12 +22,6 @@ get_header(); ?>
 			<?php while ( have_posts() ) : the_post(); ?>
 				<div class="span4">
 					<?php the_content(); ?>
-	        <div class="hidden-phone">
-	          <br/>
-	          <?php sgb_entry_meta(); ?> 
-	          <br/>
-	          <?php edit_post_link( __( '<i class="icon-edit"></i> Bearbeiten', 'sgb' ), '<br/><span class="edit-link">', '</span>' ); ?>
-	        </div>
 				</div>
 				<div class="span8">
           <?php $url = sgb_thumbnail('large',$child_child_page->ID); ?>
