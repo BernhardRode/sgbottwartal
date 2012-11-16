@@ -23,13 +23,13 @@ function sgb_setup() {
   add_theme_support( 'custom-background', array( 'default-color' => 'e6e6e6') );
   // This theme uses post thumbnails
   add_theme_support( 'post-thumbnails' );
-  set_post_thumbnail_size( 200, 200, true ); // Normal post thumbnails
+  set_post_thumbnail_size( 120, 120, true ); // Normal post thumbnails
   add_image_size( 'featured-thumb', 1024, 9999 ); //300 pixels wide (and unlimited height)
   add_image_size( 'page-thumb', 220, 9999 ); //300 pixels wide (and unlimited height)
   add_image_size( 'circle-thumb', 100, 100, true ); //(cropped)
   add_image_size( 'circle-mini', 30, 30, true ); //(cropped)
-  add_image_size( 'sponsor-large', 200, 9999 );
-  add_image_size( 'sponsor-small', 90, 9999 );
+  add_image_size( 'sponsor-large', 150, 9999 );
+  add_image_size( 'sponsor-small', 70, 9999 );
   //Disable the admin bar
   //show_admin_bar(false);
 }
@@ -166,7 +166,7 @@ function change_admin_logo() {
 add_action('admin_head', 'change_admin_logo');
 
 function wp_admin_logo_change_target_url($url) {
-  return 'http://sgbottwartal.de';
+  return 'http://sg-bottwartal.de';
 }
 add_filter( 'login_headerurl', 'wp_admin_logo_change_target_url' );
 /**
