@@ -15,9 +15,9 @@ $ ->
       url: '/api/sgb/get_events'
     loading: (bool) -> if bool then $('#loading').show() else $('#loading').hide()
 
-  CFInstall.check
-    mode: "overlay"
-    destination: "http://sg-bottwartal.de"
+  #CFInstall.check
+  #  mode: "overlay"
+  #  destination: "http://sg-bottwartal.de"
 
   if ($('#map').length > 0)
     $('#map').fadeIn()
