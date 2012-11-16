@@ -28,6 +28,8 @@ function sgb_setup() {
   add_image_size( 'page-thumb', 220, 9999 ); //300 pixels wide (and unlimited height)
   add_image_size( 'circle-thumb', 100, 100, true ); //(cropped)
   add_image_size( 'circle-mini', 30, 30, true ); //(cropped)
+  add_image_size( 'sponsor-large', 150, 108 );
+  add_image_size( 'sponsor-small', 70, 52 );
   //Disable the admin bar
   //show_admin_bar(false);
 }
@@ -396,11 +398,14 @@ function sgb_human_time( $id ) {
 
 function sgb_sponsoren( $args ) {
   if(empty($args['count'])) $args['count'] = 1;
+
   $query = array( 'post_type' => 'sponsoren', 'posts_per_page' => $args['count'], 'orderby' => 'rand' );
+  $size = 'sponsor-large';
+  if ($args['span'] == 1 ) $size = 'sponsor-small';
   $sponsoren = get_posts( $query );
   $output = '<div class="row">';
   foreach($sponsoren as $sponsor) :
-    $url_image = wp_get_attachment_url( get_post_thumbnail_id( $sponsor->ID ) );
+    $url_image = sgb_thumbnail( $size, $sponsor->ID );
     $url = get_permalink($sponsor->ID);
     $output .= '<div class="span'.$args['span'].'"><a href="'.$url.'" target="_blank"><img src="'.$url_image.'" class="img-polaroid img-grayscale" title="'.$sponsor->post_title.'"></a></div>';
   endforeach;

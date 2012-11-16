@@ -59,7 +59,7 @@ module.exports = function (grunt) {
       },
       plugins: {
         files: {
-          '<%= pkg.dist %>/../../plugins/json-api/':'<%= pkg.src %>/plugins/json-api/**',
+          '<%= pkg.dist %>/../../plugins/':'<%= pkg.src %>/plugins/**/*',
         },
         options: {
           flatten:false
