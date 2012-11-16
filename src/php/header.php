@@ -53,10 +53,10 @@
   </div><!-- /.container -->
   <div class="container hidden-phone header">
     <div class="row">
-      <div class="span6">
+      <div class="span9">
           <h3 class="muted"><?php is_home() ? bloginfo('description') : wp_title(''); ?></h3>
       </div>
-      <div class="span6">
+      <div class="span3">
         <h3 class="pull-right">
           <a href="mailto:info@sg-bottwartal.de" class="muted" rel="tooltip" data-placement="bottom" data-original-title="E-Mail"><i class="icon-envelope-alt"></i></a> 
           <a href="/gemeinschaft/gastebuch" class="muted" rel="tooltip" data-placement="bottom" data-original-title="Gästebuch"><i class="icon-comments"></i></a> 
