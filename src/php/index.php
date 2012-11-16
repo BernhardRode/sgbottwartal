@@ -32,7 +32,7 @@ get_header(); ?>
               ?>
               <?php $count = $count+1; ?>
               <?php 
-                $url = sgb_thumbnail('large',$post->ID);
+                $url = sgb_thumbnail('medium',$post->ID);
               ?> 
               <div class="item <?php echo $class; ?>">  
                 <a href="<?php echo the_permalink(); ?>">              
