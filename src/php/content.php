@@ -15,17 +15,6 @@
         ?>
         <img src="<?php echo $thumb; ?>" alt="<?php echo the_title(); ?>" class="img-polaroid img-max-height-200">
 
-        <div class="row">
-          <div class="span1">
-            <?php sfc_like_button(); ?>
-          </div>
-          <div class="span1">
-            <?php sgc_plusone_button(); ?>
-          </div>
-          <div class="span1">
-            <?php sgc_plusone_button(); ?>
-          </div>
-        </div>
         <div class="hidden-phone">
           <br/>
           <?php do_shortcode( '[sponsoren count="3" span="1"]' ); ?>
@@ -37,6 +26,10 @@
           <?php sgb_entry_meta(); ?> 
           <br/>
           <?php edit_post_link( __( '<i class="icon-edit"></i> Bearbeiten', 'sgb' ), '<br/><span class="edit-link">', '</span>' ); ?>
+          <br/>
+          <?php sfc_like_button(); ?>
+          <br/>
+          <?php sgc_plusone_button(); ?>
         </div>
       </div>
       <div class="span9">
