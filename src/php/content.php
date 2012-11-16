@@ -22,8 +22,6 @@
           <br/>
           <?php do_shortcode( '[sponsoren count="3" span="1"]' ); ?>
           <br/>
-          <?php sgc_plusone_button(); ?>
-          <br/>
           <?php sgb_entry_meta(); ?> 
           <br/>
           <?php edit_post_link( __( '<i class="icon-edit"></i> Bearbeiten', 'sgb' ), '<br/><span class="edit-link">', '</span>' ); ?>
@@ -31,6 +29,18 @@
       </div>
       <div class="span9">
         <?php the_content( __( 'Continue reading <span class="meta-nav">&rarr;</span>', 'sgb' ) ); ?>
+
+          <div class="row">
+            <div class="span3">
+              <?php sgc_plusone_button(); ?>
+            </div>
+            <div class="span3">
+              <?php sgc_plusone_button(); ?>
+            </div>
+            <div class="span3">
+              <?php sgc_plusone_button(); ?>
+            </div>
+          </div>
       </div><!-- .entry-content -->
     </div>
 </div>
