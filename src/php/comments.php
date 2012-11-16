@@ -15,7 +15,7 @@
 <div class="container">
 
 	<div class="row">
-		<div class="offset3 span9">
+		<div class="span9">
 
 			<?php
 				echo '<a name="comment-form"></a>';
@@ -44,12 +44,12 @@
 		</div>
 	</div>
 	<div class="row">
-		<div class="offset3 span9">
+		<div class="span9">
 			<h2><i class="icon-comment"></i> Kommentare</h2>
 		</div>
 	</div>
 	<div class="row">
-		<div class="offset3 span9">
+		<div class="span9">
 			<div id="comments" class="comments-area">
 			<?php // You can start editing here -- including this comment! ?>
 			<?php if ( have_comments() ) : ?>
