@@ -56,11 +56,6 @@ get_header(); ?>
       </div><!-- /.carousel -->
     </div>
   </div>
-  <div class="row hidden-phone">
-    <div class="span12">
-      <?php do_shortcode( '[sponsoren count="6" span="2"]' ); ?>
-    </div>
-  </div>  
   <hr class="hidden-phone">
   <div class="row">
     <div class="span8">
@@ -89,6 +84,8 @@ get_header(); ?>
       </div>
     </div>
     <div class="span4 hidden-phone">
+      <?php echo do_shortcode( '[sponsoren id="5708,5783" span="2"]' ); ?>
+      <br/>
       <?php get_sidebar(); ?>
     </div>
   </div>

@@ -22,15 +22,31 @@ get_header(); ?>
 			<?php while ( have_posts() ) : the_post(); ?>
 				<div class="span4">
 					<?php the_content(); ?>
+      		<?php echo do_shortcode( '[sponsoren id="5708,5783" span="2"]' ); ?>
+	        <div class="hidden-phone">
+	          <br/>
+	          <?php do_shortcode( '[sponsoren count="3" span="1"]' ); ?>
+	          <br/>
+	          <?php do_shortcode( '[sponsoren count="3" span="1"]' ); ?>
+	          <br/>
+	          <?php do_shortcode( '[sponsoren count="3" span="1"]' ); ?>
+	          <br/>
+	          <?php sgb_entry_meta(); ?> 
+	          <br/>
+	          <?php edit_post_link( __( '<i class="icon-edit"></i> Bearbeiten', 'sgb' ), '<br/><span class="edit-link">', '</span>' ); ?>
+	        </div>
 				</div>
 				<div class="span8">
           <?php $url = sgb_thumbnail('large',$child_child_page->ID); ?>
           <img class="img-polaroid" src="<?php echo $url; ?>">
-					<hr>
-	        <?php do_shortcode( '[sponsoren count="4" span="2"]' ); ?>
 				</div>
 			<?php endwhile; // end of the loop. ?>
 		</div>
+	  <div class="row hidden-phone">
+	    <div class="span12">
+	      <?php do_shortcode( '[sponsoren count="6" span="2"]' ); ?>
+	    </div>
+	  </div>  
 		<div class="row">
 			<div class="span12">
       			<?php echo do_shortcode( '[fotos]' ); ?>

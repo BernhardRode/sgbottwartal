@@ -400,14 +400,26 @@ function sgb_sponsoren( $args ) {
   if(empty($args['count'])) $args['count'] = 1;
 
   $query = array( 'post_type' => 'sponsoren', 'posts_per_page' => $args['count'], 'orderby' => 'rand' );
-  $size = 'sponsor-large';
-  if ($args['span'] == 1 ) $size = 'sponsor-small';
+  if(!empty($args['id']) || !empty($args['tag'])  ) $query = array( 'post_type' => 'sponsoren', 'orderby' => 'rand' );
+  
+  $size = 'sponsor-large'; 
+  if ($args['span'] <= 1 ) $size = 'sponsor-small';
+  if ($args['span'] >= 4 ) $size = 'medium';
   $sponsoren = get_posts( $query );
   $output = '<div class="row">';
   foreach($sponsoren as $sponsor) :
     $url_image = sgb_thumbnail( $size, $sponsor->ID );
     $url = get_permalink($sponsor->ID);
-    $output .= '<div class="span'.$args['span'].'"><a href="'.$url.'" target="_blank"><img src="'.$url_image.'" class="img-polaroid img-grayscale" title="'.$sponsor->post_title.'"></a></div>';
+    if(!empty($args['id'])) {
+      if ( in_array($sponsor->ID, explode(',',$args['id']) ) ) $output .= '<div class="span'.$args['span'].'"><a href="'.$url.'" target="_blank"><img src="'.$url_image.'" class="img-polaroid img-grayscale" title="'.$sponsor->post_title.'"></a></div>';  
+    } elseif ( !empty($args['tag']) ) {
+      $taxonomies = wp_get_post_terms( $sponsor->ID, 'sponsoren_kategorie' );
+      foreach ( $taxonomies as $taxonomy) {
+        if ( $taxonomy->name == $args['tag'] ) $output .= '<div class="span'.$args['span'].'"><a href="'.$url.'" target="_blank"><img src="'.$url_image.'" class="img-polaroid img-grayscale" title="'.$sponsor->post_title.'"></a></div>';
+      }
+    } else {
+      $output .= '<div class="span'.$args['span'].'"><a href="'.$url.'" target="_blank"><img src="'.$url_image.'" class="img-polaroid img-grayscale" title="'.$sponsor->post_title.'"></a></div>';
+    }
   endforeach;
   $output .= '</div>';
   echo $output;  
