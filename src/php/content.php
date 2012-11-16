@@ -14,6 +14,18 @@
           $thumb = sgb_thumbnail('page-thumb');
         ?>
         <img src="<?php echo $thumb; ?>" alt="<?php echo the_title(); ?>" class="img-polaroid img-max-height-200">
+
+        <div class="row">
+          <div class="span1">
+            <?php sgc_plusone_button(); ?>
+          </div>
+          <div class="span1">
+            <?php sgc_plusone_button(); ?>
+          </div>
+          <div class="span1">
+            <?php sgc_plusone_button(); ?>
+          </div>
+        </div>
         <div class="hidden-phone">
           <br/>
           <?php do_shortcode( '[sponsoren count="3" span="1"]' ); ?>
@@ -29,18 +41,6 @@
       </div>
       <div class="span9">
         <?php the_content( __( 'Continue reading <span class="meta-nav">&rarr;</span>', 'sgb' ) ); ?>
-
-          <div class="row">
-            <div class="span3">
-              <?php sgc_plusone_button(); ?>
-            </div>
-            <div class="span3">
-              <?php sgc_plusone_button(); ?>
-            </div>
-            <div class="span3">
-              <?php sgc_plusone_button(); ?>
-            </div>
-          </div>
       </div><!-- .entry-content -->
     </div>
 </div>
