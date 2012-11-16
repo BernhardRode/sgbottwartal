@@ -3,7 +3,7 @@ $ ->
   svgeezy.init('nocheck', 'png');
   $('a[rel=tooltip]').tooltip()
 
-  if ($('#map').length > 0) then $('#carousel').carousel()
+  if $('#map').length > 0 then $('#carousel').carousel()
 
   $('#calendar').fullCalendar
     header:
@@ -19,7 +19,8 @@ $ ->
   #  mode: "overlay"
   #  destination: "http://sg-bottwartal.de"
 
-  if ($('#map').length > 0)
+
+  if $('#map').length > 0
     $('#map').fadeIn()
     $('#map').addClass 'loading'
     initialize = (lat,lon) ->
@@ -34,8 +35,6 @@ $ ->
         position: latlng
         map: map
       $('#map').removeClass 'loading'
-
-      
     geoDecode = ->
       osmUrl = 'http://nominatim.openstreetmap.org/search?format=json&limit=1&addressdetails=0&q='
       address = $('#map').data 'address'
@@ -45,5 +44,4 @@ $ ->
           initialize data.lat, data.lon
         else
           initialize '49.0468363', '9.3072926'
-
     gm = geoDecode()

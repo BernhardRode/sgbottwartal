@@ -7,31 +7,33 @@
 ?>
   </div><!-- #main .wrapper -->
 </div><!-- /.container -->
-<div class="container hidden-phone">
-  <hr>
-  <div class="row">
-    <div class="span4">
-        <h3 class="muted">Neuigkeiten</h3>
-        <?php do_shortcode( '[neuigkeiten count="10"]' ); ?>
-    </div>
-    <div class="span4">
-        <h3 class="muted">Spielberichte</h3>
-        <?php do_shortcode( '[berichte count="10"]' ); ?>
-    </div>
-    <div class="span4">
-        <h3 class="muted">Kommentare</h3>
-        <?php do_shortcode( '[kommentare count="5"]' ); ?>
+<footer>
+  <div class="container hidden-phone">
+    <hr>
+    <div class="row">
+      <div class="span4">
+          <h3 class="muted">Neuigkeiten</h3>
+          <?php do_shortcode( '[neuigkeiten count="10"]' ); ?>
+      </div>
+      <div class="span4">
+          <h3 class="muted">Spielberichte</h3>
+          <?php do_shortcode( '[berichte count="10"]' ); ?>
+      </div>
+      <div class="span4">
+          <h3 class="muted">Kommentare</h3>
+          <?php do_shortcode( '[kommentare count="5"]' ); ?>
+      </div>
     </div>
   </div>
-</div>
-<div class="container hidden-phone">
-  <hr>
-  <div class="row">
-    <div class="span12">
-      <?php do_shortcode( '[sponsoren count="6" span="2"]' ); ?>
-    </div>
-  </div>  
-</div>
+  <div class="container hidden-phone">
+    <hr>
+    <div class="row">
+      <div class="span12">
+        <?php do_shortcode( '[sponsoren count="6" span="2"]' ); ?>
+      </div>
+    </div>  
+  </div>
+</footer>
 <footer class="site-footer">
   <div class="container">
   <hr>
@@ -82,7 +84,7 @@
   </div>
 </footer>
 <?php wp_footer(); ?>
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js"></script>
+<!--<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js"></script>-->
 <script>
   var _gaq = _gaq || [];
   _gaq.push(['_setAccount', 'UA-318144-7']);
