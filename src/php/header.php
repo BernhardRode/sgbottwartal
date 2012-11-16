@@ -54,7 +54,7 @@
   <div class="container hidden-phone header">
     <div class="row">
       <div class="span9">
-          <h3 class="muted"><?php is_home() ? bloginfo('description') : wp_title(''); ?></h3>
+          <h3 class="muted"><?php is_home() ? bloginfo('description') : wp_title(''); ?><?php sfc_like_button(); ?><?php sgc_plusone_button(); ?></h3>
       </div>
       <div class="span3">
         <h3 class="pull-right">
