@@ -54,7 +54,7 @@
   <div class="container hidden-phone header">
     <div class="row">
       <div class="span9">
-          <h3 class="muted"><?php is_home() ? bloginfo('description') : wp_title(''); ?><?php sfc_like_button(); ?><?php sgc_plusone_button(); ?></h3>
+          <h3 class="muted"><?php is_home() ? bloginfo('description') : wp_title(''); ?></h3>
       </div>
       <div class="span3">
         <h3 class="pull-right">
@@ -62,7 +62,9 @@
           <a href="/gemeinschaft/gastebuch" class="muted" rel="tooltip" data-placement="bottom" data-original-title="Gästebuch"><i class="icon-comments"></i></a> 
           <a href="http://www.twitter.com/sgbottwartal" class="muted" target="_blank" rel="tooltip" data-placement="bottom" data-original-title="Twitter"><i class="icon-twitter"></i></a>
           <a href="https://www.facebook.com/SG.Bottwartal" class="muted" target="_blank" rel="tooltip" data-placement="bottom" data-original-title="Facebook"><i class="icon-facebook"></i></a>
+          <?php sfc_like_button(); ?>
           <a href="https://plus.google.com/115598032861617067767" class="muted" target="_blank" rel="tooltip" data-placement="bottom" data-original-title="Google+"><i class="icon-google-plus"></i></a>
+          <?php sgc_plusone_button(); ?>
           <a href="http://www.youtube.com/user/SGBottwartal" class="muted" target="_blank" rel="tooltip" data-placement="bottom" data-original-title="Youtube"><i class="icon-facetime-video"></i></a>
         </h3>
       </div>
