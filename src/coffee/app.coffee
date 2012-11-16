@@ -20,6 +20,8 @@ $ ->
     destination: "http://sg-bottwartal.de"
 
   if ($('#map').length > 0)
+    $('#map').fadeIn();
+    $('#map').addClass('loading');
     initialize = (lat,lon) ->
       latlng = new google.maps.LatLng(lat,lon)
       options =
@@ -31,8 +33,8 @@ $ ->
       logo = new google.maps.Marker
         position: latlng
         map: map
+      $('#map').removeClass('loading');
 
-      $('#map').fadeIn();
       
     geoDecode = ->
       osmUrl = 'http://nominatim.openstreetmap.org/search?format=json&limit=1&addressdetails=0&q='
