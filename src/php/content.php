@@ -17,7 +17,7 @@
 
         <div class="row">
           <div class="span1">
-            <?php sgc_plusone_button(); ?>
+            <?php sfc_like_button(); ?>
           </div>
           <div class="span1">
             <?php sgc_plusone_button(); ?>
