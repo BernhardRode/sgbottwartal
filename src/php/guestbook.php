@@ -19,7 +19,7 @@ get_header(); ?>
 	<div id="content" role="main">
 		<div class="row">
 			<?php while ( have_posts() ) : the_post(); ?>
-				<div class="span4">
+				<div class="span3">
           <?php $url = sgb_thumbnail('medium',$child_child_page->ID); ?>
           <img class="img-polaroid" src="<?php echo $url; ?>">
       		<?php echo do_shortcode( '[sponsoren id="5708,5783" span="2"]' ); ?>
@@ -36,7 +36,7 @@ get_header(); ?>
 	          <?php edit_post_link( __( '<i class="icon-edit"></i> Bearbeiten', 'sgb' ), '<br/><span class="edit-link">', '</span>' ); ?>
 	        </div>
 				</div>
-				<div class="span8">
+				<div class="span9">
 					<?php
 						// If comments are open or we have at least one comment, load up the comment template
 						if ( comments_open() || '0' != get_comments_number() ) comments_template( '', true );
