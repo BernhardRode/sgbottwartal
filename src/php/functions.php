@@ -243,7 +243,7 @@ if ( ! function_exists( 'sgb_comment' ) ) :
                 echo get_avatar( $comment, $avatar_size);
               ?>
               <cite class="fn"><?php echo get_comment_author(); ?></cite>
-              <time pubdate datetime="" class="pull-right"><?php comment_time('d,M h:i'); ?> Uhr</time>
+              <time pubdate datetime="" class="pull-right"><?php comment_time('d,M H:i:s'); ?> Uhr</time>
             </header>
             <section class="comment-content comment well well-small">
               <span class="reply pull-right btn">
