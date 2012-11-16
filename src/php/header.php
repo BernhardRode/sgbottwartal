@@ -62,9 +62,7 @@
           <a href="/gemeinschaft/gastebuch" class="muted" rel="tooltip" data-placement="bottom" data-original-title="Gästebuch"><i class="icon-comments"></i></a> 
           <a href="http://www.twitter.com/sgbottwartal" class="muted" target="_blank" rel="tooltip" data-placement="bottom" data-original-title="Twitter"><i class="icon-twitter"></i></a>
           <a href="https://www.facebook.com/SG.Bottwartal" class="muted" target="_blank" rel="tooltip" data-placement="bottom" data-original-title="Facebook"><i class="icon-facebook"></i></a>
-          <?php sfc_like_button(); ?>
           <a href="https://plus.google.com/115598032861617067767" class="muted" target="_blank" rel="tooltip" data-placement="bottom" data-original-title="Google+"><i class="icon-google-plus"></i></a>
-          <?php sgc_plusone_button(); ?>
           <a href="http://www.youtube.com/user/SGBottwartal" class="muted" target="_blank" rel="tooltip" data-placement="bottom" data-original-title="Youtube"><i class="icon-facetime-video"></i></a>
         </h3>
       </div>
