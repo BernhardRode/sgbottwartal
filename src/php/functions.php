@@ -28,8 +28,8 @@ function sgb_setup() {
   add_image_size( 'page-thumb', 220, 9999 ); //300 pixels wide (and unlimited height)
   add_image_size( 'circle-thumb', 100, 100, true ); //(cropped)
   add_image_size( 'circle-mini', 30, 30, true ); //(cropped)
-  add_image_size( 'sponsor-large', 150, 108 );
-  add_image_size( 'sponsor-small', 70, 52 );
+  add_image_size( 'sponsor-large', 200, 9999 );
+  add_image_size( 'sponsor-small', 90, 9999 );
   //Disable the admin bar
   //show_admin_bar(false);
 }
