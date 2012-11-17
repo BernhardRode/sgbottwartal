@@ -35,15 +35,12 @@ get_header(); ?>
 				<div class="span8">
           <?php $url = sgb_thumbnail('large',$child_child_page->ID); ?>
           <img class="img-polaroid" src="<?php echo $url; ?>">
+          <hr>
+					<h2>Fotoalbum <?php the_title(); ?></h2>
+      		<?php echo do_shortcode( '[fotos]' ); ?>
 				</div>
 			<?php endwhile; // end of the loop. ?>
 		</div> 
-		<div class="row">
-			<div class="offset4 span8">
-				<h2>Fotoalbum <?php the_title(); ?></h2>
-      	<?php echo do_shortcode( '[fotos]' ); ?>
-			</div>
-		</div>
 	</div><!-- #content -->
 </div><!-- #primary -->
 <?php get_footer(); ?>
