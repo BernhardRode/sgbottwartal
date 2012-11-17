@@ -402,7 +402,7 @@ function sgb_sponsoren( $args ) {
   if(empty($args['count'])) $args['count'] = 1;
 
   $query = array( 'post_type' => 'sponsoren', 'posts_per_page' => $args['count'], 'orderby' => 'rand' );
-  if( !empty($args['id']) ) $query = array( 'post_type' => 'sponsoren', 'orderby' => 'rand' );
+  if( !empty($args['id']) ) $query = array( 'post_type' => 'sponsoren', 'orderby' => 'rand', 'posts_per_page' => '-1' );
   
   $size = 'sponsor-large'; 
   if ($args['span'] <= 1 ) $size = 'sponsor-small';
