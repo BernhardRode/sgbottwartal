@@ -31,8 +31,6 @@ get_header(); ?>
 	          <br/>
 	          <?php do_shortcode( '[sponsoren count="4" span="1"]' ); ?>
 	          <br/>
-	          <?php sgb_entry_meta(); ?> 
-	          <br/>
 	          <?php edit_post_link( __( '<i class="icon-edit"></i> Bearbeiten', 'sgb' ), '<br/><span class="edit-link">', '</span>' ); ?>
 	        </div>
 				</div>
