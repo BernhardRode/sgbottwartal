@@ -22,8 +22,8 @@ get_header(); ?>
 			<?php while ( have_posts() ) : the_post(); ?>
 				<div class="span4">
 					<?php the_content(); ?>
-      		<?php echo do_shortcode( '[sponsoren id="5708,5783" span="2"]' ); ?>
 	        <div class="hidden-phone">
+      			<?php echo do_shortcode( '[sponsoren id="5708,5783" span="2"]' ); ?>
 	          <br/>
 	          <?php do_shortcode( '[sponsoren count="4" span="1"]' ); ?>
 	          <br/>
@@ -32,8 +32,11 @@ get_header(); ?>
 	          <?php do_shortcode( '[sponsoren count="4" span="1"]' ); ?>
 	        </div>
 				</div>
-				<div class="span8">
-          <?php $url = sgb_thumbnail('large',$child_child_page->ID); ?>
+        <?php $url = sgb_thumbnail('large',$child_child_page->ID); ?>
+				<div class="span8 visible-phone">
+          <img src="<?php echo $url; ?>">
+				</div>
+				<div class="span8 hidden-phone">
           <div id="image-viewer" class="img-polaroid">
           	<img src="<?php echo $url; ?>">
         	</div>
