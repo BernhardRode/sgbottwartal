@@ -19,14 +19,12 @@ get_header(); ?>
 <div id="primary" class="site-content container">
 	<div id="content" role="main">
 		<div class="row">
-			<div class="span12">
-				<h1>Premium Sponsoren</h1>
+			<div class="span4">
       	<?php echo do_shortcode( '[sponsoren tag="Premium" span="4" count="-1"]' ); ?>
     	</div>
-    </div>
-		<div class="row">
 			<div class="span12">
 				<h1>Unsere Sponsoren</h1>
+				<hr>
     		<?php echo do_shortcode( '[sponsoren span="2" count="-1"]' ); ?>
 			</div>
 		</div>
