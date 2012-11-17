@@ -530,7 +530,7 @@ function sgb_fotos( $args ) {
 
 function sgb_kalender( $args ) {
   $output  = '<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&language=de"></script>';
-  $output .= '<div id="calendar" class="calendar"></div>';
+  $output .= '<div id="calendar" class="calendar hidden-phone"></div>';
   $output .= '<div id="loading" style="display:none">Loading...</div>';
   $output .= '<div class="modal hide fade" id="event-modal">';
   $output .= '<div class="modal-header">';
