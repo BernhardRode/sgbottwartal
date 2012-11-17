@@ -776,7 +776,7 @@ function sgb_custom_post_types() {
     'not_found_in_trash' => __('Keine Sponsoren im Papierkorb'),
     'parent_item_colon' => ''
   );
-  $supports = array('title', 'thumbnail', 'excerpt');
+  $supports = array('title', 'thumbnail', 'editor');
 
   register_post_type( 'sponsoren',
     array(
