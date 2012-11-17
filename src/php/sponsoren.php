@@ -29,19 +29,24 @@ get_header(); ?>
 				    $url = get_permalink($sponsor->ID);
 				    #$tags = implode(',', get_tags() );
 				    $tags = implode(',',wp_get_post_terms($sponsor->ID, 'sponsoren_kategorie', array("fields" => "names")));
-				    $output .= '<div class="box" data-tags="'.$tags.'"><img src="'.$url_image.'" style="width:100px;" class="img-polaroid img-grayscale img-max-height-120" title="'.$sponsor->post_title.'"></a></div>';  
+				    $url = get_permalink($sponsor->ID);
+				    $output .= '<div class="box" data-tags="'.$tags.'">';
+				    $output .= '<a href="'.$url.'">';
+				    $output .= '<img src="'.$url_image.'" style="width:100px;" class="img-polaroid img-grayscale img-max-height-120" title="'.$sponsor->post_title.'">';
+				    $output .= '</a></div>';  
 				  endforeach;
 				  echo $output;  
 				?>
 			</div>
 			<div class="span4" id="tags">
-				<a href="#" class="tag-link-all" title="Alle Sponsoren" style="font-size: 24pt;">Beliebig</a><br/>
+				<a href="#" class="tag-link-all" title="Alle anzeigen" style="font-size: 24pt;">Alle</a>
 				<?php $tags = wp_tag_cloud( array( 'taxonomy' => 'sponsoren_kategorie' ) ); ?>
 				<?php print_r($tags); ?>
 				<br/>
-      	<?php echo do_shortcode( '[sponsoren id="5708" span="3"]' ); ?>
+				<br/>
+      	<?php echo do_shortcode( '[sponsoren id="5708" span="4"]' ); ?>
       	<br/>
-      	<?php echo do_shortcode( '[sponsoren id="5783" span="3"]' ); ?>
+      	<?php echo do_shortcode( '[sponsoren id="5783" span="4"]' ); ?>
     	</div>
 		</div>
 	</div><!-- #content -->
