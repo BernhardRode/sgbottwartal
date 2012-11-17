@@ -34,7 +34,7 @@ get_header(); ?>
 				</div>
 				<div class="span8">
           <?php $url = sgb_thumbnail('large',$child_child_page->ID); ?>
-          <img class="img-polaroid" src="<?php echo $url; ?>" id="image-viewer">
+          <img class="img-polaroid" src="<?php echo $url; ?>" id="image-viewer" style="width:100%;height:600px;">
           <?php //$url = sgb_thumbnail('full',$child_child_page->ID); ?>
           <!--<a href="<?php echo $url; ?>" title="<?php the_title(); ?>" target="_blank">Aktuelle Mannschaft in voller Aufl&ouml;sung herunterladen.</a>-->
       		<?php echo do_shortcode( '[gallery link="file" order="DESC" columns="10" orderby="title"]' ); ?>
