@@ -19,16 +19,33 @@ get_header(); ?>
 <div id="primary" class="site-content container">
 	<div id="content" role="main">
 		<div class="row">
-			<div class="span8">
-				<h1>Unsere Sponsoren</h1>
-				<hr>
-    		<?php echo do_shortcode( '[sponsoren span="2" count="-1"]' ); ?>
+			<div class="span9" id="masonry">
+				<?php 
+				  $query = array( 'post_type' => 'sponsoren', 'posts_per_page' => '-1', 'orderby' => 'rand' );				  
+				  $size = 'sponsor-large'; 
+				  $sponsoren = get_posts( $query );
+				  foreach($sponsoren as $sponsor) :
+				    $url_image = sgb_thumbnail( $size, $sponsor->ID );
+				    $url = get_permalink($sponsor->ID);
+				    #$tags = implode(',', get_tags() );
+				    $tags = implode(',',wp_get_post_terms($sponsor->ID, 'sponsoren_kategorie', array("fields" => "names")));
+				    $output .= '<div class="box span2" data-tags="'.$tags.'"><img src="'.$url_image.'" style="width:100px;" class="img-polaroid img-grayscale img-max-height-120" title="'.$sponsor->post_title.'"></a></div>';  
+				  endforeach;
+				  echo $output;  
+				?>
 			</div>
-			<div class="span4">
-      	<?php echo do_shortcode( '[sponsoren id="5708" span="4"]' ); ?>
+			<div class="span3" id="tags">
+				<a href="#" class="tag-link-all" title="Alle Sponsoren" style="font-size: 24pt;">Beliebig</a><br/>
+				<?php $tags = wp_tag_cloud( array( 'taxonomy' => 'sponsoren_kategorie' ) ); ?>
+				<?php print_r($tags); ?>
+			</div>
+			<!--
+			<div class="span3 hidden-phone">
+      	<?php echo do_shortcode( '[sponsoren id="5708" span="3"]' ); ?>
       	<br/>
-      	<?php echo do_shortcode( '[sponsoren id="5783" span="4"]' ); ?>
+      	<?php echo do_shortcode( '[sponsoren id="5783" span="3"]' ); ?>
     	</div>
+    	-->
 		</div>
 	</div><!-- #content -->
 </div><!-- #primary -->

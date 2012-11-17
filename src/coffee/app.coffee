@@ -3,7 +3,7 @@ $ ->
   svgeezy.init('nocheck', 'png');
   $('a[rel=tooltip]').tooltip()
 
-  if $('#map').length > 0 then $('#carousel').carousel()
+  if $('#carousel').length > 0 then $('#carousel').carousel()
 
   $('#calendar').fullCalendar
     header:
@@ -19,6 +19,24 @@ $ ->
   #  mode: "overlay"
   #  destination: "http://sg-bottwartal.de"
 
+
+  if $('#masonry').length > 0
+    $('#tags a').click (evt) ->
+      evt.preventDefault()
+      evt.stopPropagation()
+      tag = evt.currentTarget.innerText
+      $('#masonry').hide()
+      $('#masonry .box').each (index) ->
+        $(this).hide()
+        tags = $(this).data('tags').split ','
+        i = $.inArray tag, tags
+        if tag is 'Beliebig' then i = 0
+        if i is -1
+         $(this).hide()
+        else
+         $(this).show()
+
+      $('#masonry').fadeIn()
 
   if $('#map').length > 0
     $('#map').fadeIn()
