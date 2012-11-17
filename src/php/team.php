@@ -36,9 +36,9 @@ get_header(); ?>
           <?php $url = sgb_thumbnail('large',$child_child_page->ID); ?>
           <img class="img-polaroid" src="<?php echo $url; ?>">
           <?php $url = sgb_thumbnail('full',$child_child_page->ID); ?>
-          <a href="<?php echo $url; ?>" title="<?php the_title(); ?>">Download in voller Aufl&ouml;sung</a>
+          <a href="<?php echo $url; ?>" title="<?php the_title(); ?>" target="_blank">Download in voller Aufl&ouml;sung</a>
           <hr>
-      		<?php echo do_shortcode( '[gallery]' ); ?>
+      		<?php echo do_shortcode( '[gallery link="file" order="DESC" columns="4" orderby="title"]' ); ?>
 				</div>
 			<?php endwhile; // end of the loop. ?>
 		</div> 
