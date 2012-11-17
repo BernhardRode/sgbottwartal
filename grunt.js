@@ -46,7 +46,7 @@ module.exports = function (grunt) {
     copy: {
       application: {
         files: {
-          '<%= pkg.dist %>/':'<%= pkg.src %>/php/*.php',
+          '<%= pkg.dist %>/':'<%= pkg.src %>/php/*',
           '<%= pkg.dist %>/lib/':'<%= pkg.src %>/lib/**/*.js',
           '<%= pkg.dist %>/img/':'<%= pkg.src %>/img/**/*',
           '<%= pkg.dist %>/font/awesome/':'<%= pkg.src %>/lib/font-awesome/font/*',
