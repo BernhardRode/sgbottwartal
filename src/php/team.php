@@ -30,8 +30,6 @@ get_header(); ?>
 	          <?php do_shortcode( '[sponsoren count="4" span="1"]' ); ?>
 	          <br/>
 	          <?php do_shortcode( '[sponsoren count="4" span="1"]' ); ?>
-	          <br/>
-	          <?php edit_post_link( __( '<i class="icon-edit"></i> Bearbeiten', 'sgb' ), '<br/><span class="edit-link">', '</span>' ); ?>
 	        </div>
 				</div>
 				<div class="span8">
@@ -41,7 +39,7 @@ get_header(); ?>
 			<?php endwhile; // end of the loop. ?>
 		</div> 
 		<div class="row">
-			<div class="offset3 span9">
+			<div class="offset4 span8">
 				Fotoalbum <?php the_title(); ?>
       	<?php echo do_shortcode( '[fotos]' ); ?>
 			</div>
