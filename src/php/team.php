@@ -25,11 +25,11 @@ get_header(); ?>
       		<?php echo do_shortcode( '[sponsoren id="5708,5783" span="2"]' ); ?>
 	        <div class="hidden-phone">
 	          <br/>
-	          <?php do_shortcode( '[sponsoren count="3" span="1"]' ); ?>
+	          <?php do_shortcode( '[sponsoren count="4" span="1"]' ); ?>
 	          <br/>
-	          <?php do_shortcode( '[sponsoren count="3" span="1"]' ); ?>
+	          <?php do_shortcode( '[sponsoren count="4" span="1"]' ); ?>
 	          <br/>
-	          <?php do_shortcode( '[sponsoren count="3" span="1"]' ); ?>
+	          <?php do_shortcode( '[sponsoren count="4" span="1"]' ); ?>
 	          <br/>
 	          <?php sgb_entry_meta(); ?> 
 	          <br/>
