@@ -39,15 +39,11 @@ get_header(); ?>
           <img class="img-polaroid" src="<?php echo $url; ?>">
 				</div>
 			<?php endwhile; // end of the loop. ?>
-		</div>
-	  <div class="row hidden-phone">
-	    <div class="span12">
-	      <?php do_shortcode( '[sponsoren count="6" span="2"]' ); ?>
-	    </div>
-	  </div>  
+		</div> 
 		<div class="row">
-			<div class="span12">
-      			<?php echo do_shortcode( '[fotos]' ); ?>
+			<div class="offset3 span9">
+				Fotoalbum <?php the_title(); ?>
+      	<?php echo do_shortcode( '[fotos]' ); ?>
 			</div>
 		</div>
 	</div><!-- #content -->
