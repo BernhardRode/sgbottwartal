@@ -24,12 +24,12 @@ function sgb_setup() {
   // This theme uses post thumbnails
   add_theme_support( 'post-thumbnails' );
   set_post_thumbnail_size( 120, 120, true ); // Normal post thumbnails
-  add_image_size( 'featured-thumb', 1024, 9999 ); //300 pixels wide (and unlimited height)
-  add_image_size( 'page-thumb', 220, 9999 ); //300 pixels wide (and unlimited height)
+  add_image_size( 'featured-thumb', 1024, 9999 ); //1024 pixels wide (and unlimited height)
+  add_image_size( 'page-thumb', 220, 9999 ); //220 pixels wide (and unlimited height)
   add_image_size( 'circle-thumb', 100, 100, true ); //(cropped)
   add_image_size( 'circle-mini', 30, 30, true ); //(cropped)
-  add_image_size( 'sponsor-large', 150, 9999 );
-  add_image_size( 'sponsor-small', 70, 9999 );
+  add_image_size( 'sponsor-large', 150, 108 );
+  add_image_size( 'sponsor-small', 70, 50 );
   //Disable the admin bar
   //show_admin_bar(false);
 }
