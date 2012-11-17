@@ -38,7 +38,6 @@ get_header(); ?>
           <?php $url = sgb_thumbnail('full',$child_child_page->ID); ?>
           <a href="<?php echo $url; ?>" title="<?php the_title(); ?>">Download in voller Aufl&ouml;sung</a>
           <hr>
-					<h2>Fotoalbum:</h2>
       		<?php echo do_shortcode( '[gallery]' ); ?>
 				</div>
 			<?php endwhile; // end of the loop. ?>
