@@ -22,6 +22,15 @@ get_header(); ?>
           <div class="row">
             <div class="span3">
               <h2><?php echo get_the_title($child_page->ID); ?></h2>
+
+              <div class="hidden-phone">
+                <br/>
+                <?php do_shortcode( '[sponsoren count="3" span="1"]' ); ?>
+                <br/>
+                <?php do_shortcode( '[sponsoren count="3" span="1"]' ); ?>
+                <br/>
+                <?php do_shortcode( '[sponsoren count="3" span="1"]' ); ?>
+              </div>
             </div>
             <div class="span9">
               <?php
