@@ -34,7 +34,7 @@ get_header(); ?>
 				</div>
         <?php $url = sgb_thumbnail('large',$child_child_page->ID); ?>
 				<div class="span8 visible-phone">
-          <img src="<?php echo $url; ?>">
+          <img src="<?php echo $url; ?>" class="img-polaroid">
 				</div>
 				<div class="span8 hidden-phone">
           <div id="image-viewer" class="img-polaroid">
