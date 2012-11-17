@@ -30,7 +30,7 @@ $ ->
         $(this).hide()
         tags = $(this).data('tags').split ','
         i = $.inArray tag, tags
-        if tag is 'Beliebig' then i = 0
+        if tag is 'Alle' then i = 0
         if i is -1
          $(this).hide()
         else
