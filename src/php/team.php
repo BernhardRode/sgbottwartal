@@ -34,11 +34,10 @@ get_header(); ?>
 				</div>
 				<div class="span8">
           <?php $url = sgb_thumbnail('large',$child_child_page->ID); ?>
-          <img class="img-polaroid" src="<?php echo $url; ?>">
+          <img class="img-polaroid" src="<?php echo $url; ?>" id="image-viewer">
           <?php $url = sgb_thumbnail('full',$child_child_page->ID); ?>
-          <a href="<?php echo $url; ?>" title="<?php the_title(); ?>" target="_blank">Download in voller Aufl&ouml;sung</a>
-          <hr>
-      		<?php echo do_shortcode( '[gallery link="file" order="DESC" columns="4" orderby="title"]' ); ?>
+          <a href="<?php echo $url; ?>" title="<?php the_title(); ?>" target="_blank">Aktuelle Mannschaft in voller Aufl&ouml;sung herunterladen.</a>
+      		<?php echo do_shortcode( '[gallery link="file" order="DESC" columns="10" orderby="title"]' ); ?>
 				</div>
 			<?php endwhile; // end of the loop. ?>
 		</div> 

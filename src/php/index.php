@@ -49,7 +49,6 @@ get_header(); ?>
                 </figure>
                 </a>
               </div>
-
             <?php endwhile; ?>
           <?php endif; ?>
         </div>
