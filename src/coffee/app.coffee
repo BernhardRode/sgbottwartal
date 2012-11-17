@@ -68,8 +68,8 @@ $ ->
     evt.stopPropagation()
     src = $(@).find('a').attr 'href'
     title = $(@).find('a').attr 'title'
-    $('#image-viewer').attr 'src',src
-    $('#image-viewer').attr 'title', title
+    $('#image-viewer img').attr 'src',src
+    $('#image-viewer img').attr 'title', title
 
   if $('#masonry').length > 0
     $('#tags a').click (evt) ->
