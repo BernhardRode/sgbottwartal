@@ -40,7 +40,7 @@ get_header(); ?>
 		</div> 
 		<div class="row">
 			<div class="offset4 span8">
-				Fotoalbum <?php the_title(); ?>
+				<h2>Fotoalbum <?php the_title(); ?></h2>
       	<?php echo do_shortcode( '[fotos]' ); ?>
 			</div>
 		</div>
