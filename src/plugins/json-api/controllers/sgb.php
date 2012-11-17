@@ -338,11 +338,13 @@ class JSON_API_SGB_Controller {
         $tmp = array();
         $year = date('Y');
         $month = date('m');
+        
         $tmp['id'] = intval( $game['Nummer'] );
-        $tmp['title'] = $game['Heim'] . ' - ' . $game['Gast'];
+        $tmp['title'] = strtoupper($game['tags'][0]) . ' - ' . $game['tags'][1];
         $tmp['start'] = $game_start->getTimestamp();
         $tmp['end'] = $game_start->getTimestamp()+3600;
         $tmp['allDay'] = false;
+        $tmp['originalEvent'] = $game;
 
 
         array_push($events, $tmp); 

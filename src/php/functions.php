@@ -40,10 +40,11 @@ function sgb_scripts_styles() {
   //wp_enqueue_script('sgb', get_template_directory_uri().'/js/app.js', array(), '1.0', true);
   wp_enqueue_script('modernizr', get_template_directory_uri().'/lib/modernizr.custom.70639.js', array(), '70639', false);
   wp_enqueue_script('jquery', get_template_directory_uri().'/lib/jquery.js', array(), '1.8.2', true);
-  //wp_enqueue_script('moment', get_template_directory_uri().'/lib/moment.js', array(), '1.0', true);
+  wp_enqueue_script('moment', get_template_directory_uri().'/lib/moment.js', array(), '1.7.2', true);
+  wp_enqueue_script('moment-de', get_template_directory_uri().'/lib/de.js', array('moment'), '1.7.2', true);
   wp_enqueue_script('bootstrap-transition', get_template_directory_uri().'/lib/bootstrap-transition.js', array('jquery'), '2.2.1', true);
   //wp_enqueue_script('bootstrap-alert', get_template_directory_uri().'/lib/bootstrap-alert.js', array('jquery'), '2.2.1', true);
-  //wp_enqueue_script('bootstrap-modal', get_template_directory_uri().'/lib/bootstrap-modal.js', array('jquery'), '2.2.1', true);
+  wp_enqueue_script('bootstrap-modal', get_template_directory_uri().'/lib/bootstrap-modal.js', array('jquery'), '2.2.1', true);
   //wp_enqueue_script('bootstrap-dropdown', get_template_directory_uri().'/lib/bootstrap-dropdown.js', array('jquery'), '2.2.1', true);
   //wp_enqueue_script('bootstrap-scrollspy', get_template_directory_uri().'/lib/bootstrap-scrollspy.js', array('jquery'), '2.2.1', true);
   //wp_enqueue_script('bootstrap-tab', get_template_directory_uri().'/lib/bootstrap-tab.js', array('jquery'), '2.2.1', true);
@@ -54,7 +55,7 @@ function sgb_scripts_styles() {
   wp_enqueue_script('bootstrap-carousel', get_template_directory_uri().'/lib/bootstrap-carousel.js', array('jquery'), '2.2.1', true);
   //wp_enqueue_script('bootstrap-typeahead', get_template_directory_uri().'/lib/bootstrap-typeahead.js', array('jquery'), '2.2.1', true);
   //wp_enqueue_script('bootstrap-affix', get_template_directory_uri().'/lib/bootstrap-affix.js', array('jquery'), '2.2.1', true);
-  //wp_enqueue_script('bootstrap-affix', get_template_directory_uri().'/lib/bootstrap-image-gallery.js', array('jquery'), '2.8.1', true);
+  //wp_enqueue_script('bootstrap-image-gallery', get_template_directory_uri().'/lib/bootstrap-image-gallery.js', array('jquery'), '2.8.1', true);
   //wp_enqueue_script('bootstrap-calendar', get_template_directory_uri().'/lib/bootstrap.calendar.js', array('jquery'), '2.2.1', true);
   wp_enqueue_script('bootstrap-calendar', get_template_directory_uri().'/lib/fullcalendar.js', array('jquery'), '1.5.4', true);
   wp_enqueue_script('svgeezy', get_template_directory_uri().'/lib/svgeezy.js', array('jquery'), '1.0', true);
@@ -528,8 +529,20 @@ function sgb_fotos( $args ) {
 }
 
 function sgb_kalender( $args ) {
-  $output = '<div id="calendar" class="calendar"></div>';
+  $output  = '<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&language=de"></script>';
+  $output .= '<div id="calendar" class="calendar"></div>';
   $output .= '<div id="loading" style="display:none">Loading...</div>';
+  $output .= '<div class="modal hide fade" id="event-modal">';
+  $output .= '<div class="modal-header">';
+  $output .= '<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>';
+  $output .= '<h3 id="event-title">Modal header</h3>';
+  $output .= '</div>';
+  $output .= '<div class="modal-body">';
+  $output .= '<p id="event-content">Body</p>';
+  $output .= '<hr/>';
+  $output .= '<div id="map" data-address=""></div>';
+  $output .= '</div>';
+  $output .= '</div>';
   return $output;
 } 
 

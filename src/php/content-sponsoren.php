@@ -19,9 +19,7 @@
         </div>
       </div>
       <div class="span8"> 
-        <?php the_excerpt( __( 'Continue reading <span class="meta-nav">&rarr;</span>', 'sgb' ) ); ?>
         <?php
-
           $taxonomies=wp_get_post_terms($post->ID, 'sponsoren_kategorie', array("fields" => "all"));
           foreach ($taxonomies as $tag) {
             echo '<span class="label label-important">'. $tag->name .'</span> ';
@@ -48,7 +46,11 @@
               #$lat = $result["results"][0]["geometry"]["location"]["lat"];
               #$lng = <?php echo $result["results"][0]["geometry"]["location"]["lng"];
               ?>
+
+
+              <?php the_excerpt( __( 'Continue reading <span class="meta-nav">&rarr;</span>', 'sgb' ) ); ?>
                 <hr/>
+                <div id="map-sponsor"></div>
                 <div id="map" class="well" data-address="<?php echo urlencode($address); ?>" style="display:none;"></div>
                 <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&language=de"></script>            
               <?php
