@@ -26,6 +26,7 @@ $ ->
       evt.stopPropagation()
       tag = evt.currentTarget.innerText
       $('#masonry').hide()
+      $('#masonry .box').shuffle()
       $('#masonry .box').each (index) ->
         $(this).hide()
         tags = $(this).data('tags').split ','
