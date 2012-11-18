@@ -409,7 +409,7 @@ function sgb_sponsoren( $args ) {
   
   $size = 'sponsor-large'; 
   if ($args['span'] <= 1 ) $size = 'sponsor-small';
-  if ($args['span'] >= 4 ) $size = 'medium';
+  if ($args['span'] >= 3 ) $size = 'medium';
   $sponsoren = get_posts( $query );
   $output = '<div class="row">';
   foreach($sponsoren as $sponsor) :
