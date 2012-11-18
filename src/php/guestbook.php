@@ -20,7 +20,9 @@ get_header(); ?>
 		<div class="row">
 			<?php while ( have_posts() ) : the_post(); ?>
 				<div class="span3">
-      		<?php echo do_shortcode( '[sponsoren id="5708,5783" span="2"]' ); ?>
+      		<?php echo do_shortcode( '[sponsoren id="5783" span="3"]' ); ?>
+      		<br/>
+      		<?php echo do_shortcode( '[sponsoren id="5708" span="3"]' ); ?>
 	        <div class="hidden-phone">
 	          <br/>
 	          <?php do_shortcode( '[sponsoren count="3" span="1"]' ); ?>
