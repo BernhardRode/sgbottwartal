@@ -28,6 +28,8 @@ get_header(); ?>
 				    $url_image = sgb_thumbnail( $size, $angebot->ID );
 				    $url = get_permalink($angebot->ID);
 				    #$tags = implode(',', get_tags() );
+				    
+				    echo '<h3 class="muted">'.$angebot->post_title.'</h3>';
 				    echo '<div class="row">';
 				    echo '<div class="span3">';
 				    //echo '<a href="'.$url.'">';
@@ -35,7 +37,6 @@ get_header(); ?>
 				    //echo '</a>';
 				    echo '</div>';  
 				    echo '<div class="span5">';
-				    echo '<h3 class="muted">'.$angebot->post_title.'</h3>';
 						$content = $angebot->post_content;
 						$content = apply_filters('the_content', $content);
 						$content = str_replace(']]>', ']]&gt;', $content);
