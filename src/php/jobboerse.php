@@ -19,6 +19,7 @@ get_header(); ?>
 <div id="primary" class="site-content container">
 	<div id="content" role="main">
 		<div class="row">
+			<div class="span8">
 				<?php 
 				  $query = array( 'post_type' => 'jobs', 'posts_per_page' => '-1', 'orderby' => 'rand' );				  
 				  $size = 'sponsor-large'; 
@@ -43,6 +44,7 @@ get_header(); ?>
 				    echo '</div>';
 				  endforeach;  
 				?>
+			</div>
 			<div class="span4" id="tags">
       	<?php echo do_shortcode( '[sponsoren id="5708" span="4"]' ); ?>
       	<br/>
