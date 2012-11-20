@@ -65,7 +65,7 @@
         <h1>
           <a href="http://www.twitter.com/sgbottwartal"><i class="icon-twitter"></i></a>
           <a href="https://www.facebook.com/SG.Bottwartal"><i class="icon-facebook"></i></a>
-          <a href="https://www.facebook.com/SG.Bottwartal"><i class="icon-google-plus"></i></a>
+          <a href="https://plus.google.com/115598032861617067767"><i class="icon-google-plus"></i></a>
           <a href="http://www.youtube.com/user/SGBottwartal"><i class="icon-facetime-video"></i></a>
         </h1>
       </div>
