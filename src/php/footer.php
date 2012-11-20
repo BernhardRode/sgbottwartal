@@ -57,7 +57,7 @@
       </div>
       <div class="span2 hidden-phone">
         <ul class="unstyled">
-          <li><a href="https://www.facebook.com/SG.Bottwartal"><i class="icon-google-plus"></i> Google+</a></li>
+          <li><a href="https://plus.google.com/115598032861617067767"><i class="icon-google-plus"></i> Google+</a></li>
           <li><a href="http://www.youtube.com/user/SGBottwartal"><i class="icon-facetime-video"></i> Youtube</a></li>
         </ul>
       </div>
