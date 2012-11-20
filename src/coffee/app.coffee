@@ -30,6 +30,8 @@ $ ->
   if $('#carousel').length > 0 then $('#carousel').carousel()
 
   $('#calendar').fullCalendar
+    ignoreTimezone:
+      true
     header:
       left: 'prev,next today'
       center: 'title'

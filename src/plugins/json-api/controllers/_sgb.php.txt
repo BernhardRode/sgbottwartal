@@ -341,8 +341,8 @@ class JSON_API_SGB_Controller {
         
         $tmp['id'] = intval( $game['Nummer'] );
         $tmp['title'] = strtoupper($game['tags'][0]) . ' - ' . $game['tags'][1];
-        $tmp['start'] = $game_start->getTimestamp()-3600;
-        $tmp['end'] = $game_start->getTimestamp();
+        $tmp['start'] = $game_start->getTimestamp();
+        $tmp['end'] = $game_start->getTimestamp()+3600;
         $tmp['allDay'] = false;
         $tmp['originalEvent'] = $game;
 
