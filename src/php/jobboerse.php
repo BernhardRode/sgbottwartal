@@ -27,6 +27,7 @@ get_header(); ?>
 				    $url_image = sgb_thumbnail( $size, $angebot->ID );
 				    $url = get_permalink($angebot->ID);
 				    #$tags = implode(',', get_tags() );
+				    echo '<div class="row">';
 				    echo '<div class="span3">';
 				    //echo '<a href="'.$url.'">';
 				    echo '<img src="'.$url_image.'" class="img-polaroid img-grayscale" title="'.$angebot->post_title.'">';
@@ -38,6 +39,7 @@ get_header(); ?>
 						$content = apply_filters('the_content', $content);
 						$content = str_replace(']]>', ']]&gt;', $content);
 						echo $content;
+				    echo '</div>';
 				    echo '</div>';
 				  endforeach;  
 				?>
