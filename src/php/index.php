@@ -27,7 +27,7 @@ get_header(); ?>
                 $url = sgb_thumbnail('large',$post->ID);
               ?>
               <div class="slide">
-                  <h1><?php echo the_title(); ?></h1>
+                  <h1><?php echo the_title(); ?><?php comments_number('', '<span class="badge pull-right">1 Kommentar</span>', '<span class="badge pull-right">% Kommentare</span>' );?></h1>
                   <?php echo the_excerpt(); ?>
                   <figure class="vignette overlay inset">
                     <img src="<?php echo $url; ?>" alt="<?php echo the_title(); ?>">
@@ -69,7 +69,11 @@ get_header(); ?>
             <img class="media-object img-circle img-shadow img-svg-120" src="<?php echo $url; ?>">
           </a>
           <div class="media-body">
-            <h4 class="media-heading"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h4>
+            <h4 class="media-heading">
+              <a href="<?php the_permalink(); ?>">
+                <?php the_title(); ?><?php comments_number('', '<span class="badge pull-right">1 Kommentar</span>', '<span class="badge pull-right">% Kommentare</span>' );?>
+              </a>
+            </h4>
             <?php the_excerpt(); ?>
           </div>
           <hr>
