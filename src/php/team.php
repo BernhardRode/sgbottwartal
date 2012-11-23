@@ -43,6 +43,32 @@ get_header(); ?>
       		<?php echo do_shortcode( '[gallery link="file" order="DESC" columns="10" orderby="title"]' ); ?>
           <?php //$url = sgb_thumbnail('full',$child_child_page->ID); ?>
           <!--<a href="<?php echo $url; ?>" title="<?php the_title(); ?>" target="_blank">Aktuelle Mannschaft in voller Aufl&ouml;sung herunterladen.</a>-->
+
+          <hr>
+          <h3>Spielberichte</h3>
+          <?php 
+          	$title = strtolower(get_the_title());
+          	$title = str_replace('-', '', $title);
+          	$title = str_replace(' ', '', $title);
+          	$args = array(
+          		'numberposts' => 10,
+							'tax_query' => array(
+								array(
+									'taxonomy' => 'post_tag',
+									'field' => 'slug',
+									'terms' => $title
+								)
+							)
+						);
+						$postslist = get_posts( $args );
+						
+						?>
+						<ul>
+						<?php
+							foreach( $postslist as $post ) :	setup_postdata($post); ?>
+								<li><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></li>
+							<?php endforeach; ?>
+						</ul>
 				</div>
 			<?php endwhile; // end of the loop. ?>
 		</div> 
