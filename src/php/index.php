@@ -53,7 +53,7 @@ get_header(); ?>
           query_posts(array(
             'post__not_in'   => get_option('sticky_posts'),
             'post_type' => 'post',
-            'showposts' => 5
+            'showposts' => 8
           ));
         ?>
         <?php if ( have_posts() ) : ?>
