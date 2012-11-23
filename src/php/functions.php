@@ -60,7 +60,9 @@ function sgb_scripts_styles() {
   wp_enqueue_script('bootstrap-calendar', get_template_directory_uri().'/lib/fullcalendar.js', array('jquery'), '1.5.4', true);
   wp_enqueue_script('svgeezy', get_template_directory_uri().'/lib/svgeezy.js', array('jquery'), '1.0', true);
   wp_enqueue_script('jquery-shuffle', get_template_directory_uri().'/lib/jquery.shuffle.js', array('jquery'), '1.0', true);
-  wp_enqueue_script('jquery-cslider', get_template_directory_uri().'/lib/jquery.cslider.js', array('jquery'), '1.0', true);
+  //wp_enqueue_script('jquery-cslider', get_template_directory_uri().'/lib/jquery.cslider.js', array('jquery'), '1.0', true);
+  wp_enqueue_script('jms', get_template_directory_uri().'/lib/jmpress.js', array('jquery'), '1.0', true);  
+  wp_enqueue_script('jquery-jms', get_template_directory_uri().'/lib/jquery.jmslideshow.js', array('jquery'), '1.0', true);
   //wp_enqueue_script('jquery-masonry', get_template_directory_uri().'/lib/jquery.masonry.js', array('jquery'), '1.0', true);
   //wp_enqueue_script('app', get_template_directory_uri().'/lib/socialite.js', array('jquery'), '1.0', true);
   //wp_enqueue_script('impress', get_template_directory_uri().'/lib/impress.js', array('jquery'), '1.0', true);

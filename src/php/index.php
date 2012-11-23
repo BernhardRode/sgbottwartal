@@ -17,28 +17,26 @@ get_header(); ?>
     <div class="span12">
       <!-- Carousel
       ================================================== -->
-      <div id="slider" class="slider">
+      <div id="jms-slideshow" class="jms-slideshow">
           <?php if ( have_posts() ) : ?>
           <?php /* Start the Loop */ ?>
           <?php $count = 0; ?>
             <?php while ( have_posts() ) : the_post(); ?>
               <?php $count = $count+1; ?>
+              <?php $random = rand(0, 360); ?>
               <?php
-                $url = sgb_thumbnail('large',$post->ID);
+                $url = sgb_thumbnail('medium',$post->ID);
               ?>
-              <div class="slide">
+              <div class="step" data-color="color-<?php echo $count; ?>" data-y="<?php echo $count; ?>00" data-scale="0.<?php echo $count*$random; ?>" data-rotate-x="<?php echo $random; ?>">
+                <div class="jms-content">
                   <h1><?php echo the_title(); ?><?php comments_number('', '<span class="badge pull-right">1 Kommentar</span>', '<span class="badge pull-right">% Kommentare</span>' );?></h1>
                   <?php echo the_excerpt(); ?>
-                  <figure class="vignette overlay inset">
-                    <img src="<?php echo $url; ?>" alt="<?php echo the_title(); ?>">
-                  </figure>
+                  <img src="<?php echo $url; ?>" alt="<?php echo the_title(); ?>">
+                  <a href="<?php echo get_permalink(); ?>" class="jms-link btn btn-danger btn-large pull-right"><strong>Weiterlesen...</strong></a>
+                </div>
               </div>
             <?php endwhile; ?>
           <?php endif; ?>
-          <nav class="slider-arrows">
-            <span class="slider-arrows-prev"></span>
-            <span class="slider-arrows-next"></span>
-          </nav>
       </div><!-- /.da-slider -->
     </div>
   </div>
