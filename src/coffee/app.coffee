@@ -37,7 +37,7 @@ $ ->
       center: 'title'
       right: 'month,agendaWeek,agendaDay'
     editable: false
-    events: 
+    events:
       url: '/api/sgb/get_events'
     eventClick: (calEvent, jsEvent, view) =>
       time = moment( calEvent.start )
@@ -58,7 +58,7 @@ $ ->
       $('#map').addClass 'loading'
       gm = geoDecode address
 
-    loading: (bool) => 
+    loading: (bool) =>
       if bool then $('#loading').show() else $('#loading').hide()
 
   #CFInstall.check
@@ -97,3 +97,7 @@ $ ->
     $('#map').addClass 'loading'
     address = $('#map').data 'address'
     gm = geoDecode address
+
+  $('body').hide()
+  $('body').removeClass 'hidden'
+  $('body').fadeIn()

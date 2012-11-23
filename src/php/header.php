@@ -29,7 +29,7 @@
   <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/wp-content/themes/sgbottwartal/apple-touch-icon-72-precomposed.png">
   <link rel="apple-touch-icon-precomposed" href="/wp-content/themes/sgbottwartal/apple-touch-icon-57-precomposed.png">
 </head>
-<body>
+<body class="hidden">
 <!-- NAVBAR
 ================================================== -->
 <!-- Wrap the .navbar in .container to center it on the page and provide easy way to target it with .navbar-wrapper. -->
@@ -58,8 +58,8 @@
       </div>
       <div class="span4">
         <h3 class="pull-right">
-          <a href="mailto:info@sg-bottwartal.de" class="muted" rel="tooltip" data-placement="bottom" data-original-title="E-Mail"><i class="icon-envelope-alt"></i></a> 
-          <a href="/gemeinschaft/gastebuch" class="muted" rel="tooltip" data-placement="bottom" data-original-title="Gästebuch"><i class="icon-comments"></i></a> 
+          <a href="mailto:info@sg-bottwartal.de" class="muted" rel="tooltip" data-placement="bottom" data-original-title="E-Mail"><i class="icon-envelope-alt"></i></a>
+          <a href="/gemeinschaft/gastebuch" class="muted" rel="tooltip" data-placement="bottom" data-original-title="Gästebuch"><i class="icon-comments"></i></a>
           <a href="http://www.twitter.com/sgbottwartal" class="muted" target="_blank" rel="tooltip" data-placement="bottom" data-original-title="Twitter"><i class="icon-twitter"></i></a>
           <a href="https://www.facebook.com/SG.Bottwartal" class="muted" target="_blank" rel="tooltip" data-placement="bottom" data-original-title="Facebook"><i class="icon-facebook"></i></a>
           <a href="https://plus.google.com/115598032861617067767" class="muted" target="_blank" rel="tooltip" data-placement="bottom" data-original-title="Google+"><i class="icon-google-plus"></i></a>
