@@ -1,5 +1,5 @@
 /* Border & Vignette Setup */
-	 
+
     figure{
       position:               relative;
       display:                block;
@@ -17,9 +17,8 @@
       position:               relative;
       display:                block;
       width:                  100%;
-      top:-25px;
     }
-    
+
 /* Overlay Method */
 
     figure.overlay::after{
@@ -30,7 +29,7 @@
       right:                  0;
       content:                "";
       z-index:                2;
-      
+
       pointer-events:         none; /* "all" disables mouse access to image */
 
     /* Mozilla Setting */
@@ -39,7 +38,7 @@
     /* Webkit Setting */
       background-image:       -webkit-gradient( linear, 50% 50%, 125, 50% 50%, 250, from(rgba(0,0,0,0)), to(rgba(0,0,0,.5)) );
     }
-    
+
 /* Overlay & Inset Method */
 
     figure.overlay.inset::after{
@@ -47,7 +46,7 @@
     }
 
 /* Mask Method */
-    
+
     figure.mask{
       background-color:       #000;
     }

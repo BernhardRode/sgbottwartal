@@ -27,8 +27,6 @@ $ ->
   $('a[rel=tooltip]').tooltip()
   moment.lang 'de'
 
-  if $('#carousel').length > 0 then $('#carousel').carousel()
-
   $('#calendar').fullCalendar
     ignoreTimezone:
       true
@@ -97,6 +95,38 @@ $ ->
     $('#map').addClass 'loading'
     address = $('#map').data 'address'
     gm = geoDecode address
+
+  if $('#slider').length > 0
+    slider =
+      autoplay    : true
+      interval    : 1000
+      current     : 0
+
+    slider.children = $('#slider').children()
+
+    window.requestAnimFrame = ->
+      return  window.requestAnimationFrame       ||
+              window.webkitRequestAnimationFrame ||
+              window.mozRequestAnimationFrame    ||
+              window.oRequestAnimationFrame      ||
+              window.msRequestAnimationFrame     ||
+              ( callback ) -> window.setTimeout callback, 1000 / 60
+
+    hideSlide = ( slide ) ->
+      console.log 'hide',slide
+
+    showSlide = ( slide ) ->
+      console.log 'show',slide
+
+    run = ->
+      hideSlide( slider.current )
+      slider.current = slider.current + 1
+      if slider.current is slider.children.length then slider.current = 0
+      showSlide( slider.current )
+
+      requestAnimFrame run
+
+    run()
 
   $('body').hide()
   $('body').removeClass 'hidden'

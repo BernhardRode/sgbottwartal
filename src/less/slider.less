@@ -1,0 +1,58 @@
+.slider{
+  width:100%;
+  height: 400px;
+  overflow:hidden;
+  .border-radius (4px);
+  .box-shadow (0 0 10px #000);
+  margin-bottom:10px;
+  //background: transparent url(img/bg.publikum.jpg) no-repeat 0% 0%;
+
+  h1 {
+    position: relative;
+    margin:0;
+    top:10%;
+    left:5%;
+    width:80%;
+    background-color:rgba(0,0,0,.8);
+    .border-radius (4px);
+    padding:10px;
+    color:@sg-rot;
+  }
+
+  p {
+    position: relative;
+    margin:0;
+    top:50%;
+    left:30%;
+    width:60%;
+    background-color:rgba(0,0,0,.8);
+    .border-radius (4px);
+    padding:10px;
+    color:@sg-weiss;
+  }
+
+  .slide{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    //left: 0px;
+  }
+
+  img {
+    width:100%;
+  }
+
+  figure {
+    position:absolute;
+    width:100%;
+    height: 400px;
+    top:0;
+    opacity:1;
+  }
+
+  .slide-current{
+    z-index: 1000;
+  }
+}
+

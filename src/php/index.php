@@ -17,42 +17,29 @@ get_header(); ?>
     <div class="span12">
       <!-- Carousel
       ================================================== -->
-      <div id="carousel" class="carousel slide" data-interval="3000" data-pause="hover">
-        <div class="carousel-inner">
+      <div id="slider" class="slider">
           <?php if ( have_posts() ) : ?>
           <?php /* Start the Loop */ ?>
           <?php $count = 0; ?>
             <?php while ( have_posts() ) : the_post(); ?>
-              <?php
-                if ( $count == 0 ) {
-                  $class = "active";
-                } else {
-                  $class="";
-                };
-              ?>
               <?php $count = $count+1; ?>
               <?php
-                $url = sgb_thumbnail('medium',$post->ID);
+                $url = sgb_thumbnail('large',$post->ID);
               ?>
-              <div class="item <?php echo $class; ?>">
-                <a href="<?php echo the_permalink(); ?>">
-                <div class="container">
-                  <div class="carousel-caption ">
-                    <h1><?php echo the_title(); ?>.</h1>
-                    <div class="lead hidden-phone">
-                      <?php echo the_excerpt(); ?>
-                    </div>
-                  </div>
-                </div>
-                <figure class="vignette overlay inset">
-                  <img src="<?php echo $url; ?>" alt="<?php echo the_title(); ?>">
-                </figure>
-                </a>
+              <div class="slide">
+                  <h1><?php echo the_title(); ?></h1>
+                  <?php echo the_excerpt(); ?>
+                  <figure class="vignette overlay inset">
+                    <img src="<?php echo $url; ?>" alt="<?php echo the_title(); ?>">
+                  </figure>
               </div>
             <?php endwhile; ?>
           <?php endif; ?>
-        </div>
-      </div><!-- /.carousel -->
+          <nav class="slider-arrows">
+            <span class="slider-arrows-prev"></span>
+            <span class="slider-arrows-next"></span>
+          </nav>
+      </div><!-- /.da-slider -->
     </div>
   </div>
   <div class="row hidden-phone">

@@ -35,7 +35,7 @@ function sgb_setup() {
 }
 add_action( 'after_setup_theme', 'sgb_setup' );
 
-function sgb_scripts_styles() { 
+function sgb_scripts_styles() {
   //wp_enqueue_script('head', get_template_directory_uri().'/lib/head.load.min.js', array(), '1.0', true);
   //wp_enqueue_script('sgb', get_template_directory_uri().'/js/app.js', array(), '1.0', true);
   wp_enqueue_script('modernizr', get_template_directory_uri().'/lib/modernizr.custom.70639.js', array(), '70639', false);
@@ -60,6 +60,7 @@ function sgb_scripts_styles() {
   wp_enqueue_script('bootstrap-calendar', get_template_directory_uri().'/lib/fullcalendar.js', array('jquery'), '1.5.4', true);
   wp_enqueue_script('svgeezy', get_template_directory_uri().'/lib/svgeezy.js', array('jquery'), '1.0', true);
   wp_enqueue_script('jquery-shuffle', get_template_directory_uri().'/lib/jquery.shuffle.js', array('jquery'), '1.0', true);
+  wp_enqueue_script('jquery-cslider', get_template_directory_uri().'/lib/jquery.cslider.js', array('jquery'), '1.0', true);
   //wp_enqueue_script('jquery-masonry', get_template_directory_uri().'/lib/jquery.masonry.js', array('jquery'), '1.0', true);
   //wp_enqueue_script('app', get_template_directory_uri().'/lib/socialite.js', array('jquery'), '1.0', true);
   //wp_enqueue_script('impress', get_template_directory_uri().'/lib/impress.js', array('jquery'), '1.0', true);
@@ -67,7 +68,7 @@ function sgb_scripts_styles() {
   wp_enqueue_script('app', get_template_directory_uri().'/js/app.js', array('jquery'), '1.0', true);
   //wp_enqueue_script('google-plus', 'https://apis.google.com/js/plusone.js', array(), '1.0', true);
   //wp_enqueue_script('facebook', 'http://connect.facebook.net/de_DE/all.js', array(), '1.0', true);
-  
+
   wp_enqueue_style('sgb-style', get_stylesheet_uri() );
 }
 add_action( 'wp_enqueue_scripts', 'sgb_scripts_styles' );
@@ -113,7 +114,7 @@ add_action( 'widgets_init', 'sgb_widgets_init' );
 */
 function replace_howdy( $wp_admin_bar ) {
     $my_account=$wp_admin_bar->get_node('my-account');
-    $newtitle = str_replace( 'Howdy,', '', $my_account->title );            
+    $newtitle = str_replace( 'Howdy,', '', $my_account->title );
     $wp_admin_bar->add_node( array(
         'id' => 'my-account',
         'title' => $newtitle,
@@ -180,7 +181,7 @@ add_filter( 'login_headerurl', 'wp_admin_logo_change_target_url' );
 * @since 2013
 */
 function excerpt_ellipse($text) {
-  return str_replace('[...]', ' ... &raquo;', $text); 
+  return str_replace('[...]', ' ... &raquo;', $text);
 }
 add_filter('the_excerpt', 'excerpt_ellipse');
 
@@ -310,11 +311,11 @@ endif;
  * @since 2013
  */
 function set_featured_image_for_posts() {
-  // Get all posts so set higher number, 
+  // Get all posts so set higher number,
   // you can increase to any number if you have big amount of posts
-  $args = array( 'numberposts' => 5000); 
+  $args = array( 'numberposts' => 5000);
   // all posts
-  $all_posts = get_posts( $args );  
+  $all_posts = get_posts( $args );
   foreach($all_posts as $k=>$v) {
     $args = array(
       'numberposts' => 1,
@@ -322,7 +323,7 @@ function set_featured_image_for_posts() {
       'post_mime_type' => 'image',
       'post_parent' => $v->ID,
       'post_type' => 'attachment'
-    );  
+    );
     // Get attachments
     $attachments = get_children( $args );
     $i=0;
@@ -406,8 +407,8 @@ function sgb_sponsoren( $args ) {
 
   $query = array( 'post_type' => 'sponsoren', 'posts_per_page' => $args['count'], 'orderby' => 'rand' );
   if( !empty($args['id']) || !empty($args['tag']) ) $query = array( 'post_type' => 'sponsoren', 'orderby' => 'rand', 'posts_per_page' => '-1' );
-  
-  $size = 'sponsor-large'; 
+
+  $size = 'sponsor-large';
   if ($args['span'] <= 1 ) $size = 'sponsor-small';
   if ($args['span'] >= 3 ) $size = 'medium';
   $sponsoren = get_posts( $query );
@@ -416,7 +417,7 @@ function sgb_sponsoren( $args ) {
     $url_image = sgb_thumbnail( $size, $sponsor->ID );
     $url = get_permalink($sponsor->ID);
     if(!empty($args['id'])) {
-      if ( in_array($sponsor->ID, explode(',',$args['id']) ) ) $output .= '<div class="span'.$args['span'].'"><a href="'.$url.'" target="_blank"><img src="'.$url_image.'" class="img-polaroid img-grayscale" title="'.$sponsor->post_title.'"></a></div>';  
+      if ( in_array($sponsor->ID, explode(',',$args['id']) ) ) $output .= '<div class="span'.$args['span'].'"><a href="'.$url.'" target="_blank"><img src="'.$url_image.'" class="img-polaroid img-grayscale" title="'.$sponsor->post_title.'"></a></div>';
     } elseif ( !empty($args['tag']) ) {
       $taxonomies = wp_get_post_terms( $sponsor->ID, 'sponsoren_kategorie' );
       foreach ( $taxonomies as $taxonomy) {
@@ -427,8 +428,8 @@ function sgb_sponsoren( $args ) {
     }
   endforeach;
   $output .= '</div>';
-  echo $output;  
-}  
+  echo $output;
+}
 
 function sgb_kommentare( $args ) {
   if(empty($args['count'])) $args['count'] = 5;
@@ -445,8 +446,8 @@ function sgb_kommentare( $args ) {
   endforeach;
   echo '</ul>';
 
-  //echo $output;  
-}  
+  //echo $output;
+}
 
 function sgb_neuigkeiten( $args ) {
   if(empty($args['count'])) $args['count'] = 5;
@@ -460,7 +461,7 @@ function sgb_neuigkeiten( $args ) {
     echo '</li>';
   endforeach;
   echo '</ul>';
-}  
+}
 
 function sgb_berichte( $args ) {
   if(empty($args['count'])) $args['count'] = 5;
@@ -474,7 +475,7 @@ function sgb_berichte( $args ) {
     echo '</li>';
   endforeach;
   echo '</ul>';
-}  
+}
 
 function sgb_fotos( $args ) {
   global $post;
@@ -501,12 +502,12 @@ function sgb_fotos( $args ) {
       echo '<div class="slide"><img src="'.$large.'" width="920" height="300" /></div>';
     }
   }
-  ?>      
+  ?>
     </div>
     <div class="fotos-menu">
       <ul>
         <li class="fbar">&nbsp;</li>
-        
+
   <?php
   if ( $attachments ) {
     foreach ( $attachments as $attachment ) {
@@ -519,13 +520,13 @@ function sgb_fotos( $args ) {
       echo '<li class="item"><a href=""><img src="'.$thumb.'" /></a></li>';
     }
   }
-  ?>        
+  ?>
       </ul>
     </div>
   </div>
 </div>
   <?php
-  return $output;  
+  return $output;
 }
 
 function sgb_kalender( $args ) {
@@ -544,15 +545,15 @@ function sgb_kalender( $args ) {
   $output .= '</div>';
   $output .= '</div>';
   return $output;
-} 
+}
 
 function register_shortcodes(){
-  add_shortcode('sponsoren', 'sgb_sponsoren'); 
-  add_shortcode('fotos', 'sgb_fotos'); 
-  add_shortcode('neuigkeiten', 'sgb_neuigkeiten'); 
-  add_shortcode('berichte', 'sgb_berichte'); 
-  add_shortcode('kommentare', 'sgb_kommentare'); 
-  add_shortcode('kalender', 'sgb_kalender'); 
+  add_shortcode('sponsoren', 'sgb_sponsoren');
+  add_shortcode('fotos', 'sgb_fotos');
+  add_shortcode('neuigkeiten', 'sgb_neuigkeiten');
+  add_shortcode('berichte', 'sgb_berichte');
+  add_shortcode('kommentare', 'sgb_kommentare');
+  add_shortcode('kalender', 'sgb_kalender');
 }
 add_action( 'init', 'register_shortcodes');
 
@@ -851,7 +852,7 @@ function sgb_custom_post_types() {
       'public' => true,
       'supports' => $supports
     )
-  );  
+  );
   register_taxonomy_for_object_type('termin_kategorie', 'event');
 }
 add_action( 'init', 'sgb_custom_post_types' );
@@ -861,7 +862,7 @@ add_action('wp_head','move_admin_bar_bottom');
 
 // Move admin bar to bottom of page
 function move_admin_bar_bottom() {
-  if(is_user_logged_in()) { 
+  if(is_user_logged_in()) {
     echo "
     <style type='text/css'>
       * html body { margin-top: 0 !important; }
@@ -886,17 +887,17 @@ function sgb_nice_time($date) {
   if(empty($date)) {
     return "Kein Datum angegeben";
   }
-   
+
   $periods = array("Sekunde", "Minute", "Stunde", "Tage", "Woche", "Monate", "Jahre", "Dekade");
   $lengths = array("60","60","24","7","4.35","12","10");
-   
+
   $now = time()+7200; // Hack um Zeitproblem auszugleichen
   $unix_date = strtotime($date);
-   
+
   if(empty($unix_date)) {
     return "Fehlerhaftes Datum (".$date.")";
   }
-   
+
   if($now > $unix_date) {
     $difference = $now - $unix_date;
     $tense = "vor";
@@ -904,17 +905,17 @@ function sgb_nice_time($date) {
     $difference = $unix_date - $now;
     $tense = "in";
   }
-   
+
   for($j = 0; $difference >= $lengths[$j] && $j < count($lengths)-1; $j++) {
     $difference /= $lengths[$j];
   }
-   
+
   $difference = round($difference);
-   
+
   if($difference != 1) {
     $periods[$j].= "n";
   }
-   
+
   return "{$tense} $difference $periods[$j]";
 }
 endif;
