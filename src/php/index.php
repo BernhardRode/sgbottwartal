@@ -17,25 +17,25 @@ get_header(); ?>
     <div class="span12">
       <!-- Carousel
       ================================================== -->
-      <div id="carousel" class="carousel slide" data-interval="1750" data-pause="hover">
+      <div id="carousel" class="carousel slide" data-interval="3000" data-pause="hover">
         <div class="carousel-inner">
           <?php if ( have_posts() ) : ?>
           <?php /* Start the Loop */ ?>
           <?php $count = 0; ?>
             <?php while ( have_posts() ) : the_post(); ?>
-              <?php 
-                if ( $count == 0 ) { 
+              <?php
+                if ( $count == 0 ) {
                   $class = "active";
-                } else { 
-                  $class=""; 
-                }; 
+                } else {
+                  $class="";
+                };
               ?>
               <?php $count = $count+1; ?>
-              <?php 
+              <?php
                 $url = sgb_thumbnail('medium',$post->ID);
-              ?> 
-              <div class="item <?php echo $class; ?>">  
-                <a href="<?php echo the_permalink(); ?>">              
+              ?>
+              <div class="item <?php echo $class; ?>">
+                <a href="<?php echo the_permalink(); ?>">
                 <div class="container">
                   <div class="carousel-caption ">
                     <h1><?php echo the_title(); ?>.</h1>
@@ -65,15 +65,19 @@ get_header(); ?>
     <div class="span8">
       <div class="row">
         <?php
-          query_posts('count=5'); 
+          query_posts(array(
+            'post__not_in'   => get_option('sticky_posts'),
+            'post_type' => 'post',
+            'showposts' => 5
+          ));
         ?>
         <?php if ( have_posts() ) : ?>
           <?php /* Start the Loop */ ?>
           <?php while ( have_posts() ) : the_post(); ?>
-        <div class="span8 media">        
-          <?php 
+        <div class="span8 media">
+          <?php
             $url = sgb_thumbnail('post-thumbnail',$post->ID);
-          ?> 
+          ?>
           <a class="span2 pull-left" href="<?php the_permalink(); ?>">
             <img class="media-object img-circle img-shadow img-svg-120" src="<?php echo $url; ?>">
           </a>

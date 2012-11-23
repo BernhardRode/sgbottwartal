@@ -64,7 +64,7 @@ module.exports = function (grunt) {
         options: {
           flatten:false
         }
-      }      
+      }
     },
     jshint: {
       options: {
@@ -144,9 +144,7 @@ module.exports = function (grunt) {
         '<%= pkg.src %>/lib/**/*.less',
         '<%= pkg.src %>/coffee/**/*.coffee',
         '<%= pkg.src %>/less/**/*.less',
-        '<%= pkg.src %>/php/**/*.php',
-        '<%= pkg.src %>/plugins/**/*',
-        '<%= pkg.test %>/unit/**/*.coffee',
+        '<%= pkg.src %>/php/**/*.php'
       ],
       tasks: 'build reload'
     }
@@ -163,7 +161,7 @@ module.exports = function (grunt) {
 
   grunt.registerTask('build', 'clean coffee replace less copy');
   grunt.registerTask('default', 'server reload build watch');
-  grunt.registerTask('doc', 'docco');  
+  grunt.registerTask('doc', 'docco');
   grunt.registerTask('prod', 'build min');
   grunt.registerTask('test', 'testacularServer');
 };
