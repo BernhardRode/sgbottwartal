@@ -549,7 +549,41 @@ function sgb_kalender( $args ) {
   return $output;
 }
 
+function sgb_seiten( $args ) {
+  $pages = '';
+  $range = 2;
+  $showitems = ($range * 2)+1;
+  global $paged;
+  
+  if (empty($paged)) $paged = 1;
+
+  if ($pages == '') {
+    global $wp_query;
+    $pages = $wp_query->max_num_pages;
+    if(!$pages) {
+      $pages = 1;
+    }
+  }
+
+  if (1 != $pages) {
+    echo "<div class='pagination pagination-centered'><ul>";
+    if($paged > 2 && $paged > $range+1 && $showitems < $pages) echo "<li><a href='".get_pagenum_link(1)."'>Erste Seite</a></li>";
+    if($paged > 1 && $showitems < $pages) echo "<li><a href='".get_pagenum_link($paged - 1)."'>&lsaquo;</a></li>";
+
+    for ($i=1; $i <= $pages; $i++) {
+      if (1 != $pages &&( !($i >= $paged+$range+1 || $i <= $paged-$range-1) || $pages <= $showitems )) {
+        echo ($paged == $i)? "<li class='active'><span class='current'>".$i."</span></li>":"<li><a href='".get_pagenum_link($i)."' class='inactive' >".$i."</a></li>";
+      }
+    }
+
+    if ($paged < $pages && $showitems < $pages) echo "<li><a href='".get_pagenum_link($paged + 1)."'>&rsaquo;</a></li>";
+    if ($paged < $pages-1 && $paged+$range-1 < $pages && $showitems < $pages) echo "<li><a href='".get_pagenum_link($pages)."'>Letzte Seite</a></li>";
+    echo "</ul></div>\n";
+  }
+}
+
 function register_shortcodes(){
+  add_shortcode('seiten', 'sgb_seiten');
   add_shortcode('sponsoren', 'sgb_sponsoren');
   add_shortcode('fotos', 'sgb_fotos');
   add_shortcode('neuigkeiten', 'sgb_neuigkeiten');

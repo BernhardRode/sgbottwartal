@@ -36,6 +36,13 @@ get_header(); ?>
 	          </div>
 	        </div>
         <?php endwhile; ?>
+        <div class="row">
+        	<div class="span8">
+        		<div class="centered">
+      				<?php echo do_shortcode( '[seiten]' ); ?>
+						</div>
+        	</div>
+        </div>
       <?php endif; // end have_posts() check ?>
     </div>
     <div class="span4 hidden-phone">
