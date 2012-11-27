@@ -435,7 +435,7 @@ function sgb_sponsoren( $args ) {
 
 function sgb_kommentare( $args ) {
   if(empty($args['count'])) $args['count'] = 5;
-  $query = array( 'number' => $args['count'] );
+  $query = array( 'number' => $args['count'], 'post_status' => 'publish' );
   $comments = get_comments( $query );
   echo '<ul class="unstyled">';
   foreach($comments as $comment) :
