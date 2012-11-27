@@ -96,7 +96,13 @@ $ ->
     address = $('#map').data 'address'
     gm = geoDecode address
 
-  $( '#jms-slideshow' ).jmslideshow();
+  jmpressOpts = 
+    animation : 
+      transitionDuration : '0.8s'
+        
+  $( '#jms-slideshow' ).jmslideshow( $.extend( true, { jmpressOpts : jmpressOpts }, { autoplay  : true, bgColorSpeed: '0.8s', arrows : false } ) )
+
+  #$( '#jms-slideshow' ).jmslideshow();
   
   $('body').hide()
   $('body').removeClass 'hidden'
