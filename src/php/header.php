@@ -35,6 +35,7 @@
 ================================================== -->
 <!-- Wrap the .navbar in .container to center it on the page and provide easy way to target it with .navbar-wrapper. -->
 <header>
+  <div class="site-bg"></div>
   <div class="container navbar-wrapper">
     <div class="navbar">
       <div class="navbar-inner">
