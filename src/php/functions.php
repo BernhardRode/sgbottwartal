@@ -67,7 +67,7 @@ function sgb_scripts_styles() {
   //wp_enqueue_script('app', get_template_directory_uri().'/lib/socialite.js', array('jquery'), '1.0', true);
   //wp_enqueue_script('impress', get_template_directory_uri().'/lib/impress.js', array('jquery'), '1.0', true);
   //wp_enqueue_script('presentation', get_template_directory_uri().'/js/impress.js', array('jquery'), '1.0', true);
-  wp_enqueue_script('app', get_template_directory_uri().'/js/app.js', array('jquery'), '1.0', true);
+  wp_enqueue_script('app', get_template_directory_uri().'/js/app.js', array('jquery'), '2.0', true);
   //wp_enqueue_script('google-plus', 'https://apis.google.com/js/plusone.js', array(), '1.0', true);
   //wp_enqueue_script('facebook', 'http://connect.facebook.net/de_DE/all.js', array(), '1.0', true);
 
@@ -767,17 +767,17 @@ function meta_box_save_postdata( $post_id ) {
 }
 
 function sgb_meta_clean(&$arr) {
-    if (is_array($arr)) {
-        foreach ($arr as $i => $v) {
-            if (is_array($arr[$i])) {
-                sgb_meta_clean($arr[$i]);
-                if (!count($arr[$i])) { unset($arr[$i]); }
-            } else {
-                if (trim($arr[$i]) == '') { unset($arr[$i]); }
-            }
-        }
-        if (!count($arr)) { $arr = NULL; }
+  if (is_array($arr)) {
+    foreach ($arr as $i => $v) {
+      if (is_array($arr[$i])) {
+        sgb_meta_clean($arr[$i]);
+        if (!count($arr[$i])) { unset($arr[$i]); }
+      } else {
+        if (trim($arr[$i]) == '') { unset($arr[$i]); }
+      }
     }
+    if (!count($arr)) { $arr = NULL; }
+  }
 }
 
 /**

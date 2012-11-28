@@ -144,7 +144,8 @@ module.exports = function (grunt) {
         '<%= pkg.src %>/lib/**/*.less',
         '<%= pkg.src %>/coffee/**/*.coffee',
         '<%= pkg.src %>/less/**/*.less',
-        '<%= pkg.src %>/php/**/*.php'
+        '<%= pkg.src %>/php/**/*.php',
+        '<%= pkg.src %>/plugins/json-api/**/*.php'
       ],
       tasks: 'build reload'
     }
