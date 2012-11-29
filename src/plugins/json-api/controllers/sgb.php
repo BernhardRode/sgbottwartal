@@ -86,6 +86,8 @@ class JSON_API_SGB_Controller {
   public function get_events_from_wp() {
     global $json_api;
     $pages = array();
+    $events = array();
+
     $wp_posts = get_posts(array(
       'post_type' => 'event',
       'status' => 'publish',
@@ -95,32 +97,39 @@ class JSON_API_SGB_Controller {
       $pages[] = new JSON_API_Post($wp_post);
     }
     foreach ($pages as $page) {
-      
-      $terms = wp_get_post_terms($page->id,'termin_kategorie');
+      $terms = wp_get_post_terms($page->id);
       $page->terms = $terms;
 
       $meta  = get_post_meta($page->id,'meta',true);
       $page->meta = $meta;
-      $json_api->introspector->attach_child_posts($page);
+      $event = new JSON_API_Event();
+      array_push( $events, $event->event_from_wp_post($page) );
     }
     return array(
-      'results' => count( $pages ),
-      'events' => $pages
+      'results' => count( $events ),
+      'events' => $events
+    );
+  }
+
+  public function get_events_from_hvw() {
+    global $json_api;
+    $events = array();
+
+    $games = new JSON_API_HVW();
+    $games = $games->getCSVfromHVW();
+
+    foreach ($games as $game) {
+      $event = new JSON_API_Event();
+      array_push( $events, $event->event_from_hvw($game) );
+    }
+
+    return array(
+      'results' => count( $games ),
+      'events' => $events
     );
   }
 
   public function update_events() {
-    global $json_api;
-    nocache_headers();
-
-    $events = array();
-    $event = new JSON_API_Event();
-    
-    array_push($events, $event);
-
-    return array(
-      'events' => $events
-    );
   }
 }
 

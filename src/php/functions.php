@@ -880,7 +880,7 @@ function sgb_custom_post_types() {
     'not_found_in_trash' => __('Keine Termine im Papierkorb'),
     'parent_item_colon' => ''
   );
-  $supports = array('title', 'excerpt');
+  $supports = array('title', 'editor');
 
   register_post_type( 'event',
     array(
