@@ -130,23 +130,23 @@ class JSON_API_HVW {
   function get_tags_by_hvw_staffel($staffel) {
     $tags = array();
     $classes = array(
-      'M' => 'herren',
-      'M40' => 'ah',
-      'F' => 'damen',
-      'F30' => 'ad',
-      'mJA' => 'ma',
-      'mJB' => 'mb',
-      'mJC' => 'mc',
-      'mJD' => 'md',
-      'mJE' => 'me',
-      'wJA' => 'wa',
-      'wJB' => 'wb',
-      'wJC' => 'wc',
-      'wJD' => 'wd',
-      'wJE' => 'we',
-      'gJD' => 'd',
-      'gJE' => 'e',
-      'Minis' => 'minis',
+      'M' => 'Herren',
+      'M40' => 'AH',
+      'F' => 'Damen',
+      'F30' => 'AD',
+      'mJA' => 'mA-Jugend',
+      'mJB' => 'mB-Jugend',
+      'mJC' => 'mC-Jugend',
+      'mJD' => 'mD-Jugend',
+      'mJE' => 'mE-Jugend',
+      'wJA' => 'wA-Jugend',
+      'wJB' => 'wB-Jugend',
+      'wJC' => 'wC-Jugend',
+      'wJD' => 'wD-Jugend',
+      'wJE' => 'wE-Jugend',
+      'gJD' => 'D-Jugend',
+      'gJE' => 'E-Jugend',
+      'Minis' => 'Minis',
     );
     $leagues = array(
       '3.Liga' => '3. Liga',
@@ -171,6 +171,7 @@ class JSON_API_HVW {
 
     array_push($tags,$classes[$staffel[0]]);
     array_push($tags,$leagues[$staffel[1]]);
+    array_push($tags,$leagues[$staffel[2]]);
     array_push($tags,'Spiel');
 
     return $tags;

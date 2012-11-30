@@ -35,26 +35,35 @@ $ ->
       center: 'title'
       right: 'month,agendaWeek,agendaDay'
     editable: false
+    cache: false
     events:
       url: '/api/sgb/get_events'
     eventClick: (calEvent, jsEvent, view) =>
       time = moment( calEvent.start )
       time = time.fromNow()
-      title = calEvent.title+' <small>'+time+'</small>'
+      title = ''
+      #if calEvent.terms[0] isnt undefined then title += calEvent.terms[0].toUpperCase() + ' - '
+      title += calEvent.title
+      title += '<div class="pull-right"><small>'+time+'</small>'
+      if calEvent.terms[0] isnt undefined then title += '<span class="badge">'+calEvent.terms[0]+'</span>'
+      if calEvent.terms[1] isnt undefined and calEvent.terms[1] isnt '' then title += '<span class="badge">'+calEvent.terms[1]+'</span>'
+      title += '</div>'
       $('#event-title').html title
       content  = ''
-      content += '<h1 class="muted">'+calEvent.originalEvent.Heim+' - '+calEvent.originalEvent.Gast+'</h1>'
-      content += '<strong>'+calEvent.originalEvent.Hallenname+' ('+calEvent.originalEvent.Hallennummer+')</strong><br/>'
-      content += '<strong>Adresse:</strong> '+calEvent.originalEvent.Strasse+', '+calEvent.originalEvent.Plz+ ', '+calEvent.originalEvent.Ort+'<br/>'
-      content += '<strong>Bemerkung:</strong><br/>'+calEvent.originalEvent.Haftmittel
+      content += '<p>'+calEvent.excerpt+'</p>'
+      content += '<strong>Adresse:</strong> '+calEvent.city+', '+calEvent.street+'<br/>'
+      #content += '<br/>'+calEvent.id
+      #content += '<br/>'+calEvent.terms
+
       console.log calEvent
+      
       $('#event-content').html content
       $('#event-modal').modal 'toggle'
 
-      address = calEvent.originalEvent.Strasse+', '+calEvent.originalEvent.Plz+', '+calEvent.originalEvent.Ort+', Deutschland'
-      $('#map').fadeIn()
-      $('#map').addClass 'loading'
-      gm = geoDecode address
+      #address = calEvent.originalEvent.Strasse+', '+calEvent.originalEvent.Plz+', '+calEvent.originalEvent.Ort+', Deutschland'
+      #$('#map').fadeIn()
+      #$('#map').addClass 'loading'
+      #gm = geoDecode address
 
     loading: (bool) =>
       if bool then $('#loading').show() else $('#loading').hide()

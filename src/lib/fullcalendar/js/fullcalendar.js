@@ -979,7 +979,7 @@ function EventManager(options, _sources) {
 				$.ajax($.extend({}, ajaxDefaults, source, {
 					data: data,
 					success: function(events) {
-						events = events[0] || [];
+						events = events['events'] || [];
 						var res = applyAll(success, this, arguments);
 						if ($.isArray(res)) {
 							events = res;

@@ -72,6 +72,7 @@ class JSON_API_SGB_Controller {
     global $json_api;
 
     $ttl = 3600*24;
+    $ttl = 1;
     $key = 'hvw_data';
     $hvw = $this->load_cache( $key, $ttl );
     if ( !$hvw ) {
@@ -79,6 +80,7 @@ class JSON_API_SGB_Controller {
       $this->save_cache( $events, $key );
     }
     $ttl = 3600;
+    $ttl = 1;
     $key = 'wp_data';
     $sgb = $this->load_cache( $key, $ttl );
     if ( !$sgb ) {
@@ -100,7 +102,8 @@ class JSON_API_SGB_Controller {
 
     $key = 'from_'.$start.'_till_'.$end;
 
-    $ttl = 3600*1;
+    $ttl = 600;
+    $ttl = 1;
     $events = $this->load_cache($key, $ttl);
     $cached = true;
     if ( !$events ) {
