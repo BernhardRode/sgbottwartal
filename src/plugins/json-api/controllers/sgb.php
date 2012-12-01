@@ -47,7 +47,7 @@ class JSON_API_SGB_Controller {
     $ics .= "PRODID:-//SGBottwartal/TermineUndEvents//NONSGML v1.0//EN"."\n";
     $ics .= "X-APPLE-CALENDAR-COLOR:#BAADBB"."\n";
 
-    foreach ($events['events'] as $event) {
+    foreach ($events as $event) {
       if ( $event->tags[0] == $tag || $tag == 'Komplett' ) {
         #$leage_url = 'http://www.hvw-online.org/?A=g_class&id=39&orgID=3&score=14609';
         #$arena_url = 'http://www.hvw-online.org/?A=gym&id=39&orgID=3&gymID=73';
@@ -66,10 +66,13 @@ class JSON_API_SGB_Controller {
     }
     $ics .= "END:VCALENDAR";
 
-    $data = serialize($ics);
-    $filename = strtolower( str_replace(" ", "", trim( $title ) ).'.ics' );
+    #$data = serialize($ics);
+    $filename = str_replace(" ", "", $title );
+    $filename = trim( $filename );
+    $filename = strtolower( $filename );
+    $filename = $filename.'.ics';
     
-    file_put_contents(getcwd().'/wp-content/cache/'.$filename, $data); 
+    file_put_contents(getcwd().'/wp-content/cache/'.$filename, $ics); 
     return $ics;
   }
 
@@ -121,7 +124,7 @@ class JSON_API_SGB_Controller {
 
   public function update_events() {
     global $json_api;
-    #$debug = true;
+    $debug = false;
     $ttl = 3600*24*7;
     if ($debug) $ttl = 1;
     $key = 'hvw_data';
@@ -153,7 +156,7 @@ class JSON_API_SGB_Controller {
   public function get_events() {
     $start = $_GET["start"];
     $end = $_GET["end"];
-
+    $debug = false;
     if (!$start) $start=0;
     if (!$end) $end=9999999999;
 
@@ -171,7 +174,7 @@ class JSON_API_SGB_Controller {
           array_push( $events, $value );
         }
       }
-      $this->create_ical_from_events_by_tag( $events );
+      $this->create_ical_from_events_by_tag( $all_events );
 
       $this->save_cache($events, $key);
       $cached = false;
