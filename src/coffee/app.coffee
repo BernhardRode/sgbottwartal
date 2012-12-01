@@ -39,31 +39,24 @@ $ ->
     events:
       url: '/api/sgb/get_events'
     eventClick: (calEvent, jsEvent, view) =>
-      time = moment( calEvent.start )
-      time = time.fromNow()
-      title = ''
-      #if calEvent.terms[0] isnt undefined then title += calEvent.terms[0].toUpperCase() + ' - '
-      title += calEvent.title
-      title += '<div class="pull-right"><small>'+time+'</small>'
-      if calEvent.terms[0] isnt undefined then title += '<span class="badge">'+calEvent.terms[0]+'</span>'
-      if calEvent.terms[1] isnt undefined and calEvent.terms[1] isnt '' then title += '<span class="badge">'+calEvent.terms[1]+'</span>'
-      title += '</div>'
+      time = moment( calEvent.start ).format('LLLL')
+      #time = time.fromNow()
+      title = calEvent.title
       $('#event-title').html title
       content  = ''
+      content += '<p><i class="icon-time"></i> '+time+'</p>'
+      if calEvent.url
+        content += '<p><a href="'+calEvent.url+'" target="_blank">'
+        content += '<i class="icon-link"></i> '+calEvent.url
+        content += '</a></p>'
       content += '<p>'+calEvent.excerpt+'</p>'
-      content += '<strong>Adresse:</strong> '+calEvent.city+', '+calEvent.street+'<br/>'
-      #content += '<br/>'+calEvent.id
-      #content += '<br/>'+calEvent.terms
-
-      console.log calEvent
+      if calEvent.city and calEvent.street
+        content += '<a href="https://maps.google.de/maps?q='+calEvent.city+', '+calEvent.street+'&z=16" target="_blank">'
+        content += '<i class="icon-map-marker"></i> '+calEvent.city+', '+calEvent.street
+        content += '</a>'
       
       $('#event-content').html content
       $('#event-modal').modal 'toggle'
-
-      #address = calEvent.originalEvent.Strasse+', '+calEvent.originalEvent.Plz+', '+calEvent.originalEvent.Ort+', Deutschland'
-      #$('#map').fadeIn()
-      #$('#map').addClass 'loading'
-      #gm = geoDecode address
 
     loading: (bool) =>
       if bool then $('#loading').show() else $('#loading').hide()

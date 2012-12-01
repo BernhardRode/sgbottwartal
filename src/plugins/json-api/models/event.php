@@ -24,7 +24,7 @@ class JSON_API_Event {
   function event_from_hvw($game) {
     $this->id             = 'HVW'.$game['Nummer'];
     $this->title          = $game['tags'][0] .' '.$game['tags'][1];
-    $this->excerpt        = '<h1>'.$game['Heim'] . ' - ' . $game['Gast'].'</h1><p><strong>'.$game['Hallenname'].' ('.$game['Hallennummer'].')</strong><br/>'.$game['Haftmittel'].'</p><p>'.$game['Telefon'].'</p>';
+    $this->excerpt        = '<h5>'.$game['Heim'] . ' - ' . $game['Gast'].'</h5><p><strong>'.$game['Hallenname'].' ('.$game['Hallennummer'].')</strong><br/>'.$game['Haftmittel'].'</p><p>'.$game['Telefon'].'</p>';
     $this->street         = $game['Strasse'];
     $this->city           = $game['Plz'] . ' ' . $game['Ort'];
     $this->start          = $game['datetime']->getTimestamp();
@@ -55,7 +55,7 @@ class JSON_API_Event {
     $this->allDay         = false;
     $this->multiday       = false;
     $this->terms          = [];
-    $this->originalEvent  = $post;
+    //$this->originalEvent  = $post;
 
     if ( date('H:i', $this->start) == '00:00' ) {
       $this->allDay = true;

@@ -19,7 +19,6 @@ class JSON_API_HVW {
       'nm' => 0
     );
 		$csv = $this->get_hvw_data($url,$fields);
-
 		return $csv;
 	}
 
@@ -40,10 +39,7 @@ class JSON_API_HVW {
     // Uncompress the first Item from the retrieved File
     $csv = $this->decompress_first_file_from_zip($data);
     // Convert the File to UTF-8
-    if( mb_detect_encoding($csv, 'auto') != 'UTF-8' ) {
-      echo 'Converting String';
-      $csv = utf8_encode($csv);
-    }
+    $csv = utf8_encode($csv);
     // Read the data into an array
     $array = $this->csv_to_array($csv);
 
@@ -101,6 +97,7 @@ class JSON_API_HVW {
     $csvData = str_getcsv($input, "\n");
 
     foreach($csvData as $csvLine){
+      #$csvLine = $this->clean_umlauts($csvLine);
       $csvLine = str_replace('"', '', $csvLine);
       if ( is_null($header) )  {
         $header = explode( $delimiter, $csvLine );
@@ -204,75 +201,6 @@ class JSON_API_HVW {
     }
     // Read the data into an array
     return $data;
-  }
-
-  function output_string_to_file($data, $file) {
-
-    file_put_contents($file,$data);
-  }
-
-  function output_json_to_file($data, $file) {
-    $json = json_encode($data);
-    file_put_contents($file,$json);
-  }
-
-  function read_json_from_file($file) {
-    $data = file_get_contents( $file );
-    return json_decode($data,true);
-  }
-
-  function create_calendar( $name, $data ) {
-    $ics  = "BEGIN:VCALENDAR"."\n";
-    $ics .= "METHOD:PUBLISH"."\n";
-    $ics .= "VERSION:2.0"."\n";
-    $ics .= "X-WR-TIMEZONE:Europe/Berlin"."\n";
-    $ics .= "X-WR-CALNAME:".$name.""."\n";
-    $ics .= "PRODID:-//SGBottwartal/TermineUndEvents//NONSGML v1.0//EN"."\n";
-    $ics .= "X-APPLE-CALENDAR-COLOR:#BAADBB"."\n";
-
-    foreach ($data as $event) {
-
-      $leage_url = 'http://www.hvw-online.org/?A=g_class&id=39&orgID=3&score=14609';
-      $arena_url = 'http://www.hvw-online.org/?A=gym&id=39&orgID=3&gymID=73';
-
-      $summary = $event['Heim'] . ' - ' . $event['Gast'] . ' ('.$event['tags'][0].' '.$event['tags'][1].')';
-      $description = $event['tags'][1].'\n'.$event['Hallenname'].'\n'.$event['Telefon'].'\n'.'\n'.$event['Haftmittel'];
-      $location = $event['Hallenname'].' '.$event['Plz'].' '.$event['Ort'].' '.$event['Strasse'];
-      $url = 'http://sg-bottwartal.de';
-
-      //Create Events
-      $date = $event['datetime'];
-      $dtstart = $date;
-      $dtend = $date;
-      $dtend = $date->modify('+2 hours');
-      
-      //echo $dtstart->format('H:i:s') . '-' . $dtend->format('H:i:s');
-
-      $ics .= "BEGIN:VEVENT"."\n";
-      $ics .= "UID:". md5(uniqid(mt_rand(), true)) ."@sgbottwartal.de"."\n";
-      $ics .= "DTSTAMP:" . gmdate('Ymd').'T'. gmdate('His') . "Z"."\n";
-      $ics .= "DTSTART;TZID=Europe/Berlin:".$dtstart->format('Ymd')."T".$dtstart->format('His')."\n";
-      //$ics .= "DTEND;TZID=Europe/Berlin:".$dtend->format('Ymd')."T".$dtend->format('His').""."\n";
-      $ics .= "LOCATION:".str_replace("\n", "\\n", $location)."\n";
-      $ics .= "SUMMARY:".str_replace("\n", "\\n", $summary)."\n";
-      $ics .= "DESCRIPTION:".str_replace("\n", "\\n", $description)."\n";
-      $ics .= "URL;VALUE=URI:".$url."\n";
-      $ics .= "END:VEVENT"."\n";
-
-    }
-    $ics .= "END:VCALENDAR";
-    return clean_umlauts($ics);
-  }
-
-  function clean_umlauts($string) {
-    $string = str_replace('&auml;', 'ä', $string);
-    $string = str_replace('&Auml;', 'Ä', $string);
-    $string = str_replace('&uuml;', 'ü', $string);
-    $string = str_replace('&Uuml;', 'Ü', $string);
-    $string = str_replace('&ouml;', 'ö', $string);
-    $string = str_replace('&Ouml;', 'Ö', $string);
-    $string = str_replace('&szlig;', 'ß', $string);
-    return $string;
   }
 
 }
