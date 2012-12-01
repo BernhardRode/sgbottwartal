@@ -67,7 +67,7 @@ class JSON_API_SGB_Controller {
     $ics .= "END:VCALENDAR";
 
     $data = serialize($ics);
-    $filename = str_replace(" ", "", trim( $title ) ).'.ics';
+    $filename = strtolower( str_replace(" ", "", trim( $title ) ).'.ics' );
     
     file_put_contents(getcwd().'/wp-content/cache/'.$filename, $data); 
     return $ics;
@@ -172,7 +172,7 @@ class JSON_API_SGB_Controller {
         }
       }
       $this->create_ical_from_events_by_tag( $events );
-      
+
       $this->save_cache($events, $key);
       $cached = false;
     }
