@@ -121,8 +121,8 @@ class JSON_API_SGB_Controller {
 
   public function update_events() {
     global $json_api;
-    $debug = true;
-    $ttl = 3600*24;
+    #$debug = true;
+    $ttl = 3600*24*7;
     if ($debug) $ttl = 1;
     $key = 'hvw_data';
     $hvw = $this->load_cache( $key, $ttl );
