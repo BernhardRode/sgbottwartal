@@ -15,6 +15,14 @@ get_header(); ?>
 					<?php while ( have_posts() ) : the_post(); ?>
 						<?php get_template_part( 'content', get_post_type() ); ?>
 				</div>
+			</div>		
+			<div class="row">
+				<div class="offset span9">
+	          <div id="image-viewer" class="img-polaroid">
+	          	<img src="<?php echo $url; ?>">
+	        	</div>
+	      		<?php echo do_shortcode( '[gallery link="file" order="DESC" columns="10" orderby="title"]' ); ?>
+				</div>
 			</div>
 			<div class="row">
 				<div class="offset3 span9">
