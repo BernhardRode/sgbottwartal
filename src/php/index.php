@@ -81,7 +81,7 @@ get_header(); ?>
       </div>
     </div>
     <div class="span4 hidden-phone">
-      <?php echo do_shortcode( '[sponsoren tag="premium" span="4" count="1"]' ); ?>
+      <?php echo do_shortcode( '[sponsoren tag="Premium" span="4" count="1"]' ); ?>
       <br/>
       <?php get_sidebar(); ?>
     </div>
