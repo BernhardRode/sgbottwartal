@@ -17,7 +17,7 @@ get_header(); ?>
 				</div>
 			</div>		
 			<div class="row">
-				<div class="offset span9">
+				<div class="offset3 span9">
 	          <div id="image-viewer" class="img-polaroid">
 	          	<img src="<?php echo $url; ?>">
 	        	</div>
