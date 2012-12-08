@@ -28,11 +28,8 @@ get_header(); ?>
 		</div>
 		<div class="row">
 			<div class="offset3 span9">
-        	<?php $url = sgb_thumbnail('large'); ?>
-          <div id="image-viewer" class="img-polaroid">
-          	<img src="<?php echo $url; ?>">
-        	</div>
-      		<?php echo do_shortcode( '[gallery link="file" order="DESC" columns="10" orderby="title"]' ); ?>
+      		<?php //echo do_shortcode( '[fotos link="file" order="DESC" columns="10" orderby="title"]' ); ?>
+      		<?php echo do_shortcode('[power_play]');?>
 			</div>
 		</div>
 	</div><!-- #content -->

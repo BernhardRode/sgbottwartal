@@ -79,7 +79,7 @@ function remove_images( $content ) {
    $postOutput = preg_replace('/<img[^>]+./','', $content);
    return $postOutput;
 }
-add_filter( 'the_content', 'remove_images', 100 );
+#add_filter( 'the_content', 'remove_images', 100 );
 
 /**
 * Registers our main widget area and the front page widget areas.
@@ -164,7 +164,7 @@ function admin_bar_remove_logo() {
         global $wp_admin_bar;
 
         /* Remove their stuff */
-        $wp_admin_bar->remove_menu('wp-logo');
+        # $wp_admin_bar->remove_menu('wp-logo');
 }
 add_action('wp_before_admin_bar_render', 'admin_bar_remove_logo', 0);
 
@@ -892,9 +892,7 @@ function sgb_custom_post_types() {
 }
 add_action( 'init', 'sgb_custom_post_types' );
 // Add action to wp_head
-add_action('wp_head','move_admin_bar_bottom');
-
-
+// add_action('wp_head','move_admin_bar_bottom');
 // Move admin bar to bottom of page
 function move_admin_bar_bottom() {
   if(is_user_logged_in()) {
