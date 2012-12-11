@@ -187,7 +187,7 @@ function custom_login_logo() {
       background: url('/wp-content/themes/sgbottwartal/img/sg.panther.svg') no-repeat scroll center top transparent;
       background-size:cover;
       height: 128px;
-      width: 512px;
+      width: 313px;
     }
   </style>;
   ";
