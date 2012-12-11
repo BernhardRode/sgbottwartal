@@ -177,6 +177,22 @@ function wp_admin_logo_change_target_url($url) {
   return 'http://sg-bottwartal.de';
 }
 add_filter( 'login_headerurl', 'wp_admin_logo_change_target_url' );
+
+add_action("login_head", "custom_login_logo");
+
+function custom_login_logo() {
+  echo "
+  <style>
+  body.login #login h1 a {
+    background: url('".get_bloginfo('template_url')."/img/sg.logo.svg') no-repeat scroll center top transparent;
+    height: 313px;
+    width: 313px;
+  }
+  </style%gt;
+  ";
+}
+
+
 /**
 * Configure the excerpt.
 *
