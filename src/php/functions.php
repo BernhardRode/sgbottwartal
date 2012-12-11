@@ -203,7 +203,12 @@ add_filter( 'the_excerpt_rss',  'sgb_insertThumbnailRSS' );
 add_filter( 'the_content_feed', 'sgb_insertThumbnailRSS' );
 function sgb_insertThumbnailRSS( $content ) {
   global $post;
-  $content = '<img src="' . sgb_thumbnail( 'featured-thumb', $post->ID ) . '"><hr>' . $content;
+  $url = sgb_thumbnail( 'featured-thumb', $post->ID );
+  if ($url == '/wp-content/themes/sgbottwartal/img/sg.logo.quadrat.svg')
+    $url = 'http://sg-bottwartal.de/wp-content/themes/sgbottwartal/img/sg.logo.quadrat.png';
+  
+  $content = $url;
+  #$content = '<img src="' . $url . '"><hr>' . $content;
   return $content;
 }
 
