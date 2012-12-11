@@ -183,12 +183,12 @@ add_action("login_head", "custom_login_logo");
 function custom_login_logo() {
   echo "
   <style>
-  body.login #login h1 a {
-    background: url('/wp-content/themes/sgbottwartal/img/sg.panther.svg') no-repeat scroll center top transparent;
-    background-size:cover;
-    height: 256px;
-    width: 256px;
-  }
+    body.login #login h1 a {
+      background: url('/wp-content/themes/sgbottwartal/img/sg.panther.svg') no-repeat scroll center top transparent;
+      background-size:cover;
+      height: 128px;
+      width: 512px;
+    }
   </style>;
   ";
 }
