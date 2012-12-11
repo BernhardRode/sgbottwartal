@@ -193,6 +193,19 @@ function custom_login_logo() {
   ";
 }
 
+/**
+* THIS INCLUDES THE THUMBNAIL IN OUR RSS FEED
+*
+* @since 2013
+*/
+// 
+add_filter( 'the_excerpt_rss',  'sgb_insertThumbnailRSS' );
+add_filter( 'the_content_feed', 'sgb_insertThumbnailRSS' );
+function sgb_insertThumbnailRSS( $content ) {
+  global $post;
+  $content = '<img src="' . sgb_thumbnail( 'featured-thumb', $post->ID ) . '"><hr>' . $content;
+  return $content;
+}
 
 /**
 * Configure the excerpt.
