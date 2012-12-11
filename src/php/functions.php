@@ -184,11 +184,11 @@ function custom_login_logo() {
   echo "
   <style>
   body.login #login h1 a {
-    background: url('".get_bloginfo('template_url')."/img/sg.logo.svg') no-repeat scroll center top transparent;
+    background: url('/wp-content/themes/sgbottwartal/img/sg.logo.svg') no-repeat scroll center top transparent;
     height: 313px;
     width: 313px;
   }
-  </style%gt;
+  </style>;
   ";
 }
 
