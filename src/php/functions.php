@@ -186,7 +186,7 @@ function custom_login_logo() {
   body.login #login h1 a {
     background: url('/wp-content/themes/sgbottwartal/img/sg.panther.svg') no-repeat scroll center top transparent;
     background-size:cover;
-    height: 128px;
+    height: 256px;
     width: 256px;
   }
   </style>;
