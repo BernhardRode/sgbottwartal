@@ -185,8 +185,8 @@ function custom_login_logo() {
   <style>
   body.login #login h1 a {
     background: url('/wp-content/themes/sgbottwartal/img/sg.logo.svg') no-repeat scroll center top transparent;
-    height: 313px;
-    width: 313px;
+    height: 128px;
+    width: 128px;
   }
   </style>;
   ";
