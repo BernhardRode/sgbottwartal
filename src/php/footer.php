@@ -31,7 +31,7 @@
       <div class="span12">
         <?php do_shortcode( '[sponsoren count="6" span="2"]' ); ?>
       </div>
-    </div>  
+    </div>
   </div>
 </footer>
 <footer class="site-footer">
@@ -72,14 +72,14 @@
       <div class="span2">
         <a href="#" class="pull-right">Nach oben <i class="icon-chevron-up"></i></a>
       </div>
-    </div>    
+    </div>
     <div class="row grayed hidden-phone hidden-tablet">
       <div class="span6">
         <p class="muted">&copy; 2010-<?php echo date('Y'); ?></p>
-      </div>    
+      </div>
       <div class="span6">
-        <p class="muted">powered by <a href="http://www.wordpress.org">wordpress</a>, <a href="http://twitter.github.com/bootstrap/index.html">bootstrap</a> &amp; <a href="http://fortawesome.github.com">font awesome</a> with <i class="icon-heart"></i> by <a href="http://bernahrdrode.de">@ebbo</a></p>
-      </div>    
+        <p class="muted">powered by <a href="http://www.wordpress.org">wordpress</a>, <a href="http://twitter.github.com/bootstrap/index.html">bootstrap</a> &amp; <a href="http://fortawesome.github.com">font awesome</a> with <i class="icon-heart"></i> by <a href="http://bernhardrode.de">@ebbo</a></p>
+      </div>
     </div>
   </div>
 </footer>
