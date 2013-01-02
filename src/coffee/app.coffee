@@ -54,7 +54,7 @@ $ ->
         content += '<a href="https://maps.google.de/maps?q='+calEvent.city+', '+calEvent.street+'&z=16" target="_blank">'
         content += '<i class="icon-map-marker"></i> '+calEvent.city+', '+calEvent.street
         content += '</a>'
-      
+
       $('#event-content').html content
       $('#event-modal').modal 'toggle'
 
@@ -65,13 +65,13 @@ $ ->
   #  mode: "overlay"
   #  destination: "http://sg-bottwartal.de"
 
-  $('.gallery-item').click (evt) ->
-    evt.preventDefault()
-    evt.stopPropagation()
-    src = $(@).find('a').attr 'href'
-    title = $(@).find('a').attr 'title'
-    $('#image-viewer img').attr 'src',src
-    $('#image-viewer img').attr 'title', title
+  # $('.gallery-item').click (evt) ->
+  #   evt.preventDefault()
+  #   evt.stopPropagation()
+  #   src = $(@).find('a').attr 'href'
+  #   title = $(@).find('a').attr 'title'
+  #   $('#image-viewer img').attr 'src',src
+  #   $('#image-viewer img').attr 'title', title
 
   if $('#masonry').length > 0
     $('#tags a').click (evt) ->
@@ -98,14 +98,13 @@ $ ->
     address = $('#map').data 'address'
     gm = geoDecode address
 
-  jmpressOpts = 
-    animation : 
+  jmpressOpts =
+    animation :
       transitionDuration : '0.8s'
-        
-  $( '#jms-slideshow' ).jmslideshow( $.extend( true, { jmpressOpts : jmpressOpts }, { autoplay  : true, bgColorSpeed: '0.8s', arrows : false } ) )
 
-  #$( '#jms-slideshow' ).jmslideshow();
-  
+  $( '#jms-slideshow' ).jmslideshow( $.extend( true, { jmpressOpts : jmpressOpts }, { autoplay  : true, bgColorSpeed: '0.8s', arrows : false } ) )
+  $( '#jms-slideshow' ).jmslideshow();
+
   $('body').hide()
   $('body').removeClass 'hidden'
   $('body').fadeIn()

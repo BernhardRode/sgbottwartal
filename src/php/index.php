@@ -27,12 +27,15 @@ get_header(); ?>
               <?php
                 $url = sgb_thumbnail('medium',$post->ID);
               ?>
-              <div class="step" data-color="color-<?php echo $count; ?>" data-y="<?php echo $count; ?>00" data-scale="0.<?php echo $count*$random; ?>" data-rotate-x="<?php echo $random; ?>">
+              <div class="step" data-y="<?php echo $count; ?>00" data-scale="0.<?php echo $count*$random; ?>" data-rotate-x="<?php echo $random; ?>">
                 <div class="jms-content">
-                  <h1><?php echo the_title(); ?><?php comments_number('', '<span class="badge pull-right">1 Kommentar</span>', '<span class="badge pull-right">% Kommentare</span>' );?></h1>
-                  <?php echo the_excerpt(); ?>
                   <img src="<?php echo $url; ?>" alt="<?php echo the_title(); ?>">
-                  <a href="<?php echo get_permalink(); ?>" class="jms-link btn btn-danger btn-large pull-right"><strong>Weiterlesen...</strong></a>
+                  <h1>
+                    <?php echo the_title(); ?><?php comments_number('', '<span class="badge pull-right">1 Kommentar</span>', '<span class="badge pull-right">% Kommentare</span>' );?>
+                  </h1>
+                  <?php echo the_excerpt(); ?>
+
+                  <a href="<?php echo get_permalink(); ?>" class="btn btn-danger btn-large pull-right"><strong>Weiterlesen...</strong></a>
                 </div>
               </div>
             <?php endwhile; ?>
@@ -51,9 +54,9 @@ get_header(); ?>
       <div class="row">
         <?php
           query_posts(array(
-            'post__not_in'   => get_option('sticky_posts'),
+            'ignore_sticky_posts' => 1,
             'post_type' => 'post',
-            'showposts' => 8
+            'showposts' => 8,
           ));
         ?>
         <?php if ( have_posts() ) : ?>

@@ -14,9 +14,9 @@ get_header(); ?>
 				<div class="span12">
 					<?php while ( have_posts() ) : the_post(); ?>
 						<?php get_template_part( 'content', get_post_type() ); ?>
-	      		<?php //echo do_shortcode( '[fotos link="file" order="DESC" columns="10" orderby="title"]' ); ?>
+	      		<?php //echo do_shortcode( '[gallery link="file" order="DESC" columns="10" orderby="title"]' ); ?>
 				</div>
-			</div>		
+			</div>
 			<div class="row">
 				<div class="offset3 span9">
 						<?php

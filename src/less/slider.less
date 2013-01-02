@@ -15,7 +15,7 @@
   //background-color: @sg-schwarz;
   box-shadow: 0 2px 6px rgba(0, 0, 0, .2);
   -webkit-background-clip: padding;
-  -moz-background-clip: padding;     
+  -moz-background-clip: padding;
   background-clip: padding-box;
   border: 10px solid #fff;
   border: 10px solid rgba(255, 255, 255, 0.9);
@@ -41,7 +41,7 @@
 .color-5{
   background-color: rgba(8, 122, 51, .4);
 }
-.step { 
+.step {
   width: 860px;
   height: 400px;
   .transition (opacity 1s);
@@ -49,7 +49,7 @@
 .step:not(.active) {
   opacity: 0;
   filter: alpha(opacity=0); /* internet explorer */
-    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(opacity=0)"; /*IE8*/
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(opacity=0)"; /*IE8*/
 }
 .jms-content{
   margin: 0;
@@ -57,11 +57,11 @@
   clear: both;
 }
 .step h1{
-  color: @sg-rot;
+  color: @sg-weiss;
   font-weight: bold;
-  font-size: 54px;
-  line-height: 70px;
-  text-shadow: 0px 0px 4px rgba(0,0,0,1);
+  font-size: 40px;
+  line-height: 60px;
+  text-shadow: 0px 0px 4px @sg-rot;
   margin: 0;
   padding: 20px 0 10px 0;
 }
@@ -74,13 +74,6 @@
   font-size: 24px;
   line-height: 36px;
 }
-a.jms-link{
-  -webkit-transition: all 0.4s ease-in-out 1s;
-  -moz-transition: all 0.4s ease-in-out 1s;
-  -ms-transition: all 0.4s ease-in-out 1s;
-  -o-transition: all 0.4s ease-in-out 1s;
-  transition: all 0.4s ease-in-out 1s;
-}
 .step:not(.active) a.jms-link{
   opacity: 0;
   margin-top: 80px;
@@ -92,13 +85,13 @@ a.jms-link{
   margin-top: 40px;
 }
 .step img{
-  position: absolute;
-  right: 0px;
-  top: 0px;
-  width:100%;
+  width:120px;
+  float:left;
   z-index:-1;
-  opacity:.4;
+  //opacity:.4;
   .border-radius (4px);
+  margin-top:20px;
+  margin-right:10px;
 }
 .jms-dots{
   width: 100%;
@@ -122,8 +115,8 @@ a.jms-link{
   background: #777;
   margin: 3px;
   cursor: pointer;
-  box-shadow: 
-    1px 1px 1px rgba(0,0,0,0.1) inset, 
+  box-shadow:
+    1px 1px 1px rgba(0,0,0,0.1) inset,
     1px 1px 1px rgba(255,255,255,0.3);
 }
 .jms-dots span.jms-dots-current:after{

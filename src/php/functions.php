@@ -67,7 +67,7 @@ function sgb_scripts_styles() {
   //wp_enqueue_script('app', get_template_directory_uri().'/lib/socialite.js', array('jquery'), '1.0', true);
   //wp_enqueue_script('impress', get_template_directory_uri().'/lib/impress.js', array('jquery'), '1.0', true);
   //wp_enqueue_script('presentation', get_template_directory_uri().'/js/impress.js', array('jquery'), '1.0', true);
-  wp_enqueue_script('app', get_template_directory_uri().'/js/app.js', array('jquery'), '5.0', true);
+  wp_enqueue_script('app', get_template_directory_uri().'/js/app.js', array('jquery'), '8.0', true);
   //wp_enqueue_script('google-plus', 'https://apis.google.com/js/plusone.js', array(), '1.0', true);
   //wp_enqueue_script('facebook', 'http://connect.facebook.net/de_DE/all.js', array(), '1.0', true);
 
@@ -198,7 +198,7 @@ function custom_login_logo() {
 *
 * @since 2013
 */
-// 
+//
 add_filter( 'the_excerpt_rss',  'sgb_insertThumbnailRSS' );
 add_filter( 'the_content_feed', 'sgb_insertThumbnailRSS' );
 function sgb_insertThumbnailRSS( $content ) {
@@ -206,7 +206,7 @@ function sgb_insertThumbnailRSS( $content ) {
   $url = sgb_thumbnail( 'featured-thumb', $post->ID );
   if ($url == '/wp-content/themes/sgbottwartal/img/sg.logo.quadrat.svg')
     $url = 'http://sg-bottwartal.de/wp-content/themes/sgbottwartal/img/sg.logo.quadrat.png';
-  
+
   $content = $url;
   #$content = '<img src="' . $url . '"><hr>' . $content;
   return $content;
@@ -574,7 +574,7 @@ function sgb_kalender( $args ) {
   $output .= '<div class="modal-header">';
   $output .= '<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>';
   $output .= '<h3 id="event-title">Modal header</h3>';
-  $output .= '</div>'; 
+  $output .= '</div>';
   $output .= '<div class="modal-body">';
   $output .= '<p id="event-content">Body</p>';
   #$output .= '<div id="map"></div>';
@@ -588,7 +588,7 @@ function sgb_seiten( $args ) {
   $range = 2;
   $showitems = ($range * 2)+1;
   global $paged;
-  
+
   if (empty($paged)) $paged = 1;
 
   if ($pages == '') {

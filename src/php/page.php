@@ -28,8 +28,7 @@ get_header(); ?>
 		</div>
 		<div class="row">
 			<div class="offset3 span9">
-      		<?php //echo do_shortcode( '[fotos link="file" order="DESC" columns="10" orderby="title"]' ); ?>
-      		<?php echo do_shortcode('[power_play]');?>
+      		<?php echo do_shortcode( '[gallery link="file" order="DESC" columns="10" orderby="title"]' ); ?>
 			</div>
 		</div>
 	</div><!-- #content -->

@@ -131,7 +131,7 @@ module.exports = function (grunt) {
       port: 9000,
       proxy: {
           host: 'localhost',
-          port: 9001
+          port: 4001
       }
     },
     server: {
@@ -161,7 +161,7 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-docco');
 
   grunt.registerTask('build', 'clean coffee replace less copy');
-  grunt.registerTask('default', 'server reload build watch');
+  grunt.registerTask('default', 'reload build watch');
   grunt.registerTask('doc', 'docco');
   grunt.registerTask('prod', 'build min');
   grunt.registerTask('test', 'testacularServer');
