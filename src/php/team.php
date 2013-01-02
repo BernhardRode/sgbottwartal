@@ -29,7 +29,7 @@ get_header(); ?>
 	        </div>
 				</div>
         <?php $url = sgb_thumbnail('large',$child_child_page->ID); ?>
-				<div class="span8" id="image-viewer">
+				<div class="span8">
           <img src="<?php echo $url; ?>" class="img-polaroid">
       		<?php echo do_shortcode( '[gallery link="file" order="DESC" columns="10" orderby="title"]' ); ?>
 				</div>
@@ -45,7 +45,7 @@ get_header(); ?>
 				</div>
 				<div class="span8">
           <h3>Aktuelles</h3>
-          <?php 
+          <?php
           	$title = strtolower(get_the_title());
           	$title = str_replace('-', '', $title);
           	$title = str_replace(' ', '', $title);
@@ -60,7 +60,7 @@ get_header(); ?>
 							)
 						);
 						$postslist = get_posts( $args );
-						
+
 						?>
 						<ul class="unstyled">
 						<?php
@@ -69,7 +69,7 @@ get_header(); ?>
 							<?php endforeach; ?>
 						</ul>
 				</div>
-			</div> 				
+			</div>
 		<?php endwhile; // end of the loop. ?>
 	</div><!-- #content -->
 </div><!-- #primary -->

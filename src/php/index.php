@@ -35,7 +35,7 @@ get_header(); ?>
                   </h1>
                   <?php echo the_excerpt(); ?>
 
-                  <a href="<?php echo get_permalink(); ?>" class="btn btn-danger btn-large pull-right"><strong>Weiterlesen...</strong></a>
+                  <a href="<?php echo get_permalink(); ?>" class="jms-link btn btn-danger btn-large pull-right"><strong>Weiterlesen...</strong></a>
                 </div>
               </div>
             <?php endwhile; ?>
