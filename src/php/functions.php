@@ -35,6 +35,19 @@ function sgb_setup() {
 }
 add_action( 'after_setup_theme', 'sgb_setup' );
 
+
+
+// https://api.twitter.com/1/users/show.json?screen_name=sgbottwartal
+add_filter( 'twitter_cards_properties', 'twitter_custom' );
+function twitter_custom( $twitter_card ) {
+  if ( is_array( $twitter_card ) ) {
+    $twitter_card['creator'] = '@sgbottwartal';
+    $twitter_card['creator:id'] = '96777351';
+  }
+  return $twitter_card;
+}
+
+
 function sgb_scripts_styles() {
   //wp_enqueue_script('head', get_template_directory_uri().'/lib/head.load.min.js', array(), '1.0', true);
   //wp_enqueue_script('sgb', get_template_directory_uri().'/js/app.js', array(), '1.0', true);
