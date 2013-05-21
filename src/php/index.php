@@ -16,39 +16,38 @@ get_header(); ?>
   <div class="row hidden-phone">
     <div class="span12">
       <div id="myCarousel" class="carousel slide">
-        <ol class="carousel-indicators">
-          <li data-target="#myCarousel" data-slide-to="0" class=""></li>
-          <li data-target="#myCarousel" data-slide-to="1" class="active"></li>
-          <li data-target="#myCarousel" data-slide-to="2" class=""></li>
-        </ol>
+        <!--
+          <ol class="carousel-indicators">
+            <li data-target="#myCarousel" data-slide-to="0" class=""></li>
+            <li data-target="#myCarousel" data-slide-to="1" class="active"></li>
+            <li data-target="#myCarousel" data-slide-to="2" class=""></li>
+          </ol>
+        -->     
+        <?php if ( have_posts() ) : ?>
+        <?php $count = 0; ?>
         <div class="carousel-inner">
-          <div class="item" style="text-align:center">
-            <img src="http://twitter.github.io/bootstrap/assets/img/bootstrap-mdo-sfmoma-01.jpg" alt="">
-            <div class="carousel-caption">
-              <h4>First Thumbnail label</h4>
-              <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+          <?php while ( have_posts() ) : the_post(); ?>
+            <?php
+              $url = sgb_thumbnail('medium',$post->ID);
+            ?>
+            <div class="item" style="text-align:center">
+              <img src="<?php echo $url; ?>" alt="<?php echo the_title(); ?>">
+              <div class="carousel-caption">
+                <h4>
+                  <?php echo the_title(); ?>
+                  <?php comments_number('', '<span class="badge pull-right">1 Kommentar</span>', '<span class="badge pull-right">% Kommentare</span>' );?>
+                </h4>
+                <p><?php echo the_excerpt(); ?></p>
+              </div>
             </div>
-          </div>
-          <div class="item active">
-            <img src="http://twitter.github.io/bootstrap/assets/img/bootstrap-mdo-sfmoma-02.jpg" alt="">
-            <div class="carousel-caption">
-              <h4>Second Thumbnail label</h4>
-              <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-            </div>
-          </div>
-          <div class="item">
-            <img src="http://twitter.github.io/bootstrap/assets/img/bootstrap-mdo-sfmoma-03.jpg" alt="">
-            <div class="carousel-caption">
-              <h4>Third Thumbnail label</h4>
-              <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-            </div>
-          </div>
+          <?php endwhile; ?>
         </div>
-<!--         
-        <a class="left carousel-control" href="#myCarousel" data-slide="prev">‹</a>
-        <a class="right carousel-control" href="#myCarousel" data-slide="next">›</a> 
--->
-      </div>
+        <!--                      
+          <a class="left carousel-control" href="#myCarousel" data-slide="prev">‹</a>
+          <a class="right carousel-control" href="#myCarousel" data-slide="next">›</a> 
+        -->
+        </div>
+      <?php endif; ?>
     </div>
   </div>
   <div class="row hidden-phone">
