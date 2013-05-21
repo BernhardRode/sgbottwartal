@@ -40,7 +40,7 @@ get_header(); ?>
               $url = sgb_thumbnail('featured-thumb',$post->ID);
             ?>
             <div class="item <?php if ( $count == 0 ) { echo 'active'; } ?>" style="text-align:center">
-              <img src="<?php echo $url; ?>" alt="<?php echo the_title(); ?>">
+              <img src="<?php echo $url; ?>" alt="<?php echo the_title(); ?>" style="height:400px">
               <div class="carousel-caption">
                 <h4>
                   <?php echo the_title(); ?>
