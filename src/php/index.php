@@ -16,13 +16,21 @@ get_header(); ?>
   <div class="row hidden-phone">
     <div class="span12">
       <div id="myCarousel" class="carousel slide">
-        <!--
+        <?php if ( have_posts() ) : ?>
+        <?php 
+          $count = 0; 
+        ?>
+        <?php if ( have_posts() ) : ?>
           <ol class="carousel-indicators">
-            <li data-target="#myCarousel" data-slide-to="0" class=""></li>
-            <li data-target="#myCarousel" data-slide-to="1" class="active"></li>
-            <li data-target="#myCarousel" data-slide-to="2" class=""></li>
+            <?php while ( have_posts() ) : the_post(); ?>
+              <li data-target="#myCarousel" data-slide-to="0" class="<?php if ( $count == 0 ) { echo 'active'; } ?>"></li>
+              <?php
+                $count = $count + 1; 
+              ?>
+            <?php endwhile; ?>
           </ol>
-        -->     
+        <?php endif; ?>
+        <?php rewind_posts(); ?>
         <?php if ( have_posts() ) : ?>
         <?php 
           $count = 0; 
