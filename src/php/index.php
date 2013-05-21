@@ -47,6 +47,7 @@ get_header(); ?>
                   <?php comments_number('', '<span class="badge pull-right">1 Kommentar</span>', '<span class="badge pull-right">% Kommentare</span>' );?>
                 </h4>
                 <p><?php echo the_excerpt(); ?></p>
+                <a href="<?php echo get_permalink(); ?>" class="jms-link btn btn-danger btn-large pull-right"><strong>Weiterlesen...</strong></a>
               </div>
             </div>
             <?php
