@@ -27,10 +27,11 @@ get_header(); ?>
         <?php $count = 0; ?>
         <div class="carousel-inner">
           <?php while ( have_posts() ) : the_post(); ?>
+            <?php $count = $count+1; ?>
             <?php
               $url = sgb_thumbnail('medium',$post->ID);
             ?>
-            <div class="item" style="text-align:center">
+            <div class="item <?php if ( $count == 0 ) { echo 'active'; } ?>" style="text-align:center">
               <img src="<?php echo $url; ?>" alt="<?php echo the_title(); ?>">
               <div class="carousel-caption">
                 <h4>
