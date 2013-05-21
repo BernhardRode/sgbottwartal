@@ -30,21 +30,21 @@ get_header(); ?>
         <div class="carousel-inner">
           <?php while ( have_posts() ) : the_post(); ?>
             <?php
-              $count = $count + 1; 
-            ?>
-            <?php
               $url = sgb_thumbnail('medium',$post->ID);
             ?>
             <div class="item <?php if ( $count == 0 ) { echo 'active'; } ?>" style="text-align:center">
               <img src="<?php echo $url; ?>" alt="<?php echo the_title(); ?>">
               <div class="carousel-caption">
                 <h4>
-                  #<?php echo $count; ?># - <?php echo the_title(); ?>
+                  <?php echo the_title(); ?>
                   <?php comments_number('', '<span class="badge pull-right">1 Kommentar</span>', '<span class="badge pull-right">% Kommentare</span>' );?>
                 </h4>
                 <p><?php echo the_excerpt(); ?></p>
               </div>
             </div>
+            <?php
+              $count = $count + 1; 
+            ?>
           <?php endwhile; ?>
         </div>
         <!--                      
