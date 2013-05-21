@@ -22,7 +22,7 @@ get_header(); ?>
           <li data-target="#myCarousel" data-slide-to="2" class=""></li>
         </ol>
         <div class="carousel-inner">
-          <div class="item">
+          <div class="item" style="text-align:center">
             <img src="http://twitter.github.io/bootstrap/assets/img/bootstrap-mdo-sfmoma-01.jpg" alt="">
             <div class="carousel-caption">
               <h4>First Thumbnail label</h4>
@@ -44,8 +44,10 @@ get_header(); ?>
             </div>
           </div>
         </div>
+<!--         
         <a class="left carousel-control" href="#myCarousel" data-slide="prev">‹</a>
-        <a class="right carousel-control" href="#myCarousel" data-slide="next">›</a>
+        <a class="right carousel-control" href="#myCarousel" data-slide="next">›</a> 
+-->
       </div>
     </div>
   </div>
