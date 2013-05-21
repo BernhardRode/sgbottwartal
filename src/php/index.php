@@ -30,7 +30,7 @@ get_header(); ?>
             <?php endwhile; ?>
           </ol>
         <?php endif; ?>
-        <?php rewind_posts(); ?>
+        <?php // rewind_posts(); ?>
         <?php if ( have_posts() ) : ?>
         <?php 
           $count = 0; 
