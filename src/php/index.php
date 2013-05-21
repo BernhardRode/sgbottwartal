@@ -37,7 +37,6 @@ get_header(); ?>
                 $url = sgb_thumbnail('medium',$post->ID);
               ?>
               <div class="<?php if ( $count  == 0 ) { echo "active"; } ?> item">
-              
                     <img src="<?php echo $url; ?>">
                     <div class="carousel-caption">
                       <h4><?php echo the_title(); ?></h4>
@@ -51,6 +50,7 @@ get_header(); ?>
         <!-- Carousel nav -->
         <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
         <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
+      </div>
       </div>
     </div>
   </div>
