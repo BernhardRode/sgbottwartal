@@ -30,7 +30,7 @@ get_header(); ?>
         <div class="carousel-inner">
           <?php while ( have_posts() ) : the_post(); ?>
             <?php
-              $url = sgb_thumbnail('featured-thumb',$post->ID);
+              $url = sgb_thumbnail('featured-thumb-crop',$post->ID);
             ?>
             <div class="item <?php if ( $count == 0 ) { echo 'active'; } ?>" style="text-align:center">
               <img src="<?php echo $url; ?>" alt="<?php echo the_title(); ?>">
