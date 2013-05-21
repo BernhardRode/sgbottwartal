@@ -15,32 +15,43 @@ get_header(); ?>
 <div class="site-content container">
   <div class="row hidden-phone">
     <div class="span12">
-      <!-- Carousel
-      ================================================== -->
-      <div id="jms-slideshow" class="jms-slideshow">
+      <div id="myCarousel" class="carousel slide">
+        <ol class="carousel-indicators">
           <?php if ( have_posts() ) : ?>
           <?php /* Start the Loop */ ?>
           <?php $count = 0; ?>
             <?php while ( have_posts() ) : the_post(); ?>
               <?php $count = $count+1; ?>
-              <?php $random = rand(0, 360); ?>
+              <li data-target="#myCarousel" data-slide-to="<?php echo $count; ?>" class="<?php if ( $count  == 0 ) { echo "active"; } ?>"></li>
+            <?php endwhile; ?>
+          <?php endif; ?>
+        </ol>
+        <!-- Carousel items -->
+        <div class="carousel-inner">
+          <?php if ( have_posts() ) : ?>
+          <?php /* Start the Loop */ ?>
+          <?php $count = 0; ?>
+            <?php while ( have_posts() ) : the_post(); ?>
+              <?php $count = $count+1; ?>
               <?php
                 $url = sgb_thumbnail('medium',$post->ID);
               ?>
-              <div class="step" data-y="<?php echo $count; ?>00" data-scale="0.<?php echo $count*$random; ?>" data-rotate-x="<?php echo $random; ?>">
-                <div class="jms-content">
-                  <img src="<?php echo $url; ?>" alt="<?php echo the_title(); ?>">
-                  <h1>
-                    <?php echo the_title(); ?><?php comments_number('', '<span class="badge pull-right">1 Kommentar</span>', '<span class="badge pull-right">% Kommentare</span>' );?>
-                  </h1>
-                  <?php echo the_excerpt(); ?>
-
-                  <a href="<?php echo get_permalink(); ?>" class="jms-link btn btn-danger btn-large pull-right"><strong>Weiterlesen...</strong></a>
-                </div>
+              <div class="<?php if ( $count  == 0 ) { echo "active"; } ?> item">
+              
+                    <img src="<?php echo $url; ?>">
+                    <div class="carousel-caption">
+                      <h4><?php echo the_title(); ?></h4>
+                      <p><?php echo the_excerpt(); ?></p>
+                    </div>
+                  </div>
               </div>
             <?php endwhile; ?>
           <?php endif; ?>
-      </div><!-- /.da-slider -->
+        </div>
+        <!-- Carousel nav -->
+        <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+        <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
+      </div>
     </div>
   </div>
   <div class="row hidden-phone">
