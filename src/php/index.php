@@ -35,7 +35,7 @@ get_header(); ?>
               <img src="<?php echo $url; ?>" alt="<?php echo the_title(); ?>">
               <div class="carousel-caption">
                 <h4>
-                  <?php echo the_title(); ?>
+                  <?php echo $count; ?> - <?php echo the_title(); ?>
                   <?php comments_number('', '<span class="badge pull-right">1 Kommentar</span>', '<span class="badge pull-right">% Kommentare</span>' );?>
                 </h4>
                 <p><?php echo the_excerpt(); ?></p>
