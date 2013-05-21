@@ -20,7 +20,6 @@ get_header(); ?>
         <?php 
           $count = 0; 
         ?>
-        <?php if ( have_posts() ) : ?>
           <ol class="carousel-indicators">
             <?php while ( have_posts() ) : the_post(); ?>
               <li data-target="#myCarousel" data-slide-to="<?php echo $count; ?>" class="<?php if ( $count == 0 ) { echo 'active'; } ?>"></li>
