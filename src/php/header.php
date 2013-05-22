@@ -29,8 +29,8 @@
   <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/wp-content/themes/sgbottwartal/apple-touch-icon-114-precomposed.png">
   <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/wp-content/themes/sgbottwartal/apple-touch-icon-72-precomposed.png">
   <link rel="apple-touch-icon-precomposed" href="/wp-content/themes/sgbottwartal/apple-touch-icon-57-precomposed.png">
-  <script type="text/javascript" src="//use.typekit.net/lxy8qkj.js"></script>
-  <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+  <!-- <script type="text/javascript" src="//use.typekit.net/lxy8qkj.js"></script> -->
+  <!-- <script type="text/javascript">try{Typekit.load();}catch(e){}</script>-->
 </head>
 <body class="hidden">
 <!-- NAVBAR
