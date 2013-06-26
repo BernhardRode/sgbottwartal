@@ -83,7 +83,7 @@ function sgb_scripts_styles() {
   //wp_enqueue_script('app', get_template_directory_uri().'/lib/socialite.js', array('jquery'), '1.0', true);
   //wp_enqueue_script('impress', get_template_directory_uri().'/lib/impress.js', array('jquery'), '1.0', true);
   //wp_enqueue_script('presentation', get_template_directory_uri().'/js/impress.js', array('jquery'), '1.0', true);
-  wp_enqueue_script('app', get_template_directory_uri().'/js/app.js', array('jquery'), '20.0', true);
+  wp_enqueue_script('app', get_template_directory_uri().'/js/app.min.js', array('jquery'), '20.0', true);
   //wp_enqueue_script('google-plus', 'https://apis.google.com/js/plusone.js', array(), '1.0', true);
   //wp_enqueue_script('facebook', 'http://connect.facebook.net/de_DE/all.js', array(), '1.0', true);
 
