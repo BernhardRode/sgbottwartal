@@ -12,7 +12,7 @@
   "codename": "anguis-fragilis",
   "homepage": "http://sgbottwartal.de",
   "src": "src",
-  "dist": "../WordPress/wp-content/themes/sgbottwartal",
+  "dist": "dist",
   "test": "test",
   "repositories": {
     "type": "git",

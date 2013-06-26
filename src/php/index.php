@@ -14,7 +14,7 @@ get_header(); ?>
 
 <div class="site-content container">
   <div class="row hidden-phone">
-    <div class="span12">
+    <div class="span8">
       <div id="myCarousel" class="carousel slide">
         <?php if ( have_posts() ) : ?>
         <?php 
@@ -62,11 +62,11 @@ get_header(); ?>
         </div>
       <?php endif; ?>
     </div>
-  </div>
-  <div class="row hidden-phone">
-    <div class="span12">
-      <?php echo do_shortcode( '[sponsoren count="12" span="1"]' ); ?>
-    </div>
+    <div class="span4 hidden-phone">
+      <?php echo do_shortcode( '[sponsoren tag="premium-2" count="1" span="4"]' ); ?><br>
+      <?php echo do_shortcode( '[sponsoren count="4" span="1"]' ); ?><br>
+      <?php echo do_shortcode( '[sponsoren count="4" span="1"]' ); ?>
+    </div>   
   </div>
   <hr class="hidden-phone">
   <div class="row">
@@ -104,8 +104,8 @@ get_header(); ?>
       </div>
     </div>
     <div class="span4 hidden-phone">
-      <?php echo do_shortcode( '[sponsoren tag="Premium" span="4" count="1"]' ); ?>
-      <br/>
+      <?php // echo do_shortcode( '[sponsoren tag="Premium" span="4" count="1"]' ); ?>
+<!--       <br/> -->
       <?php get_sidebar(); ?>
     </div>
   </div>

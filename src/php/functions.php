@@ -54,7 +54,7 @@ function sgb_scripts_styles() {
   //wp_enqueue_script('sgb', get_template_directory_uri().'/js/app.js', array(), '1.0', true);
   wp_enqueue_script('modernizr', get_template_directory_uri().'/lib/modernizr.custom.70639.js', array(), '70639', false);
   //wp_enqueue_script('jquery', get_template_directory_uri().'/lib/jquery.js', array(), '1.9.1', true);
-  wp_enqueue_script('jquery', 'http://code.jquery.com/jquery-2.0.0.min.js', array(), '2.0.0', true);
+  wp_enqueue_script('jquery', '//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js', array(), '2.0.2', true);
   wp_enqueue_script('moment', get_template_directory_uri().'/lib/moment.js', array(), '1.7.2', true);
   wp_enqueue_script('moment-de', get_template_directory_uri().'/lib/de.js', array('moment'), '1.7.2', true);
   wp_enqueue_script('bootstrap', '//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js', array('jquery'), '2.3.2', true);
@@ -83,12 +83,12 @@ function sgb_scripts_styles() {
   //wp_enqueue_script('app', get_template_directory_uri().'/lib/socialite.js', array('jquery'), '1.0', true);
   //wp_enqueue_script('impress', get_template_directory_uri().'/lib/impress.js', array('jquery'), '1.0', true);
   //wp_enqueue_script('presentation', get_template_directory_uri().'/js/impress.js', array('jquery'), '1.0', true);
-  wp_enqueue_script('app', get_template_directory_uri().'/js/app.js', array('jquery'), '8.0', true);
+  wp_enqueue_script('app', get_template_directory_uri().'/js/app.js', array('jquery'), '20.0', true);
   //wp_enqueue_script('google-plus', 'https://apis.google.com/js/plusone.js', array(), '1.0', true);
   //wp_enqueue_script('facebook', 'http://connect.facebook.net/de_DE/all.js', array(), '1.0', true);
 
-  wp_enqueue_style('bootstrap', '//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css' );
-  wp_enqueue_style('fontawesome', '//netdna.bootstrapcdn.com/font-awesome/3.1.1/css/font-awesome.css' );
+  //wp_enqueue_style('bootstrap', '//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css' );
+  wp_enqueue_style('fontawesome', '//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css' );
   wp_enqueue_style('sgb-style', get_stylesheet_uri() );
 }
 add_action( 'wp_enqueue_scripts', 'sgb_scripts_styles' );
@@ -134,7 +134,7 @@ add_action( 'widgets_init', 'sgb_widgets_init' );
 */
 function replace_howdy( $wp_admin_bar ) {
     $my_account=$wp_admin_bar->get_node('my-account');
-    $newtitle = str_replace( 'Howdy,', '', $my_account->title );
+    $newtitle = str_replace( 'Es lebe der Sport,', '', $my_account->title );
     $wp_admin_bar->add_node( array(
         'id' => 'my-account',
         'title' => $newtitle,
@@ -461,26 +461,31 @@ function sgb_sponsoren( $args ) {
   if(empty($args['count'])) $args['count'] = 1;
 
   $query = array( 'post_type' => 'sponsoren', 'posts_per_page' => $args['count'], 'orderby' => 'rand' );
-  if( !empty($args['id']) || !empty($args['tag']) ) $query = array( 'post_type' => 'sponsoren', 'orderby' => 'rand', 'posts_per_page' => '-1' );
+  if( !empty($args['id']) || !empty($args['tag']) ) {
+    //print('###'+$args['count']);
+    $query = array(  'sponsoren_kategorie' => $args['tag'], 'post_type' => 'sponsoren', 'orderby' => 'rand', 'showposts' => 1 );
+  }
 
   $size = 'sponsor-large';
   if ($args['span'] <= 1 ) $size = 'sponsor-small';
   if ($args['span'] >= 3 ) $size = 'medium';
   $sponsoren = get_posts( $query );
+  //print_r($sponsoren);
   $output = '<div class="row">';
   foreach($sponsoren as $sponsor) :
     $url_image = sgb_thumbnail( $size, $sponsor->ID );
     $url = get_permalink($sponsor->ID);
-    if(!empty($args['id'])) {
-      if ( in_array($sponsor->ID, explode(',',$args['id']) ) ) $output .= '<div class="span'.$args['span'].'"><a href="'.$url.'" target="_blank"><img src="'.$url_image.'" class="img-polaroid img-grayscale" title="'.$sponsor->post_title.'"></a></div>';
-    } elseif ( !empty($args['tag']) ) {
-      $taxonomies = wp_get_post_terms( $sponsor->ID, 'sponsoren_kategorie' );
-      foreach ( $taxonomies as $taxonomy) {
-        if ( $taxonomy->name == $args['tag'] ) $output .= '<div class="span'.$args['span'].'"><a href="'.$url.'" target="_blank"><img src="'.$url_image.'" class="img-polaroid img-grayscale" title="'.$sponsor->post_title.'"></a></div>';
-      }
-    } else {
-      $output .= '<div class="span'.$args['span'].'"><a href="'.$url.'" target="_blank"><img src="'.$url_image.'" class="img-polaroid img-grayscale" title="'.$sponsor->post_title.'"></a></div>';
-    }
+    $output .= '<div class="span'.$args['span'].'"><a href="'.$url.'" target="_blank"><img src="'.$url_image.'" class="img-polaroid img-grayscale" title="'.$sponsor->post_title.'"></a></div>';
+    // if(!empty($args['id'])) {
+    //   if ( in_array($sponsor->ID, explode(',',$args['id']) ) ) $output .= '<div class="span'.$args['span'].'"><a href="'.$url.'" target="_blank"><img src="'.$url_image.'" class="img-polaroid img-grayscale" title="'.$sponsor->post_title.'"></a></div>';
+    // } elseif ( !empty($args['tag']) ) {
+    //   $taxonomies = wp_get_post_terms( $sponsor->ID, 'sponsoren_kategorie' );
+    //   foreach ( $taxonomies as $taxonomy) {
+    //     if ( $taxonomy->name == $args['tag'] ) $output .= '<div class="span'.$args['span'].'"><a href="'.$url.'" target="_blank"><img src="'.$url_image.'" class="img-polaroid img-grayscale" title="'.$sponsor->post_title.'"></a></div>';
+    //   }
+    // } else {
+    //   $output .= '<div class="span'.$args['span'].'"><a href="'.$url.'" target="_blank"><img src="'.$url_image.'" class="img-polaroid img-grayscale" title="'.$sponsor->post_title.'"></a></div>';
+    // }
   endforeach;
   $output .= '</div>';
   echo $output;
@@ -874,7 +879,7 @@ function sgb_custom_post_types() {
     'edit_item' => __('Sponsor bearbeiten'),
     'new_item' => __('Neuer Sponsor'),
     'view_item' => __('Sponsor anzeigen'),
-    'search_items' => __('Search Events'),
+    'search_items' => __('Sponsoren suchen'),
     'not_found' =>  __('Keine Sponsoren gefunden'),
     'not_found_in_trash' => __('Keine Sponsoren im Papierkorb'),
     'parent_item_colon' => ''
@@ -1082,5 +1087,25 @@ function my_image_attachment_fields_to_save($post, $attachment) {
   return $post;
 }
 add_filter("attachment_fields_to_save", "my_image_attachment_fields_to_save", null, 2);
+
+
+add_filter('json_api_controllers', 'json_api_add_sgb_controller');
+
+/**
+ * JSON API
+ */
+function json_api_add_sgb_controller($controllers) {
+  // Corresponds to the class JSON_API_MyController_Controller
+  $controllers[] = 'SGB';
+  return $controllers;
+}
+
+add_filter('json_api_sgb_controller_path', 'sgb_controller_path');
+function sgb_controller_path($default_path) {
+  return '/Users/ebbo/Sourcen/sgbottwartal/dist/json_api_sgb.php';
+  //return 'wp-content/themes/sgbottwartal/json_api_sgb.php';
+}
+
+
 
 ?>
