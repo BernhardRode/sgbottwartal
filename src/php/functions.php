@@ -88,7 +88,7 @@ function sgb_scripts_styles() {
   //wp_enqueue_script('facebook', 'http://connect.facebook.net/de_DE/all.js', array(), '1.0', true);
 
   //wp_enqueue_style('bootstrap', '//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css' );
-  wp_enqueue_style('fontawesome', '//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css' );
+  //wp_enqueue_style('fontawesome', '//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css' );
   wp_enqueue_style('sgb-style', get_stylesheet_uri() );
 }
 add_action( 'wp_enqueue_scripts', 'sgb_scripts_styles' );
