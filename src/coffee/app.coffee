@@ -107,4 +107,5 @@ $ ->
 
   $('body').hide()
   $('body').removeClass 'hidden'
+  $('.carousel').carousel()
   $('body').fadeIn()
