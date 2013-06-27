@@ -31,6 +31,16 @@
   <link rel="apple-touch-icon-precomposed" href="/wp-content/themes/sgbottwartal/apple-touch-icon-57-precomposed.png">
   <!-- <script type="text/javascript" src="//use.typekit.net/lxy8qkj.js"></script> -->
   <!-- <script type="text/javascript">try{Typekit.load();}catch(e){}</script>-->
+  <link rel="dns-prefetch" href="//twitter.com">
+  <link rel="dns-prefetch" href="//www.twitter.com">
+  <link rel="dns-prefetch" href="//facebook.com">
+  <link rel="dns-prefetch" href="//www.facebook.com">
+  <link rel="dns-prefetch" href="//google.com">
+  <link rel="dns-prefetch" href="//www.google.com">
+  <link rel="dns-prefetch" href="//maps.google.com">
+  <link rel="dns-prefetch" href="//plus.google.com">
+  <link rel="dns-prefetch" href="//youtube.com">
+  <link rel="dns-prefetch" href="//www.youtube.com">
 </head>
 <body class="hidden">
 <!-- NAVBAR

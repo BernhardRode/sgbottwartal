@@ -1,65 +1,105 @@
 $ = jQuery
 $ ->
-  initialize = (lat,lon) ->
-    latlng = new google.maps.LatLng(lat,lon)
-    options =
-      zoom:17
-      center:latlng
-      mapTypeId:google.maps.MapTypeId.ROADMAP
-    map = new google.maps.Map document.getElementById("map"), options
 
-    logo = new google.maps.Marker
-      position: latlng
-      map: map
-    $('#map').removeClass 'loading'
+  # initialize = (lat,lon) ->
+    # latlng = new google.maps.LatLng(lat,lon)
+    # options =
+    #   zoom:17
+    #   center:latlng
+    #   mapTypeId:google.maps.MapTypeId.ROADMAP
+    # service = new google.maps.places.PlacesService(map)
 
-  geoDecode = (address) ->
-    osmUrl = 'http://nominatim.openstreetmap.org/search?format=json&limit=1&addressdetails=0&q='
-    $.getJSON osmUrl+address, (data) ->
-      console.log 'data',data
-      if data and data[0] then data = data[0]
-      if data and data.lat and data.lon
-        initialize data.lat, data.lon
-      else
-        $('#map').hide();
+    # logo = new google.maps.Marker
+    #   position: latlng
+    #   map: map
+    # $('#map').removeClass 'loading'
+
+  codeAddress = (address) ->
+    google.maps.visualRefresh = true
+    geocoder = new google.maps.Geocoder()
+    geocoder.geocode
+      'address': address
+      (results, status) ->
+        if status is google.maps.GeocoderStatus.OK and results.length > 0
+          # vp = results[0].geometry.viewport
+          # latlng = results[0].geometry.location
+
+          options =
+            zoom:17
+            center:results[0].geometry.location
+            mapTypeId:google.maps.MapTypeId.ROADMAP
+
+          map = new google.maps.Map document.getElementById("map"), options
+
+          marker = new google.maps.Marker
+            map: map
+            position: results[0].geometry.location    
+
+          request = 
+            location: results[0].geometry.location
+            radius: '200'
+
+          service = new google.maps.places.PlacesService map
+          service.nearbySearch request, ( results, status, pagination ) ->
+            for result in results
+              console.log result.vicinity
+            
+
+        else
+          #alert "Geocode was not successful for the following reason: " + status
+          $('#map').hide()
+
+  if $('#map-sponsor').length > 0
+    $('#map').fadeIn()
+    $('#map').addClass 'loading'
+    address = $('#map').data 'address'
+    gm = codeAddress address
 
   svgeezy.init('nocheck', 'png');
   $('a[rel=tooltip]').tooltip()
   moment.lang 'de'
 
-  $('#calendar').fullCalendar
-    ignoreTimezone:
-      true
-    header:
-      left: 'prev,next today'
-      center: 'title'
-      right: 'month,agendaWeek,agendaDay'
-    editable: false
-    cache: false
-    events:
-      url: '/api/sgb/get_events'
-    eventClick: (calEvent, jsEvent, view) =>
-      time = moment( calEvent.start ).format('LLLL')
-      #time = time.fromNow()
-      title = calEvent.title
-      $('#event-title').html title
-      content  = ''
-      content += '<p><i class="icon-time"></i> '+time+'</p>'
-      if calEvent.url
-        content += '<p><a href="'+calEvent.url+'" target="_blank">'
-        content += '<i class="icon-link"></i> '+calEvent.url
-        content += '</a></p>'
-      content += '<p>'+calEvent.excerpt+'</p>'
-      if calEvent.city and calEvent.street
-        content += '<a href="https://maps.google.de/maps?q='+calEvent.city+', '+calEvent.street+'&z=16" target="_blank">'
-        content += '<i class="icon-map-marker"></i> '+calEvent.city+', '+calEvent.street
-        content += '</a>'
+  if $('#calendar').length > 0
+    $('#calendar').fullCalendar
+      ignoreTimezone:
+        true
+      header:
+        left: 'prev,next today'
+        center: 'title'
+        right: 'month,agendaWeek,agendaDay'
+      editable: false
+      cache: false
+      events:
+        url: '/api/sgb/get_events'
+        type: 'GET'
+        success: ( response, status ) -> 
+          console.log 'success',response
+          return response.events
+        error: (  ) -> 
+          console.log 'error'
+      eventClick: (calEvent, jsEvent, view) =>
+        console.log calEvent, jsEvent, view
+      #   time = moment( calEvent.start ).format('LLLL')
+      #   #time = time.fromNow()
+      #   title = calEvent.title
+      #   $('#event-title').html title
+      #   content  = ''
+      #   content += '<p><i class="icon-time"></i> '+time+'</p>'
+      #   if calEvent.url
+      #     content += '<p><a href="'+calEvent.url+'" target="_blank">'
+      #     content += '<i class="icon-link"></i> '+calEvent.url
+      #     content += '</a></p>'
+      #   content += '<p>'+calEvent.excerpt+'</p>'
+      #   if calEvent.city and calEvent.street
+      #     content += '<a href="https://maps.google.de/maps?q='+calEvent.city+', '+calEvent.street+'&z=16" target="_blank">'
+      #     content += '<i class="icon-map-marker"></i> '+calEvent.city+', '+calEvent.street
+      #     content += '</a>'
 
-      $('#event-content').html content
-      $('#event-modal').modal 'toggle'
+        # $('#event-content').html content
+        # $('#event-modal').modal 'toggle'
 
-    loading: (bool) =>
-      if bool then $('#loading').show() else $('#loading').hide()
+      loading: (bool) =>
+        if bool then $('#loading').show() else $('#loading').hide()
 
   #CFInstall.check
   #  mode: "overlay"
@@ -91,13 +131,6 @@ $ ->
          $(this).show()
 
       $('#masonry').fadeIn()
-
-  if $('#map-sponsor').length > 0
-    google.maps.visualRefresh = true
-    $('#map').fadeIn()
-    $('#map').addClass 'loading'
-    address = $('#map').data 'address'
-    gm = geoDecode address
 
   # jmpressOpts =
   #   animation :
