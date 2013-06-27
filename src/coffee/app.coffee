@@ -93,6 +93,7 @@ $ ->
       $('#masonry').fadeIn()
 
   if $('#map-sponsor').length > 0
+    google.maps.visualRefresh = true
     $('#map').fadeIn()
     $('#map').addClass 'loading'
     address = $('#map').data 'address'
