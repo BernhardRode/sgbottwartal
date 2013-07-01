@@ -61,6 +61,7 @@ $ ->
 
   if $('#calendar').length > 0
     $('#calendar').fullCalendar
+      timeFormat: 'H(:mm)'
       ignoreTimezone:
         true
       header:
