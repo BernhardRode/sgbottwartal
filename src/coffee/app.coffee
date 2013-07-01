@@ -63,7 +63,7 @@ $ ->
     $('#calendar').fullCalendar
       timeFormat: 'H(:mm)'
       ignoreTimezone:
-        true
+        false
       header:
         left: 'prev,next today'
         center: 'title'
