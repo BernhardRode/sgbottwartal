@@ -61,9 +61,9 @@ $ ->
 
   if $('#calendar').length > 0
     $('#calendar').fullCalendar
-      timeFormat: 'H(:mm)'
+      timeFormat: 'H:mm'
       ignoreTimezone:
-        false
+        true
       header:
         left: 'prev,next today'
         center: 'title'
