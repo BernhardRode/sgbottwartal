@@ -837,6 +837,45 @@ function sgb_meta_clean(&$arr) {
   }
 }
 
+// Add a column to the edit post list
+add_filter( 'manage_event_posts_columns', 'add_event_columns');
+
+/**
+ * Add new columns to the post table
+ *
+ * @param Array $columns - Current columns on the list post
+ */
+function add_event_columns( $columns ) {
+  return array_merge(
+    $columns,
+    array(
+      'begin' => __('Anfang'),
+      'end' =>__( 'Ende')
+    )
+  );
+}
+
+function custom_event_column( $column ) {
+    global $post;
+    $meta = get_post_meta( $post->ID , 'meta' , true );
+    switch ( $column ) {
+      case 'begin':
+        echo $meta['begin'];
+        break;
+      case 'end':
+        echo $meta['end'];
+        break;
+    }
+}
+add_action( 'manage_event_posts_custom_column' , 'custom_event_column' );
+
+// Make dem sortble
+// function register_sortable_columns( $columns ) {
+//     $columns['meta'] = 'Custom Column';
+//     return $columns;
+// }
+// add_filter( 'manage_edit-post_sortable_columns', 'register_sortable_columns' );
+
 /**
 * Custom Taxonomies
 **/
