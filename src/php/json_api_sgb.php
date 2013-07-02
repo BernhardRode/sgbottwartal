@@ -13,7 +13,7 @@ class json_api_sgb_controller {
   public function save_cache($data, $key) {
     $key = md5($key);
     $data = serialize($data);
-    file_put_contents(getcwd().'/wp-content/cache/'.$key, $data);        
+    file_put_contents(getcwd().'/wp-content/cache/'.$key, $data);
   }
 
   public function load_cache($key, $expire) {
@@ -24,10 +24,26 @@ class json_api_sgb_controller {
     }
     unlink($path);
     return false;
-  }  
+  }
 
 
   public function clean_umlauts($string) {
+    $tmp = $string;
+    #$string = utf8_decode($string);
+    #$string = htmlentities($string);
+    $string = str_replace("Ã¶","ö",$string);
+    $string = str_replace("Ã¼","ü",$string);
+    $string = str_replace("Ã","Ä",$string);
+    $string = str_replace("Ã","Ö",$string);
+    $string = str_replace("Ã","Ü",$string);
+    $string = str_replace("Ã","ß",$string);
+    $string = str_replace("\u00fc","ü",$string);
+    $string = str_replace("\u00e4","ä",$string);
+    $string = str_replace("\u00f6","ö",$string);
+    $string = str_replace("\u00dc","Ü",$string);
+    $string = str_replace("\u00d6","Ö",$string);
+    $string = str_replace("\u00c4","Ä",$string);
+    $string = str_replace("\u00df","ß",$string);
     $string = str_replace('&auml;', 'ä', $string);
     $string = str_replace('&Auml;', 'Ä', $string);
     $string = str_replace('&uuml;', 'ü', $string);
@@ -36,7 +52,7 @@ class json_api_sgb_controller {
     $string = str_replace('&Ouml;', 'Ö', $string);
     $string = str_replace('&szlig;', 'ß', $string);
     return $string;
-  }  
+  }
 
   public function create_ical_from_events_by_tag($events,$tag='Komplett') {
 
@@ -63,7 +79,7 @@ class json_api_sgb_controller {
         $ics .= "DTEND;TZID=Europe/Berlin:".date('Ymd',$event->end)."T".date('His',$event->end)."\n";
         $ics .= "LOCATION:".$this->clean_umlauts( $event->street.', '.$event->city ) ."\n";
         $ics .= "SUMMARY:".$this->clean_umlauts( $event->title ) ."\n";
-        $ics .= "DESCRIPTION:". $this->clean_umlauts ( strip_tags( $event->excerpt ) )."\n";
+        $ics .= "DESCRIPTION:". strip_tags( $event->excerpt ) ."\n";
         $ics .= "URL;VALUE=URI:".$event->url."\n";
         $ics .= "END:VEVENT"."\n";
       }
@@ -75,8 +91,8 @@ class json_api_sgb_controller {
     $filename = trim( $filename );
     $filename = strtolower( $filename );
     $filename = $filename.'.ics';
-    
-    file_put_contents(getcwd().'/wp-content/cache/'.$filename, $ics); 
+
+    file_put_contents(getcwd().'/wp-content/cache/'.$filename, $ics);
     return $ics;
   }
 
@@ -110,6 +126,8 @@ class json_api_sgb_controller {
 
   public function get_events_from_hvw() {
     global $json_api;
+
+
     $events = array();
 
     $games = new JSON_API_HVW();
@@ -168,6 +186,7 @@ class json_api_sgb_controller {
 
     $ttl = 3600;
     if ($debug) $ttl = 1;
+
     $events = $this->load_cache($key, $ttl);
     $cached = true;
     if ( !$events ) {
@@ -183,7 +202,7 @@ class json_api_sgb_controller {
       $this->save_cache($events, $key);
       $cached = false;
     }
-
+    header('Content-Type: text/plain; charset=utf-8'); // plain text file
     return array( 'cached' => $cached, 'start' => $start , 'end' => $end, 'events' => $events );
   }
 }

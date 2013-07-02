@@ -1,7 +1,7 @@
 <?php
 
 class JSON_API_Event {
-  
+
   var $id;            // Integer
   var $title;         // String
   var $description;   // String
@@ -16,10 +16,10 @@ class JSON_API_Event {
   var $terms;         // Array of Strings
   var $originalEvent; // Array of Strings
 
-  
+
   function JSON_API_Event($id = null) {
 
-  } 
+  }
 
   function event_from_hvw($game) {
     $this->id             = 'HVW'.$game['Nummer'];
@@ -34,7 +34,7 @@ class JSON_API_Event {
     $this->allDay         = false;
     // $this->multiday       = false;
     $this->terms          = $game['tags'];
-    $this->originalEvent  = $game;
+    #$this->originalEvent  = $game;
 
     return $this;
   }
@@ -65,7 +65,7 @@ class JSON_API_Event {
     foreach ($post->terms as $key => $value) {
       array_push( $this->terms, $value->name );
     }
-    
+
     return $this;
   }
 

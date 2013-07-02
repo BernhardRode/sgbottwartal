@@ -49,7 +49,7 @@ module.exports = function (grunt) {
           '<%= pkg.dist %>/':'<%= pkg.src %>/php/*',
           '<%= pkg.dist %>/lib/':'<%= pkg.src %>/lib/**/*.js',
           '<%= pkg.dist %>/img/':'<%= pkg.src %>/img/**/*',
-          //'<%= pkg.dist %>/font/awesome/':'<%= pkg.src %>/lib/font-awesome/font/*',
+          '<%= pkg.dist %>/font/awesome/':'<%= pkg.src %>/lib/font-awesome/font/*',
           '<%= pkg.dist %>/font/diavlo/':'<%= pkg.src %>/lib/diavlo/font/*',
           '<%= pkg.dist %>/languages/':'<%= pkg.src %>/languages/*'
         },

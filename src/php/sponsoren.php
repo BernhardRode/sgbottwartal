@@ -20,9 +20,9 @@ get_header(); ?>
 	<div id="content" role="main">
 		<div class="row">
 			<div class="span8" id="masonry">
-				<?php 
-				  $query = array( 'post_type' => 'sponsoren', 'posts_per_page' => '-1', 'orderby' => 'rand' );				  
-				  $size = 'sponsor-large'; 
+				<?php
+				  $query = array( 'post_type' => 'sponsoren', 'posts_per_page' => '-1', 'orderby' => 'rand' );
+				  $size = 'sponsor-large';
 				  $sponsoren = get_posts( $query );
 				  foreach($sponsoren as $sponsor) :
 				    $url_image = sgb_thumbnail( $size, $sponsor->ID );
@@ -33,15 +33,15 @@ get_header(); ?>
 				    $output .= '<div class="box" data-tags="'.$tags.'">';
 				    $output .= '<a href="'.$url.'">';
 				    $output .= '<img src="'.$url_image.'" style="width:100px;" class="img-polaroid img-grayscale img-max-height-120" title="'.$sponsor->post_title.'">';
-				    $output .= '</a></div>';  
+				    $output .= '</a></div>';
 				  endforeach;
-				  echo $output;  
+				  echo $output;
 				?>
 			</div>
 			<div class="span4" id="tags">
 				<a href="#" class="tag-link-all" title="Alle anzeigen" style="font-size: 24pt;">Alle</a>
 				<?php $tags = wp_tag_cloud( array( 'taxonomy' => 'sponsoren_kategorie' ) ); ?>
-				<?php print_r($tags); ?>
+				<?php // print_r($tags); ?>
 				<br/>
 				<br/>
       	<?php echo do_shortcode( '[sponsoren id="5708" span="4"]' ); ?>
