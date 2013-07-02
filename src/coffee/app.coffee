@@ -66,6 +66,7 @@ $ ->
       dayNames: ['Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag']
       dayNamesShort: ['So', 'Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa']
       firstDay: 1
+      defaultView: 'agendaWeek'
       buttonText:
         prev:     '&lsaquo;'
         next:     '&rsaquo;'
@@ -75,7 +76,13 @@ $ ->
         month:    'Monat'
         week:     'Woche'
         day:      'Tag'
+      allDayText: 'Ganztags'
+      slotMinutes: 20
       timeFormat: 'H:mm'
+      minTime: 10
+      maxTime: 22
+      axisFormat: 'H:mm'
+      contentHeight: 1024
       ignoreTimezone:
         true
       header:
