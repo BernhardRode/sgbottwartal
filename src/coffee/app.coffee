@@ -61,6 +61,20 @@ $ ->
 
   if $('#calendar').length > 0
     $('#calendar').fullCalendar
+      monthNames: ['Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember']
+      monthNamesShort: ['Jan', 'Feb', 'Mar', 'Apr', 'Mai', 'Jun', 'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Dez']
+      dayNames: ['Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag']
+      dayNamesShort: ['So', 'Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa']
+      firstDay: 1
+      buttonText:
+        prev:     '&lsaquo;'
+        next:     '&rsaquo;'
+        prevYear: '&laquo;'
+        nextYear: '&raquo;'
+        today:    'Heute'
+        month:    'Monat'
+        week:     'Woche'
+        day:      'Tag'
       timeFormat: 'H:mm'
       ignoreTimezone:
         true
@@ -79,25 +93,25 @@ $ ->
         error: (  ) -> 
           console.log 'error'
       eventClick: (calEvent, jsEvent, view) =>
-        console.log calEvent, jsEvent, view
-      #   time = moment( calEvent.start ).format('LLLL')
-      #   #time = time.fromNow()
-      #   title = calEvent.title
-      #   $('#event-title').html title
-      #   content  = ''
-      #   content += '<p><i class="icon-time"></i> '+time+'</p>'
-      #   if calEvent.url
-      #     content += '<p><a href="'+calEvent.url+'" target="_blank">'
-      #     content += '<i class="icon-link"></i> '+calEvent.url
-      #     content += '</a></p>'
-      #   content += '<p>'+calEvent.excerpt+'</p>'
-      #   if calEvent.city and calEvent.street
-      #     content += '<a href="https://maps.google.de/maps?q='+calEvent.city+', '+calEvent.street+'&z=16" target="_blank">'
-      #     content += '<i class="icon-map-marker"></i> '+calEvent.city+', '+calEvent.street
-      #     content += '</a>'
+        #console.log calEvent, jsEvent, view
+        time = moment( calEvent.start ).format('LLLL')
+        #time = time.fromNow()
+        title = calEvent.title
+        $('#event-title').html title
+        content  = ''
+        content += '<p><i class="icon-time"></i> '+time+'</p>'
+        if calEvent.url
+          content += '<p><a href="'+calEvent.url+'" target="_blank">'
+          content += '<i class="icon-link"></i> '+calEvent.url
+          content += '</a></p>'
+        content += '<p>'+calEvent.excerpt+'</p>'
+        if calEvent.city and calEvent.street
+          content += '<a href="https://maps.google.de/maps?q='+calEvent.city+', '+calEvent.street+'&z=16" target="_blank">'
+          content += '<i class="icon-map-marker"></i> '+calEvent.city+', '+calEvent.street
+          content += '</a>'
 
-        # $('#event-content').html content
-        # $('#event-modal').modal 'toggle'
+        $('#event-content').html content
+        $('#event-modal').modal 'toggle'
 
       loading: (bool) =>
         if bool then $('#loading').show() else $('#loading').hide()

@@ -1141,9 +1141,9 @@ function json_api_add_sgb_controller($controllers) {
 
 add_filter('json_api_sgb_controller_path', 'sgb_controller_path');
 function sgb_controller_path($default_path) {
-  //return '/Users/ebbo/Sourcen/sgbottwartal/dist/json_api_sgb.php';
+  return '/Users/ebbo/Sourcen/sgbottwartal/dist/json_api_sgb.php';
   //return '/Users/bernhard/Sourcen/sgbottwartal/dist/json_api_sgb.php';
-  return '/srv/www/sgbottwartal/public/wp-content/themes/sgbottwartal/json_api_sgb.php';
+  //return '/srv/www/sgbottwartal/public/wp-content/themes/sgbottwartal/json_api_sgb.php';
 }
 
 
