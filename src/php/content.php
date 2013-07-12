@@ -25,6 +25,16 @@
           <br/>
           <?php sgb_entry_meta(); ?> 
           <br/>
+          <script type="text/javascript">
+          <!--
+            google_ad_client = "ca-pub-3681567567860543";
+            /* SG Bottwartal */
+            google_ad_slot = "5752173898";
+            google_ad_width = 300;
+            google_ad_height = 250;
+          //-->
+          </script>
+          <script type="text/javascript" src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
           <?php edit_post_link( __( '<i class="icon-edit"></i> Bearbeiten', 'sgb' ), '<br/><span class="edit-link">', '</span>' ); ?>
         </div>
       </div>

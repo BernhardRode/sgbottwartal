@@ -42,7 +42,6 @@
         </div>
       </div>
       <div class="span8"> 
-
         <div id="map-sponsor"></div>
         <div id="map" class="well" data-address="<?php echo urlencode($address); ?>" style="display:none;"></div>
         <script type="text/javascript" src="http://maps.google.com/maps/api/js?libraries=places&sensor=true&language=de"></script> 

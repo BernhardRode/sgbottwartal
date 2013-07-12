@@ -28,7 +28,22 @@ get_header(); ?>
 		</div>
 		<div class="row">
 			<div class="offset3 span9">
-      		<?php echo do_shortcode( '[gallery link="file" order="DESC" columns="10" orderby="title"]' ); ?>
+      			<?php echo do_shortcode( '[gallery link="file" order="DESC" columns="10" orderby="title"]' ); ?>
+			</div>
+		</div>
+		<div class="row">
+			<div class="offset3 span9">
+				<script type="text/javascript">
+				<!--
+					google_ad_client = "ca-pub-3681567567860543";
+					/* SG Bottwartal */
+					google_ad_slot = "5752173898";
+					google_ad_width = 300;
+					google_ad_height = 250;
+				//-->
+				</script>
+				<script type="text/javascript" src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+				</script>
 			</div>
 		</div>
 	</div><!-- #content -->
