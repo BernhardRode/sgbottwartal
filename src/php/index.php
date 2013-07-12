@@ -94,6 +94,7 @@ get_header(); ?>
               <a href="<?php the_permalink(); ?>">
                 <?php the_title(); ?><?php comments_number('', '<span class="badge pull-right">1 Kommentar</span>', '<span class="badge pull-right">% Kommentare</span>' );?>
               </a>
+              <div class="g-plusone" data-size="medium" data-annotation="none"></div>
             </h4>
             <?php the_excerpt(); ?>
           </div>
@@ -103,6 +104,15 @@ get_header(); ?>
         <?php endif; // end have_posts() check ?>
       </div>
     </div>
+    <script type="text/javascript">
+      window.___gcfg = {lang: 'de'};
+
+      (function() {
+        var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+        po.src = 'https://apis.google.com/js/plusone.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+      })();
+    </script>
     <div class="span4 hidden-phone">
       <?php // echo do_shortcode( '[sponsoren tag="Premium" span="4" count="1"]' ); ?>
 <!--       <br/> -->
