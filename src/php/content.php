@@ -33,16 +33,16 @@
   </div>
   <div class="row">
     <div class="span12">
-      <script type="text/javascript"><!--
-      google_ad_client = "ca-pub-3681567567860543";
-      /* SG Bottwartal - Text */
-      google_ad_slot = "6757902292";
-      google_ad_width = 970;
-      google_ad_height = 90;
-      //-->
+      <script type="text/javascript">
+        <!--
+          google_ad_client = "ca-pub-3681567567860543";
+          /* SG Bottwartal - Text */
+          google_ad_slot = "6757902292";
+          google_ad_width = 970;
+          google_ad_height = 90;
+        //-->
       </script>
-      <script type="text/javascript"
-      src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+      <script type="text/javascript" src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
       </script>
     </div>
   </div>
