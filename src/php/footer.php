@@ -32,6 +32,7 @@
         <?php do_shortcode( '[sponsoren count="6" span="2"]' ); ?>
       </div>
     </div>
+    <hr>
     <div class="row">
       <div class="span12">
         <script type="text/javascript">
