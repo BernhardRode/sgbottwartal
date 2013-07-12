@@ -33,6 +33,20 @@
       </div>
     </div>
   </div>
+  <div class="row">
+    <div class="span12">
+      <script type="text/javascript">
+        <!--
+          google_ad_client = "ca-pub-3681567567860543";
+          /* SG Bottwartal - Text */
+          google_ad_slot = "6757902292";
+          google_ad_width = 970;
+          google_ad_height = 90;
+        //-->
+      </script>
+      <script type="text/javascript" src="http://pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+    </div>
+  </div>
 </footer>
 <footer class="site-footer">
   <div class="container">
@@ -79,20 +93,6 @@
       </div>
       <div class="span6">
         <p class="muted">powered by <a href="http://www.wordpress.org" target="_blank">wordpress</a>, <a href="http://twitter.github.com/bootstrap/index.html">bootstrap</a> &amp; <a href="http://fortawesome.github.com">font awesome</a> with <i class="icon-heart"></i> by <a href="http://bernhardrode.de">@ebbo</a></p>
-      </div>
-    </div>
-    <div class="row">
-      <div class="span12">
-        <script type="text/javascript">
-          <!--
-            google_ad_client = "ca-pub-3681567567860543";
-            /* SG Bottwartal - Text */
-            google_ad_slot = "6757902292";
-            google_ad_width = 970;
-            google_ad_height = 90;
-          //-->
-        </script>
-        <script type="text/javascript" src="http://pagead2.googlesyndication.com/pagead/show_ads.js"></script>
       </div>
     </div>
   </div>
