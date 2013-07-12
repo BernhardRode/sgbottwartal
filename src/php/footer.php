@@ -51,7 +51,6 @@
 </footer>
 <footer class="site-footer">
   <div class="container">
-  <hr>
     <div class="row">
       <div class="span2">
         <img src="/wp-content/themes/sgbottwartal/img/sg.logo.svg" class="sgb-footer-logo" />
