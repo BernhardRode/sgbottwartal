@@ -63,10 +63,10 @@
       </div>
       <div class="span4 visible-phone">
         <h1>
-          <a href="http://www.twitter.com/sgbottwartal"><i class="icon-twitter"></i></a>
-          <a href="https://www.facebook.com/SG.Bottwartal"><i class="icon-facebook"></i></a>
-          <a href="https://plus.google.com/115598032861617067767"><i class="icon-google-plus"></i></a>
-          <a href="http://www.youtube.com/user/SGBottwartal"><i class="icon-facetime-video"></i></a>
+          <a href="http://www.twitter.com/sgbottwartal" target="_blank"><i class="icon-twitter"></i></a>
+          <a href="https://www.facebook.com/SG.Bottwartal" target="_blank"><i class="icon-facebook"></i></a>
+          <a href="https://plus.google.com/115598032861617067767" target="_blank"><i class="icon-google-plus"></i></a>
+          <a href="http://www.youtube.com/user/SGBottwartal" target="_blank"><i class="icon-facetime-video"></i></a>
         </h1>
       </div>
       <div class="span2">
@@ -78,13 +78,26 @@
         <p class="muted">&copy; 2010-<?php echo date('Y'); ?></p>
       </div>
       <div class="span6">
-        <p class="muted">powered by <a href="http://www.wordpress.org">wordpress</a>, <a href="http://twitter.github.com/bootstrap/index.html">bootstrap</a> &amp; <a href="http://fortawesome.github.com">font awesome</a> with <i class="icon-heart"></i> by <a href="http://bernhardrode.de">@ebbo</a></p>
+        <p class="muted">powered by <a href="http://www.wordpress.org" target="_blank">wordpress</a>, <a href="http://twitter.github.com/bootstrap/index.html">bootstrap</a> &amp; <a href="http://fortawesome.github.com">font awesome</a> with <i class="icon-heart"></i> by <a href="http://bernhardrode.de">@ebbo</a></p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="span12">
+        <script type="text/javascript">
+          <!--
+            google_ad_client = "ca-pub-3681567567860543";
+            /* SG Bottwartal - Text */
+            google_ad_slot = "6757902292";
+            google_ad_width = 970;
+            google_ad_height = 90;
+          //-->
+        </script>
+        <script type="text/javascript" src="http://pagead2.googlesyndication.com/pagead/show_ads.js"></script>
       </div>
     </div>
   </div>
 </footer>
 <?php wp_footer(); ?>
-<!--<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js"></script>-->
 <script>
   var _gaq = _gaq || [];
   _gaq.push(['_setAccount', 'UA-318144-7']);
