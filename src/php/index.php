@@ -76,7 +76,7 @@ get_header(); ?>
           query_posts(array(
             'ignore_sticky_posts' => 1,
             'post_type' => 'post',
-            'showposts' => 8,
+            'showposts' => 20,
           ));
         ?>
         <?php if ( have_posts() ) : ?>
