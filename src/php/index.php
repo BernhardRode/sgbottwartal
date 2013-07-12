@@ -94,7 +94,7 @@ get_header(); ?>
               <a href="<?php the_permalink(); ?>">
                 <?php the_title(); ?><?php comments_number('', '<span class="badge pull-right">1 Kommentar</span>', '<span class="badge pull-right">% Kommentare</span>' );?>
               </a>
-              <div class="g-plusone" data-size="medium" data-annotation="none"></div>
+              <div class="g-plusone" data-size="medium" data-annotation="none" href="<?php the_permalink(); ?>"></div>
             </h4>
             <?php the_excerpt(); ?>
           </div>
