@@ -13,11 +13,11 @@
         $thumb = sgb_thumbnail('page-thumb');
       ?>
       <img src="<?php echo $thumb; ?>" alt="<?php echo the_title(); ?>" class="img-polaroid img-max-height-200">
-
-      <div class="g-plusone" data-size="medium" data-annotation="none" data-href="<?php the_permalink(); ?>"></div> <br>
-      <div class="fb-like" data-href="<?php the_permalink(); ?>" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false"></div><br>
-      <a href="https://twitter.com/share" class="twitter-share-button" data-lang="de" data-url="<?php the_permalink(); ?>" data-count="none" data-related="sgbottwartal" data-hash="sgb">Tweet</a><br>
-
+      <div class="clearfix">
+        <div class="g-plusone" data-size="medium" data-annotation="none" data-href="<?php the_permalink(); ?>"></div> <br>
+        <div class="fb-like" data-href="<?php the_permalink(); ?>" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false"></div><br>
+        <a href="https://twitter.com/share" class="twitter-share-button" data-lang="de" data-url="<?php the_permalink(); ?>" data-count="none" data-related="sgbottwartal" data-hash="sgb">Tweet</a><br>
+      </div>
       <div class="hidden-phone">
         <br/>
         <?php do_shortcode( '[sponsoren count="3" span="1"]' ); ?>
@@ -32,7 +32,8 @@
         <?php edit_post_link( __( '<i class="icon-edit"></i> Bearbeiten', 'sgb' ), '<br/><span class="edit-link">', '</span>' ); ?>
       </div>
 
-      <script type="text/javascript"><!--
+      <script type="text/javascript">
+      <!--
       google_ad_client = "ca-pub-3681567567860543";
       /* SG Bottwartal Skyscraper */
       google_ad_slot = "8234635492";
