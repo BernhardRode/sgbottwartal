@@ -44,29 +44,6 @@
 </head>
 <body class="hidden">
 <div id="fb-root"></div>
-
-<script type="text/javascript">
-  (function() {
-    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
-    po.src = '//connect.facebook.net/de_DE/all.js#xfbml=1&appId=354752577944082';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
-  })(document, 'script', 'facebook-jssdk');
-</script>
-<script type="text/javascript">
-  (function() {
-    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
-    po.src = 'https://platform.twitter.com/widgets.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
-  })(document,"script","twitter-wjs");
-</script>
-<script type="text/javascript">
-  window.___gcfg = {lang: 'de'};
-  (function() {
-    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
-    po.src = 'https://apis.google.com/js/plusone.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
-  })();
-</script>
 <!-- NAVBAR
 ================================================== -->
 <!-- Wrap the .navbar in .container to center it on the page and provide easy way to target it with .navbar-wrapper. -->
