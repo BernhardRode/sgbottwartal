@@ -96,13 +96,7 @@ get_header(); ?>
               </a>
             </h4>
             <?php the_excerpt(); ?>
-            <p> 
-              <div class="g-plusone" data-size="medium" data-annotation="none" data-href="<?php the_permalink(); ?>"></div>
-              <div class="fb-like" data-href="<?php the_permalink(); ?>" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false"></div>
-              <a href="https://twitter.com/share" class="twitter-share-button" data-lang="de" data-url="<?php the_permalink(); ?>" data-count="none" data-related="sgbottwartal" data-hash="sgb">Tweet</a>
-            </p>
           </div>
-          <hr>
         </div>
           <?php endwhile; ?>
         <?php endif; // end have_posts() check ?>
