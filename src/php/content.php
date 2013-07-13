@@ -47,7 +47,12 @@
       </div>
       <hr>
       <?php the_content( __( 'Continue reading <span class="meta-nav">&rarr;</span>', 'sgb' ) ); ?>
-
+      <meta name="twitter:card" content="summary">
+      <meta name="twitter:site" content="@sgbottwartal">
+      <meta name="twitter:creator" content="@sgbottwartal">
+      <meta name="twitter:title" content="<?php echo the_title(); ?>">
+      <meta name="twitter:description" content="<?php the_excerpt( ); ?>">
+      <meta name="twitter:image" content="<?php echo $thumb; ?>">
     </div><!-- .entry-content -->
   </div>
 </article><!-- #post -->
