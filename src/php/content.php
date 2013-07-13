@@ -13,12 +13,7 @@
         $thumb = sgb_thumbnail('page-thumb');
       ?>
       <img src="<?php echo $thumb; ?>" alt="<?php echo the_title(); ?>" class="img-polaroid img-max-height-200">
-      <hr>
-      <div class="clearfix">
-        <div class="g-plusone" data-size="medium" data-annotation="none" data-href="<?php the_permalink(); ?>"></div>
-        <div class="fb-like" data-href="<?php the_permalink(); ?>" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false"></div>
-        <a href="https://twitter.com/share" class="twitter-share-button" data-lang="de" data-url="<?php the_permalink(); ?>" data-count="none" data-related="sgbottwartal" data-hash="sgb">Tweet</a><br>
-      </div>
+
       <div class="hidden-phone">
         <br/>
         <?php do_shortcode( '[sponsoren count="3" span="1"]' ); ?>
@@ -29,7 +24,6 @@
         <br/>
         <?php sgb_entry_meta(); ?> 
         <br/>
-
         <?php edit_post_link( __( '<i class="icon-edit"></i> Bearbeiten', 'sgb' ), '<br/><span class="edit-link">', '</span>' ); ?>
       </div>
 
@@ -46,7 +40,14 @@
 
     </div>
     <div class="span9">
+      <div class="">
+        <div class="g-plusone" data-size="medium" data-annotation="bubble" data-count="true" data-href="<?php the_permalink(); ?>"></div>
+          <a href="https://twitter.com/share" class="twitter-share-button" data-lang="de" data-url="<?php the_permalink(); ?>" data-count="true" data-via="sgbottwartal" data-hashtags="SGB">Tweet</a>
+          <div class="fb-like" data-href="http://sg-bottwartal.de/2013/07/die-neuen-trikots-sind-da/" data-send="false" data-layout="button_count" data-width="65" data-show-faces="false"></div>
+      </div>
+      <hr>
       <?php the_content( __( 'Continue reading <span class="meta-nav">&rarr;</span>', 'sgb' ) ); ?>
+
     </div><!-- .entry-content -->
   </div>
 </article><!-- #post -->

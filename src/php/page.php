@@ -27,6 +27,11 @@ get_header(); ?>
 			</div>
 		</div>
 		<div class="row">
+			<div class="offset3">
+			</div>	
+		</div>
+
+		<div class="row">
 			<div class="offset3 span9">
       			<?php echo do_shortcode( '[gallery link="file" order="DESC" columns="10" orderby="title"]' ); ?>
 			</div>
