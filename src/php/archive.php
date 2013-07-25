@@ -24,30 +24,37 @@ get_header(); ?>
 					?></h1>
 				</header><!-- .archive-header -->
         <?php while ( have_posts() ) : the_post(); ?>
-	        <div class="row media">
-	        	<div class="span2">
-		          <?php
-		            $url = sgb_thumbnail('post-thumbnail',$post->ID);
-		          ?>
-		          <a class="span2" href="<?php the_permalink(); ?>">
-		            <img class="media-object img-circle img-shadow img-svg-120" src="<?php echo $url; ?>">
-		          </a>
+	        <div class="row">
+	        	<div class="media">
+		        	<div class="span2">
+			          <?php
+			            $url = sgb_thumbnail('post-thumbnail',$post->ID);
+			          ?>
+			          <a class="span2" href="<?php the_permalink(); ?>">
+			            <img class="media-object img-circle img-shadow img-svg-120" src="<?php echo $url; ?>">
+			          </a>
+		        	</div>
+					<div class="span6 media-body">
+						<h4 class="media-heading">
+						  <a href="<?php the_permalink(); ?>">
+						    <?php the_title(); ?><?php comments_number('', '<span class="badge pull-right">1 Kommentar</span>', '<span class="badge pull-right">% Kommentare</span>' );?>
+						  </a>
+						</h4>
+						<?php the_excerpt(); ?>##
+					</div>
+				</div>
+	        </div>
+	        <div class="row">
+	        	<div class="span10">
+	        		<small class="muted">Erstellt von </small>
 	        	</div>
-	          <div class="span6 media-body">
-	            <h4 class="media-heading">
-	              <a href="<?php the_permalink(); ?>">
-	                <?php the_title(); ?><?php comments_number('', '<span class="badge pull-right">1 Kommentar</span>', '<span class="badge pull-right">% Kommentare</span>' );?>
-	              </a>
-	            </h4>
-	            <?php the_excerpt(); ?>
-	          </div>
 	        </div>
         <?php endwhile; ?>
         <div class="row">
         	<div class="span8">
         		<div class="centered">
       				<?php echo do_shortcode( '[seiten]' ); ?>
-						</div>
+				</div>
         	</div>
         </div>
       <?php endif; // end have_posts() check ?>
