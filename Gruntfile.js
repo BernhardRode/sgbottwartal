@@ -1,9 +1,17 @@
-module.exports = function (grunt) {
-  'use strict';
+module.exports = function(grunt) {
 
+  // Project configuration.
   grunt.initConfig({
-    pkg: '<json:package.json>',
-
+    pkg: grunt.file.readJSON('package.json'),
+    uglify: {
+      options: {
+        banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n'
+      },
+      build: {
+        src: 'src/<%= pkg.name %>.js',
+        dest: 'build/<%= pkg.name %>.min.js'
+      }
+    },
     meta: {
       banner: '/*!\n'+
         '<%= pkg.name %> Version: <%= pkg.version %>-<%= pkg.codename %> '+
@@ -148,7 +156,7 @@ module.exports = function (grunt) {
         '<%= pkg.src %>/plugins/json-api/**/*.php'
       ],
       tasks: 'build reload'
-    },
+    },    
     ftpush: {
       dist: {
         auth: {
@@ -157,12 +165,12 @@ module.exports = function (grunt) {
           authKey: 'key1'
         },
         src: './dist',
-        dest: '/',
-        simpple: true
+        dest: '/sgb/wp-content/themes/sgb'
       }
     }
   });
 
+  // Load the plugin that provides the "uglify" task.
   grunt.loadNpmTasks('grunt-coffee');
   grunt.loadNpmTasks('grunt-clean');
   grunt.loadNpmTasks('grunt-less');
@@ -171,12 +179,16 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-replace');
   grunt.loadNpmTasks('grunt-testacular');
   grunt.loadNpmTasks('grunt-docco');
+  grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-ftpush');
 
+  // Default task(s).
   grunt.registerTask('build', 'clean coffee replace less copy');
   grunt.registerTask('default', 'reload build watch');
   grunt.registerTask('doc', 'docco');
   grunt.registerTask('prod', 'build min');
   grunt.registerTask('test', 'testacularServer');
   grunt.registerTask('deploy', 'build min ftpush:dist');
+  //grunt.registerTask('default', ['uglify']);
+
 };
